@@ -1,13 +1,16 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-    standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
 export class Dashboard {
+ constructor(private router: Router) {}
 
+  goToTenantCreate() {
+    this.router.navigate(['/tenant-create']);
+}
 }
