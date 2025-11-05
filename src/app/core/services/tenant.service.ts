@@ -1,22 +1,24 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TenantService {
-    private apiUrl = 'https://localhost:7055/api/admin/tenant';
+   private http = inject(HttpClient);
+private apiUrl = `${environment.apiBase}/admin/tenant`;
 
-  constructor(private http: HttpClient) {}
 
-  // 🧾 POST → create tenant
-  createTenant(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/create`, data);
-  }
+// 🧾 POST → create tenant
+createTenant(data: unknown): Observable<unknown> {
+return this.http.post(`${this.apiUrl}/create`, data);
+}
 
-  // 🔍 GET → get all tenants
-  getAllTenants(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/all`);
-  }
+
+// 🔍 GET → get all tenants
+getAllTenants(): Observable<unknown[]> {
+return this.http.get<unknown[]>(`${this.apiUrl}/all`);
+}
 }

@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import {TenantService }from '../../../services/tenant.service';
 
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CreateTenantRequest } from '../../../../Types/CreateTenantRequest';
 
 @Component({
   selector: 'app-tenant-create',
@@ -12,7 +14,9 @@ import { Router } from '@angular/router';
   styleUrl: './tenant-create.css',
 })
 export class TenantCreate {
-fb = new FormBuilder();
+private fb = inject(FormBuilder);
+private tenantService = inject(TenantService);
+private router = inject(Router);
   
   form = this.fb.group({
     name: ['', Validators.required],
@@ -27,7 +31,7 @@ fb = new FormBuilder();
   message = '';
   loading = false;
 
-  constructor(private http: HttpClient, private router: Router) {}
+
 
   submit() {
     if (this.form.invalid) {
@@ -41,18 +45,18 @@ fb = new FormBuilder();
     });
 
     this.loading = true;
+    const data = this.form.value as CreateTenantRequest;
 
-    this.http.post('https://localhost:7055/api/admin/tenant/create', this.form.value, { headers })
-      .subscribe({
-        next: () => {
-          this.message = '✅ Tenant created successfully!';
-          this.loading = false;
-          setTimeout(() => this.router.navigate(['/dashboard']), 1500);
-        },
-        error: (err) => {
-          this.message = `❌ Error: ${err.error?.message || 'Something went wrong'}`;
-          this.loading = false;
-        }
-      });
+ this.tenantService.createTenant(data).subscribe({
+next: () => {
+this.loading = false;
+this.message = '✅ Tenant created successfully!';
+setTimeout(() => this.router.navigate(['/dashboard']), 1200);
+},
+error: (err) => {
+this.loading = false;
+this.message = `❌ Error: ${err?.error?.message || err?.message || 'Something went wrong'}`;
+}
+});
   }
 }
