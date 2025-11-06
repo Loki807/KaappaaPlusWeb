@@ -11,6 +11,6 @@ import { Router } from '@angular/router';
 export class Dashboard {
  private router = inject(Router);
   goToCreateUser() {
-    this.router.navigate(['/tenant-admin/users/create']);
+    this.router.navigate(['/users-create']);
   }
 }
