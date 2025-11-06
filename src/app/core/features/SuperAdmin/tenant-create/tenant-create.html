@@ -1,36 +1,35 @@
-<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-700 to-blue-900 text-white font-[Poppins]">
-  <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-10 rounded-3xl shadow-2xl w-[90%] max-w-lg">
-    <h1 class="text-3xl font-bold mb-6 text-center">🏢 Create New Tenant</h1>
+<div class="tenant-wrapper">
+  <div class="tenant-card animate-fadeIn">
+    <h1>🏢 Create New Tenant</h1>
 
-    <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-4">
-      <input formControlName="name" type="text" placeholder="Tenant Name"
-             class="w-full p-3 rounded-lg bg-white/20 focus:outline-none">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="tenant-form">
+      <label>Tenant Name</label>
+      <input formControlName="name" type="text" placeholder="Enter tenant name">
 
-      <input formControlName="addressLine1" type="text" placeholder="Address Line 1"
-             class="w-full p-3 rounded-lg bg-white/20 focus:outline-none">
+      <label>Address Line 1</label>
+      <input formControlName="addressLine1" type="text" placeholder="Enter address line 1">
 
-      <input formControlName="addressLine2" type="text" placeholder="Address Line 2"
-             class="w-full p-3 rounded-lg bg-white/20 focus:outline-none">
+      <label>Address Line 2</label>
+      <input formControlName="addressLine2" type="text" placeholder="Enter address line 2">
 
-      <input formControlName="city" type="text" placeholder="City"
-             class="w-full p-3 rounded-lg bg-white/20 focus:outline-none">
+      <label>City</label>
+      <input formControlName="city" type="text" placeholder="Enter city">
 
-      <input formControlName="stateOrDistrict" type="text" placeholder="State / District"
-             class="w-full p-3 rounded-lg bg-white/20 focus:outline-none">
+      <label>State / District</label>
+      <input formControlName="stateOrDistrict" type="text" placeholder="Enter state or district">
 
-      <input formControlName="postalCode" type="text" placeholder="Postal Code"
-             class="w-full p-3 rounded-lg bg-white/20 focus:outline-none">
+      <label>Postal Code</label>
+      <input formControlName="postalCode" type="text" placeholder="Enter postal code">
 
-      <input formControlName="contactNumber" type="text" placeholder="Contact Number"
-             class="w-full p-3 rounded-lg bg-white/20 focus:outline-none">
+      <label>Contact Number</label>
+      <input formControlName="contactNumber" type="text" placeholder="Enter contact number">
 
-      <button type="submit" [disabled]="loading"
-        class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold shadow-md transition">
+      <button type="submit" [disabled]="loading">
         {{ loading ? 'Creating...' : 'Create Tenant' }}
       </button>
     </form>
 
-    <p class="mt-4 text-center text-sm text-gray-200">{{ message }}</p>
+    <p class="message">{{ message }}</p>
   </div>
 </div>
 

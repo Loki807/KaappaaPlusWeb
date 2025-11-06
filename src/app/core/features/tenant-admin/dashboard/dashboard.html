@@ -1,1 +1,49 @@
-<p>dashboard works!</p>
+<div class="tenant-dashboard">
+  <!-- 🧭 Header -->
+  <header class="header">
+    <div class="header-left">
+      <h1>🛡️ Tenant Admin Dashboard</h1>
+      <p>Manage your tenant’s users efficiently.</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-primary" (click)="goToCreateUser()">
+        ➕ Create User
+      </button>
+    </div>
+  </header>
+
+  <!-- 💡 Quick Tips Panel -->
+  <section class="panel">
+    <h2 class="panel-title">Quick Tips</h2>
+    <ul class="tips">
+      <li>Click “Create User” to add staff (Police, Fire, etc.).</li>
+      <li>First-time users must change their password on first login.</li>
+    </ul>
+  </section>
+
+  <!-- 👥 Recent Users List -->
+  <section class="panel">
+    <h2 class="panel-title">Recent Users</h2>
+
+    <div class="list">
+      <div class="row">
+        <div class="col name">John Perera</div>
+        <div class="col email">john@tenant.lk</div>
+        <div class="col role">Police</div>
+        <div class="col status on">Active</div>
+      </div>
+
+      <div class="row">
+        <div class="col name">Kumara Silva</div>
+        <div class="col email">kumara@tenant.lk</div>
+        <div class="col role">Traffic</div>
+        <div class="col status off">Inactive</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🦶 Footer -->
+  <footer class="footer">
+    <small>Kaappaan Tenant • © 2025</small>
+  </footer>
+</div>

@@ -1,0 +1,238 @@
+/* 🌈 Theme Variables (Light Mode) */
+:root {
+  --bg: #f1f5ff;          /* Soft light blue background */
+  --panel: #ffffff;        /* White panels */
+  --border: #d0d7e3;       /* Subtle gray border */
+  --text: #1e293b;         /* Dark text */
+  --dim: #64748b;          /* Lighter gray text */
+  --blue: #2563eb;         /* Primary Kaappaan blue */
+  --blue-dark: #1e40af;    /* Darker hover blue */
+}
+
+/* 🌍 Global Setup */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Poppins', system-ui, 'Segoe UI', Roboto, Arial;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* 🧭 Header */
+.header {
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  padding: 18px 24px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  color: white;
+  animation: fadeIn 0.6s ease-in-out;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+/* 🧾 Form Panel */
+.panel {
+  margin: 40px auto;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--panel);
+  padding: 35px 40px;
+  max-width: 620px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+/* 📝 Form Layout */
+.form {
+  display: grid;
+  gap: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+label {
+  font-weight: 500;
+  color: var(--dim);
+  font-size: 0.95rem;
+}
+
+/* ✏️ Input & Select */
+input,
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: var(--text);
+  border: 1px solid var(--border);
+  outline: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.2);
+}
+
+/* 🔘 Buttons */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.25s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #2563eb, #1e40af);
+  box-s
+
+
+/* 🧭 Header */
+.header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(18, 24, 38, 0.95);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* 🧾 Panel container */
+.panel {
+  margin: 40px auto;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--panel);
+  padding: 30px 40px;
+  max-width: 620px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+/* 📝 Form */
+.form {
+  display: grid;
+  gap: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+label {
+  font-weight: 500;
+  color: var(--dim);
+  font-size: 0.95rem;
+}
+
+/* ✏️ Inputs & Selects */
+input,
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #0e1526;
+  color: var(--text);
+  border: 1px solid var(--border);
+  outline: none;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 8px rgba(47, 109, 246, 0.3);
+}
+
+/* 🔘 Buttons */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.btn-primary {
+  background: var(--blue);
+  box-shadow: 0 4px 20px rgba(47, 109, 246, 0.4);
+}
+
+.btn-primary:hover {
+  background: var(--blue-dark);
+  transform: translateY(-2px);
+}
+
+/* 💬 Message */
+.msg {
+  color: var(--dim);
+  font-size: 0.9rem;
+}
+
+/* ✨ Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+}

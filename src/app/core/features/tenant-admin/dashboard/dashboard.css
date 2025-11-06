@@ -1,0 +1,140 @@
+/* 🌈 Full-page setup */
+.tenant-dashboard {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  padding: 30px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* 🧭 Header layout */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 20px 30px;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.header-left h1 {
+  font-size: 1.8rem;
+  margin: 0;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.header-left p {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: #dbeafe;
+}
+
+/* 🔘 Button */
+.btn {
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #1d4ed8, #1e40af);
+  transform: translateY(-2px);
+}
+
+/* 📘 Panel */
+.panel {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 25px 30px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+}
+
+.panel-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 8px;
+}
+
+/* 💡 Quick Tips */
+.tips {
+  list-style: none;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.tips li {
+  padding: 5px 0;
+  font-size: 0.95rem;
+  color: #e0e7ff;
+}
+
+/* 👥 Recent users list */
+.list {
+  margin-top: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1.5fr 1.8fr 1fr 1fr;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.row:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.col {
+  font-size: 0.95rem;
+}
+
+.col.status.on {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.col.status.off {
+  color: #f87171;
+  font-weight: 600;
+}
+
+/* 🦶 Footer */
+.footer {
+  text-align: center;
+  margin-top: auto;
+  color: #cbd5e1;
+  font-size: 0.85rem;
+}
+
+/* ✨ Fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

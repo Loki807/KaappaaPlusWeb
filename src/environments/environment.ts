@@ -1,14 +1,24 @@
 export const environment = {
-production: false,
-// Base API URL (no trailing slash)
-apiBase: 'https://localhost:7055/api',
-// Centralized endpoints so you don't hardcode paths elsewhere
-endpoints: {
-admin: {
-tenant: {
-create: 'admin/tenant/create', // → https://localhost:7055/api/admin/tenant/create
-all: 'admin/tenant/all'
-}
-}
-}
+ production: false,
+  apiBase: 'https://localhost:7055/api',
+  endpoints: {
+    admin: {
+      tenant: {
+        create: 'admin/tenant/create',
+        all: 'admin/tenant/all',
+        byId: (id: string) => `admin/tenant/${id}`,
+        update: (id: string) => `admin/tenant/${id}`,
+        delete: (id: string) => `admin/tenant/${id}`,
+      }
+    },
+    tenant: {
+      users: {
+        create: 'tenant/users/create',
+        all: 'tenant/users/all',
+        byId: (id: string) => `tenant/users/${id}`,
+        update: (id: string) => `tenant/users/${id}`,
+        delete: (id: string) => `tenant/users/${id}`,
+      }
+    }
+  }
 };
