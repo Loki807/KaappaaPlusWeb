@@ -17,7 +17,7 @@ import { Storage } from '../../../Store/storage';
 export class Login {
 
 
-  fb = inject(FormBuilder);
+   fb = inject(FormBuilder);
   auth = inject(Auth);
   router = inject(Router);
   storage = inject(Storage);
@@ -35,16 +35,51 @@ export class Login {
 
     const request: LoginRequest = this.form.value as LoginRequest;
     this.loading = true;
+    this.message = '';
 
     this.auth.login(request).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         this.loading = false;
-        if (res.message?.includes('Password change required')) {
-          this.router.navigate(['/change-password'], { queryParams: { email: request.email } });
+
+        // 1) Save the JWT for the interceptor
+        this.storage.setToken(res.token);
+
+        // 2) Persist handy fields for guards/UX
+        if (res.role) this.storage.set('role', res.role);
+
+        // store tenantId if API returns it; otherwise try to read from JWT claim
+        if (res.tenantId) {
+          this.storage.set('tenantId', res.tenantId);
         } else {
-          this.storage.setToken(res.token);
-          if (res.role === 'SuperAdmin') this.router.navigate(['/dashboard']);
-          else this.router.navigate(['/dashboard']);
+          const tid = this.storage.getTenantId(); // decodes JWT: tenantId/tid/tenant_id
+          if (tid) this.storage.set('tenantId', tid);
+        }
+
+        // 3) Figure out "first login" (prefer boolean; fallback to message text if your API uses that)
+        const isFirst =
+          typeof res.isFirstLogin === 'boolean'
+            ? res.isFirstLogin
+            : !!res.message?.includes('Password change required');
+
+        this.storage.set('isFirstLogin', String(isFirst)); // "true" | "false"
+
+        // 4) Route by role + first-login rule
+        if (res.role === 'TenantAdmin') {
+          if (isFirst) {
+            // Send to change password the FIRST time
+            this.router.navigate(
+              ['/change-password'],
+              { queryParams: { email: request.email } }
+            );
+          } else {
+            // Next logins go straight to Tenant Admin dashboard
+            this.router.navigate(['/tenant-admin/dashboard']);
+          }
+        } else if (res.role === 'SuperAdmin') {
+          this.router.navigate(['/dashboard']);
+        } else {
+          // default fallback
+          this.router.navigate(['/tenant-dashboard']);
         }
       },
       error: () => {
