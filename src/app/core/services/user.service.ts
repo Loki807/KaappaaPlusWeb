@@ -10,25 +10,13 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
   private http = inject(HttpClient);
 
-  private createUrl = `${environment.apiBase}/${environment.endpoints.tenant.users.create}`;
-  private allUrl    = `${environment.apiBase}/${environment.endpoints.tenant.users.all}`;
-  private byIdUrl   = (id: string) => `${environment.apiBase}/${environment.endpoints.tenant.users.byId(id)}`;
-  private updUrl    = (id: string) => `${environment.apiBase}/${environment.endpoints.tenant.users.update(id)}`;
-  private delUrl    = (id: string) => `${environment.apiBase}/${environment.endpoints.tenant.users.delete(id)}`;
+  private createUrl = `${environment.apiBase}/${environment.endpoints.admin.tenant.create}`;
 
   createUser(data: CreateUserRequest): Observable<UserDto> {
+    // If your backend expects roles[] instead of role, adapt here:
+    // const payload = { ...data, roles: [data.role] }; delete (payload as any).role;
+    // return this.http.post<UserDto>(this.createUrl, payload);
+
     return this.http.post<UserDto>(this.createUrl, data);
-  }
-  getAllUsers(): Observable<UserDto[]> {
-    return this.http.get<UserDto[]>(this.allUrl);
-  }
-  getUser(id: string): Observable<UserDto> {
-    return this.http.get<UserDto>(this.byIdUrl(id));
-  }
-  updateUser(id: string, data: Partial<CreateUserRequest>): Observable<UserDto> {
-    return this.http.put<UserDto>(this.updUrl(id), data);
-  }
-  deleteUser(id: string): Observable<void> {
-    return this.http.delete<void>(this.delUrl(id));
   }
 }

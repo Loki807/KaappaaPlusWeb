@@ -1,45 +1,43 @@
-<div class="create-user-wrapper">
-  <header class="header">
-    <h1>➕ Create User</h1>
-  </header>
+<section class="panel">
+  <form [formGroup]="form" (ngSubmit)="submit()" class="form">
+    <div class="field">
+      <label>Name</label>
+      <input formControlName="name" placeholder="Full name" autocomplete="name" />
+    </div>
 
-  <section class="panel">
-    <form [formGroup]="form" (ngSubmit)="submit()" class="form">
-      <div class="field">
-        <label>Name</label>
-        <input formControlName="name" placeholder="Full name" />
-      </div>
+    <div class="field">
+      <label>Email</label>
+      <input formControlName="email" type="email" placeholder="user@tenant.lk" autocomplete="email" />
+    </div>
 
-      <div class="field">
-        <label>Email</label>
-        <input formControlName="email" type="email" placeholder="user@tenant.lk" />
-      </div>
+    <div class="field">
+      <label>Phone</label>
+      <input formControlName="phone" placeholder="07x xxxxxxx" autocomplete="tel" />
+    </div>
 
-      <div class="field">
-        <label>Phone</label>
-        <input formControlName="phone" placeholder="07x xxxxxxx" />
-      </div>
+    <div class="field">
+      <label>Role</label>
+      <select formControlName="role">
+        <option value="" disabled>-- Select Role --</option>
+        <option value="Police">Police</option>
+        <option value="Fire">Fire</option>
+        <option value="Traffic">Traffic</option>
+        <option value="Ambulance">Ambulance</option>
+        <option value="Citizen">Citizen</option>
+        <option value="TenantAdmin">Tenant Admin</option>
+      </select>
+    </div>
 
-      <div class="field">
-        <label>Role</label>
-        <select formControlName="role">
-          <option value="" disabled selected>-- Select Role --</option>
-          <option value="Police">Police</option>
-          <option value="Fire">Fire</option>
-          <option value="Traffic">Traffic</option>
-          <option value="Ambulance">Ambulance</option>
-          <option value="Citizen">Citizen</option>
-          <option value="TenantAdmin">Tenant Admin</option>
-        </select>
-      </div>
+    <div class="field">
+      <label>Temporary Password (optional)</label>
+      <input formControlName="password" type="password" placeholder="e.g. P@ssw0rd123" autocomplete="new-password" />
+      <small>Tip: If you set this, mark first login on backend so they must change it.</small>
+    </div>
 
-      <div class="actions">
-        <button type="submit" class="btn btn-primary" [disabled]="loading">
-          <span *ngIf="!loading">Create</span>
-          <span *ngIf="loading">Creating...</span>
-        </button>
-        <span class="msg">{{ message }}</span>
-      </div>
-    </form>
-  </section>
-</div>
+    <button type="submit" [disabled]="loading || form.invalid">
+      {{ loading ? 'Saving...' : 'Create User' }}
+    </button>
+
+    <p class="msg">{{ message }}</p>
+  </form>
+</section>
