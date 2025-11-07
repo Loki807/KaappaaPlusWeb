@@ -24,9 +24,13 @@
       <label>Contact Number</label>
       <input formControlName="contactNumber" type="text" placeholder="Enter contact number">
 
-      <button type="submit" [disabled]="loading">
-        {{ loading ? 'Creating...' : 'Create Tenant' }}
-      </button>
+  <div class="actions">
+        <button type="submit" class="btn btn-primary" [disabled]="loading">
+          <span *ngIf="!loading">Create</span>
+          <span *ngIf="loading">Creating...</span>
+        </button>
+        <span class="msg">{{ message }}</span>
+      </div>
     </form>
 
     <p class="message">{{ message }}</p>

@@ -34,10 +34,12 @@
       <small>New user can be forced to change this at first login (backend).</small>
     </div>
 
-    <button type="submit" [disabled]="loading || form.invalid">
-      {{ loading ? 'Saving...' : 'Create User' }}
-    </button>
-
-    <p class="msg">{{ message }}</p>
+      <div class="actions">
+        <button type="submit" class="btn btn-primary" [disabled]="loading">
+          <span *ngIf="!loading">Create</span>
+          <span *ngIf="loading">Creating...</span>
+        </button>
+        <span class="msg">{{ message }}</span>
+      </div>
   </form>
 </section>
