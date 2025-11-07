@@ -1,10 +1,13 @@
+// src/environments/environment.ts
 export const environment = {
   production: false,
   apiBase: 'https://localhost:7055/api',
   endpoints: {
     admin: {
-      tenantUser: {
-        create: 'admin/tenant/user/create'   // <-- your backend path
+      // ✅ this group is for admin-side user mgmt
+      users: {
+        create: 'admin/users/create',   // <-- YOUR ACTUAL PATH
+        // (optional) add more later: all, byId, update, delete
       },
       tenant: {
         create: 'admin/tenant/create',

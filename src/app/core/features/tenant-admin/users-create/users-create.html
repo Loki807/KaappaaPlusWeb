@@ -29,9 +29,9 @@
     </div>
 
     <div class="field">
-      <label>Temporary Password (optional)</label>
-      <input formControlName="password" type="password" placeholder="e.g. P@ssw0rd123" autocomplete="new-password" />
-      <small>Tip: If you set this, mark first login on backend so they must change it.</small>
+      <label>Temporary Password</label>
+      <input formControlName="password" type="password" placeholder="P@ssw0rd123" autocomplete="new-password" />
+      <small>New user can be forced to change this at first login (backend).</small>
     </div>
 
     <button type="submit" [disabled]="loading || form.invalid">

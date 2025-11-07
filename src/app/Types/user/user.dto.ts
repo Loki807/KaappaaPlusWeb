@@ -1,9 +1,11 @@
+import type { AppRole } from './role.type';
+
 export interface UserDto {
-  id: string;            // GUID from backend
-  tenantId: string;      // which tenant this user belongs to
+  id: string;
+  tenantId: string;
   name: string;
   email: string;
   phone: string;
   isActive: boolean;
-  roles: string[];       // e.g., ["Police"] or ["TenantAdmin"]
+  roles: AppRole[];   // e.g. ["Police"]
 }

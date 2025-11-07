@@ -13,56 +13,48 @@ import { Storage } from '../../../../Store/storage';
   styleUrl: './users-create.css',
 })
 export class UsersCreate {
- // DI with `inject` (no constructor needed)
-  private fb = inject(FormBuilder);
+   private fb = inject(FormBuilder);
+  private storage = inject(Storage);
   private api = inject(UserService);
   private router = inject(Router);
-  private storage = inject(Storage);
 
-  message = '';                                      // UI message line
-  loading = false;                                   // button spinner flag
+  message = '';
+  loading = false;
+  tenantId = '';
 
-  // try stored tenantId first, else decode from JWT claim (tenantId/tid/tenant_id)
-  private tenantId: string =
-    this.storage.get('tenantId') ?? this.storage.getTenantId() ?? '';
-
-  // Build the reactive form
   form = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     phone: ['', Validators.required],
     role: ['', Validators.required] as unknown as AppRole | '',
-    password: ['']  // optional
+    password: ['', [Validators.required, Validators.minLength(6)]]
   });
+
+  ngOnInit(): void {
+    this.tenantId = this.storage.get('tenantId') ?? this.storage.getTenantId() ?? '';
+    if (!this.tenantId) this.message = '⚠️ Missing tenant id (please login again).';
+  }
 
   submit() {
     this.message = '';
     if (this.form.invalid) { this.message = '⚠️ Fill all required fields.'; return; }
     if (!this.tenantId)    { this.message = '⚠️ Missing tenant id.'; return; }
 
-    // Build the request body
     const req: CreateUserRequest = {
       tenantId: this.tenantId,
       name: this.form.value.name!.trim(),
       email: this.form.value.email!.trim(),
       phone: this.form.value.phone!.trim(),
-      role: this.form.value.role as AppRole,
-      password: (this.form.value.password || '').toString().trim() || undefined
+      password: this.form.value.password!,           // send it; backend will hash
+      role: this.form.value.role as AppRole
     };
 
     this.loading = true;
-
     this.api.createUser(req).subscribe({
       next: () => {
         this.loading = false;
         this.message = '✅ User created!';
-
-        // Route back based on *current* logged-in role
-        const who = this.storage.get('role');
-        setTimeout(() => {
-          if (who === 'SuperAdmin') this.router.navigate(['/dashboard']);
-          else this.router.navigate(['/tenant-dashboard']);
-        }, 800);
+        setTimeout(() => this.router.navigate(['/tenant-dashboard']), 800);
       },
       error: (err) => {
         this.loading = false;
@@ -76,3 +68,4 @@ export class UsersCreate {
     });
   }
 }
+
