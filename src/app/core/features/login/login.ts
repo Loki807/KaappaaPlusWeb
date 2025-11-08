@@ -29,25 +29,62 @@ fb = inject(FormBuilder);
   message = '';
   loading = false;
 
-  submit() {
-    if (this.form.invalid) return;
+   submit() {
+    if (this.form.invalid) {
+      this.message = '⚠️ Please enter valid email and password.';
+      return;
+    }
 
     const request: LoginRequest = this.form.value as LoginRequest;
     this.loading = true;
+    this.message = '';
 
     this.auth.login(request).subscribe({
       next: (res) => {
         this.loading = false;
+
+        // 🧩 1️⃣ First-time login → change password
         if (res.message?.includes('Password change required')) {
-          this.router.navigate(['/change-password'], { queryParams: { email: request.email } });
-        } else {
-          this.storage.setToken(res.token);
-          if (res.role === 'SuperAdmin') this.router.navigate(['/dashboard']);
-          else this.router.navigate(['/tenant-dashboard']);
+          this.router.navigate(['/change-password'], {
+            queryParams: { email: request.email },
+          });
+          return;
+        }
+
+        // 💾 2️⃣ Save token
+        this.storage.setToken(res.token);
+
+        // 🧭 3️⃣ Role-based navigation
+        switch (res.role) {
+          case 'SuperAdmin':
+            this.router.navigate(['/dashboard']);
+            break;
+
+          case 'TenantAdmin':
+            this.router.navigate(['/tenant-dashboard']);
+            break;
+
+          // 🚫 Tenant users — no dashboard access
+          case 'Police':
+          case 'Fire':
+          case 'Traffic':
+          case 'Ambulance':
+          case 'Citizen':
+            this.message = '🚫 Access denied: You do not have permission to open the dashboard.';
+            this.router.navigate(['/home']); // or stay on same page
+            break;
+
+          // 🚫 Unknown / Unhandled role
+          default:
+            this.message = '⚠️ Unknown role detected. Please contact support.';
+            this.router.navigate(['/home']);
+            break;
         }
       },
-      error: () => {
+
+      error: (err) => {
         this.loading = false;
+        console.error('Login error:', err);
         this.message = '❌ Invalid email or password.';
       }
     });
