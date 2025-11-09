@@ -4,36 +4,48 @@
 
     <form [formGroup]="form" (ngSubmit)="submit()" class="tenant-form">
       <label>Tenant Name</label>
-      <input formControlName="name" type="text" placeholder="Enter tenant name">
+      <input formControlName="name" type="text" placeholder="Enter tenant name" />
+
+      <label>Tenant Code</label>
+      <input formControlName="code" type="text" placeholder="Enter tenant code" />
 
       <label>Address Line 1</label>
-      <input formControlName="addressLine1" type="text" placeholder="Enter address line 1">
+      <input formControlName="addressLine1" type="text" placeholder="Enter address line 1" />
 
       <label>Address Line 2</label>
-      <input formControlName="addressLine2" type="text" placeholder="Enter address line 2">
+      <input formControlName="addressLine2" type="text" placeholder="Enter address line 2" />
 
       <label>City</label>
-      <input formControlName="city" type="text" placeholder="Enter city">
+      <input formControlName="city" type="text" placeholder="Enter city" />
 
       <label>State / District</label>
-      <input formControlName="stateOrDistrict" type="text" placeholder="Enter state or district">
+      <input formControlName="stateOrDistrict" type="text" placeholder="Enter state or district" />
 
       <label>Postal Code</label>
-      <input formControlName="postalCode" type="text" placeholder="Enter postal code">
+      <input formControlName="postalCode" type="text" placeholder="Enter postal code" />
 
       <label>Contact Number</label>
-      <input formControlName="contactNumber" type="text" placeholder="Enter contact number">
+      <input formControlName="contactNumber" type="text" placeholder="Enter contact number" />
 
-  <div class="actions">
+      <label>Logo URL</label>
+      <input formControlName="logoUrl" type="text" placeholder="Enter logo URL (optional)" />
+
+      <label>Service Type</label>
+      <select formControlName="serviceType">
+        <option value="" disabled selected>-- Select Service Type --</option>
+        <option value="Police">Police</option>
+        <option value="Fire">Fire</option>
+        <option value="Ambulance">Ambulance</option>
+      </select>
+
+      <div class="actions">
         <button type="submit" class="btn btn-primary" [disabled]="loading">
-          <span *ngIf="!loading">Create</span>
+          <span *ngIf="!loading">Create Tenant</span>
           <span *ngIf="loading">Creating...</span>
         </button>
-        <span class="msg">{{ message }}</span>
       </div>
-    </form>
 
-    <p class="message">{{ message }}</p>
+      <p class="msg">{{ message }}</p>
+    </form>
   </div>
 </div>
-

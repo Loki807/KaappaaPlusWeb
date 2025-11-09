@@ -25,7 +25,9 @@ private router = inject(Router);
     city: ['', Validators.required],
     stateOrDistrict: [''],
     postalCode: [''],
-    contactNumber: ['', Validators.required]
+    contactNumber: ['', Validators.required],
+      logoUrl: [''],
+    serviceType: ['', Validators.required],
   });
 
   message = '';
