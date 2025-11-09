@@ -30,13 +30,12 @@
       <label>Logo URL</label>
       <input formControlName="logoUrl" type="text" placeholder="Enter logo URL (optional)" />
 
-      <label>Service Type</label>
-      <select formControlName="serviceType">
-        <option value="" disabled selected>-- Select Service Type --</option>
-        <option value="Police">Police</option>
-        <option value="Fire">Fire</option>
-        <option value="Ambulance">Ambulance</option>
-      </select>
+      <select formControlName="serviceType" title="Select service type">
+  <option value="" disabled selected>-- Select Service Type --</option>
+  <option value="Police">Police</option>
+  <option value="Fire">Fire</option>
+  <option value="Ambulance">Ambulance</option>
+</select>
 
       <div class="actions">
         <button type="submit" class="btn btn-primary" [disabled]="loading">

@@ -18,17 +18,18 @@ private fb = inject(FormBuilder);
 private tenantService = inject(TenantService);
 private router = inject(Router);
   
-  form = this.fb.group({
-    name: ['', Validators.required],
-    addressLine1: [''],
-    addressLine2: [''],
-    city: ['', Validators.required],
-    stateOrDistrict: [''],
-    postalCode: [''],
-    contactNumber: ['', Validators.required],
-      logoUrl: [''],
-    serviceType: ['', Validators.required],
-  });
+form = this.fb.group({
+  name: ['', Validators.required],
+  code: ['', Validators.required],   // 👈 add this line
+  addressLine1: [''],
+  addressLine2: [''],
+  city: ['', Validators.required],
+  stateOrDistrict: [''],
+  postalCode: [''],
+  contactNumber: ['', Validators.required],
+  logoUrl: [''],
+  serviceType: ['', Validators.required],
+});
 
   message = '';
   loading = false;
