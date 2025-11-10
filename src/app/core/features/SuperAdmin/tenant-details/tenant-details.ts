@@ -1,34 +1,36 @@
-import { Component } from '@angular/core';
-import { Tenant } from '../../../../Types/tenant.model';  // Import the Tenant model
-import { TenantService } from '../../../services/tenant.service';  // Import the service that handles API calls
+import { Component, OnInit } from '@angular/core';
+import { TenantService } from '../../../services/tenant.service';
+import { Tenant } from '../../../../Types/tenant.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tenant-details',
+   imports: [CommonModule,], 
   templateUrl: './tenant-details.html',
-  styleUrl: './tenant-details.css',
+  styleUrls: ['./tenant-details.css'],
 })
-export class TenantDetails {
-  tenants: Tenant[] = [];  // Define an array to hold tenant data
-  loading: boolean = true;  // Boolean for tracking loading state
-  message: string = '';     // Message to show for errors or success
+export class TenantDetails implements OnInit {
+  tenants: Tenant[] = []; // To store tenant data
+  loading: boolean = true; // Loading state
+  message: string = ''; // For error or info messages
 
-  constructor(private tenantService: TenantService) {}  // Inject the tenant service
+  constructor(private tenantService: TenantService) {}
 
   ngOnInit(): void {
-    this.loadTenants();  // Call the method to load tenant data when the component is initialized
+    this.loadTenants(); // Fetch tenants when the component initializes
   }
 
-  loadTenants(): void {
-    // Call the service to get all tenants from the backend
+  loadTenants() {
     this.tenantService.getAllTenants().subscribe({
       next: (data) => {
-        this.tenants = data;  // Store tenant data in the component
-        this.loading = false; // Set loading to false after data is fetched
+        this.tenants = data; // Store fetched tenants
+        this.loading = false; // Stop loading
       },
       error: (err) => {
-        this.message = '❌ Error fetching tenants. Please try again!';  // Handle any errors from the backend
-        this.loading = false;  // Set loading to false after error
-      }
+        this.message = '❌ Error fetching tenants. Please try again!';
+        this.loading = false; // Stop loading
+      },
     });
   }
 }
+

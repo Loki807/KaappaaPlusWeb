@@ -6,4 +6,7 @@ city: string;
 stateOrDistrict?: string;
 postalCode?: string;
 contactNumber: string;
+
+serviceType:string;
+
 }

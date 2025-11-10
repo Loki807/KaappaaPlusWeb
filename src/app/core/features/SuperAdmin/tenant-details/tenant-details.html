@@ -8,59 +8,53 @@
   <section class="tenant-table">
     <h3>📌 Tenant Details</h3>
 
-    <!-- Conditional Rendering Using ngIf (Angular 20) -->
-    <ng-template [ngIf]="!loading">
-      <table>
-        <thead>
-          <tr>
-            <th>Tenant ID</th>
-            <th>Tenant Name</th>
-            <th>Code</th>
-            <th>City</th>
-            <th>State / District</th>
-            <th>Postal Code</th>
-            <th>Contact</th>
-            <th>Service</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- ngFor to loop over tenants array and display data -->
-          <ng-container *ngFor="let tenant of tenants">
-            <tr>
-              <td>{{ tenant.id }}</td>
-              <td>{{ tenant.name }}</td>
-              <td>{{ tenant.code }}</td>
-              <td>{{ tenant.city }}</td>
-              <td>{{ tenant.stateOrDistrict }}</td>
-              <td>{{ tenant.postalCode }}</td>
-              <td>{{ tenant.contactNumber }}</td>
-              <td>{{ tenant.service }}</td>
-              <td>{{ tenant.email }}</td>
-              <td>{{ tenant.role }}</td>
-              <td>{{ tenant.status === 'Active' ? '✅ Active' : '❌ Inactive' }}</td>
-              <td class="actions">
-                <button class="btn view">👁️ View</button>
-                <button class="btn edit">✏️ Edit</button>
-                <button class="btn delete">🗑️ Delete</button>
-              </td>
-            </tr>
-          </ng-container>
-        </tbody>
-      </table>
-    </ng-template>
+    <!-- Show loading message while fetching tenants -->
+    <div *ngIf="loading">Loading tenant data...</div>
 
-    <!-- Loading message -->
-    <ng-template [ngIf]="loading">
-      <p>Loading tenant data...</p>
-    </ng-template>
+    <!-- Show the tenant data once it is fetched -->
+    <table *ngIf="!loading && tenants.length > 0">
+      <thead>
+        <tr>
+          <th>Tenant ID</th>
+          <th>Tenant Name</th>
+          <th>Code</th>
+          <th>City</th>
+          <th>State / District</th>
+          <th>Postal Code</th>
+          <th>Contact</th>
+          <th>Service</th>
+          
+          
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop through tenants and display their details -->
+        <tr *ngFor="let tenant of tenants">
+          <td>{{ tenant.id }}</td>
+          <td>{{ tenant.name }}</td>
+          <td>{{ tenant.code }}</td>
+          <td>{{ tenant.city }}</td>
+          <td>{{ tenant.stateOrDistrict }}</td>
+          <td>{{ tenant.postalCode }}</td>
+          <td>{{ tenant.contactNumber }}</td>
+          <td>{{ tenant.service }}</td>
+        
+          <td>{{ tenant.status === 'Active' ? '✅ Active' : '❌ Inactive' }}</td>
+          <td class="actions">
+            <button class="btn view">👁️ View</button>
+            <button class="btn edit">✏️ Edit</button>
+            <button class="btn delete">🗑️ Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-    <!-- Error or Info message -->
-    <ng-template [ngIf]="message">
-      <p>{{ message }}</p>
-    </ng-template>
+    <!-- Display message if no tenants are found -->
+    <div *ngIf="tenants.length === 0 && !loading">
+      No tenants available.
+    </div>
+
+    <!-- Display any error messages -->
+    <div *ngIf="message">{{ message }}</div>
   </section>
 </div>
