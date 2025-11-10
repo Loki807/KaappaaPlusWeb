@@ -1,39 +1,40 @@
 // src/app/services/tenant.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';  // Import environment
+import { environment } from '../../../environments/environment';  // Import environment file
+import { Tenant } from '../../Types/tenant.model';
+  // Import Tenant model
 
 @Injectable({
-  providedIn: 'root',  // Make sure this service is available throughout the app
+  providedIn: 'root',
 })
 export class TenantService {
-  // API base path is read from the environment file
-  private apiUrl = `${environment.apiBase}/admin/tenant`;
+  private apiUrl = `${environment.apiBase}/admin/tenant`;  // Base URL for tenant APIs
 
   constructor(private http: HttpClient) {}
 
-  // 🧾 POST → create a new tenant
+  // 🧾 Create new tenant
   createTenant(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/create`, data);
   }
 
-  // 🔍 GET → retrieve all tenants
-  getAllTenants(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/all`);
+  // 🔍 Get all tenants
+  getAllTenants(): Observable<Tenant[]> {
+    return this.http.get<Tenant[]>(`${this.apiUrl}/all`);
   }
 
-  // 🔍 GET → retrieve tenant by ID
-  getTenantById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  // 🔍 Get tenant by ID
+  getTenantById(id: string): Observable<Tenant> {
+    return this.http.get<Tenant>(`${this.apiUrl}/${id}`);
   }
 
-  // 📝 PUT → update tenant details
+  // 📝 Update tenant details
   updateTenant(id: string, data: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/update/${id}`, data);
   }
 
-  // 🗑️ DELETE → delete a tenant by ID
+  // 🗑️ Delete tenant
   deleteTenant(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/delete/${id}`);
   }
