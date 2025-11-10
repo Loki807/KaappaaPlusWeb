@@ -4,10 +4,16 @@
 
     <p>Welcome SuperAdmin! Manage Tenants and Users here.</p>
 
-    <button (click)="goToTenantCreate()" class="dashboard-btn">
-      ➕ Create New Tenant
-    </button>
+    <div class="button-container">
+      <!-- Left aligned button for 'Create New Tenant' -->
+      <button (click)="goToTenantCreate()" class="dashboard-btn left-btn">
+        ➕ Create New Tenant
+      </button>
+
+      <!-- Right aligned button for 'View Details' -->
+      <button (click)="go()" class="dashboard-btn right-btn">
+        ➕ View Details
+      </button>
+    </div>
   </div>
 </div>
-
-

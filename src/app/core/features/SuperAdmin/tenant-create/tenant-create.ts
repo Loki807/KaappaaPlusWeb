@@ -6,6 +6,7 @@ import {TenantService }from '../../../services/tenant.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CreateTenantRequest } from '../../../../Types/CreateTenantRequest';
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-tenant-create',

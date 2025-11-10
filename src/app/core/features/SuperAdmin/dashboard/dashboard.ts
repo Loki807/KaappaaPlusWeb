@@ -8,10 +8,15 @@ import { Router } from '@angular/router';
   styleUrl: './dashboard.css',
 })
 export class Dashboard {
+
+
  constructor(private router: Router) {}
 
   goToTenantCreate() {
-    this.router.navigate(['/tenant-create']);
+    this.router.navigate(['/tenant-create']);}
+
+     go() {
+    this.router.navigate(['/tenant-details']);
 }
 }
 
