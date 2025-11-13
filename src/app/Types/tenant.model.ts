@@ -6,7 +6,7 @@ export interface Tenant {
   stateOrDistrict: string;
   postalCode: string;
   contactNumber: string;
-  service: string;
+ serviceType:string;
   email: string;
   role: string;
   status: string;

@@ -1,56 +1,99 @@
-.dashboard-wrapper {
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-around;
+  padding: 1rem;
+}
+
+.section {
+  width: 280px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.section:hover {
+  transform: translateY(-5px);
+}
+
+/* 🔹 Head part */
+.section-head {
+  padding: 20px;
+  text-align: center;
+}
+
+/* 🔹 Footer part (View Details bar) */
+.section-footer {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.section-footer:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* 🎨 Colors */
+.section.police {
+  background: #1e3a8a; /* Blue */
+}
+.section.fire {
+  background: #d97706; /* Orange */
+}
+.section.ambulance { 
+  background: #b91c1c; /* Red */
+}
+.actions-wrapper {
+  min-height: 100vh;         /* full screen height */
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-color: #f7fafc; /* Light background for the page */
 }
-
-.dashboard-card {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  text-align: center;
-  transition: transform 0.3s ease-in-out;
-}
-
-.dashboard-card h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.dashboard-card p {
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-.button-container {
+.dashboard-actions {
+  margin-top: 10px;
   display: flex;
-  justify-content: space-between; /* Positions buttons on opposite sides */
+  justify-content: space-between;
+  width: 84%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px 25px;
+ 
+  border-radius: 15px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
 }
 
-.dashboard-btn {
-  padding: 10px 20px;
-  font-size: 14px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
+.dashboard-actions .btn {
+  padding: 10px 25px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border: none;
+  transition: 0.2s ease-in-out;
 }
 
-.dashboard-btn:hover {
-  background-color: #0056b3;
+.btn.view-all {
+  background: #e5e7eb;
+  color: #1f2937;
 }
 
-/* Optional: left and right button styles */
-.left-btn {
-  margin-right: 10px; /* Spacing between buttons */
+
+
+.btn.create {
+  background: #2563eb;
+  color: white;
 }
 
-.right-btn {
-  margin-left: 10px; /* Spacing between buttons */
+.btn.create:hover {
+  background: #1d4ed8;
 }

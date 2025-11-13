@@ -1,60 +1,38 @@
 <div class="tenant-list-wrapper">
-  <header class="header">
-    <h1>🚓 Police Department Tenants</h1>
-    <p>Complete Tenant and Admin Details</p>
+  <header>
+    <h1>🏢 {{ selectedServiceType || 'All' }} Tenants</h1>
   </header>
 
-  <!-- 🧾 Tenant Table -->
-  <section class="tenant-table">
-    <h3>📌 Tenant Details</h3>
+<button class="btn view-all" (click)="Back()">Back</button>
 
-    <!-- Show loading message while fetching tenants -->
-    <div *ngIf="loading">Loading tenant data...</div>
+  <table *ngIf="!loading && filteredTenants.length > 0">
+    <thead>
+      <tr>
+        <th>Service Type</th>
+        <th>Name</th>
+        <th>Code</th>
+        <th>City</th>
+        <th>State / District</th>
+        <th>Postal Code</th>
+        <th>Contact</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tenant of filteredTenants">
+        <td>{{ tenant.serviceType }}</td>
+        <td>{{ tenant.name }}</td>
+        <td>{{ tenant.code }}</td>
+        <td>{{ tenant.city }}</td>
+        <td>{{ tenant.stateOrDistrict }}</td>
+         <td>{{ tenant.postalCode }}</td>
+        <td>{{ tenant.contactNumber }}</td>
+      
+      </tr>
+    </tbody>
+  </table>
 
-    <!-- Show the tenant data once it is fetched -->
-    <table *ngIf="!loading && tenants.length > 0">
-      <thead>
-        <tr>
-          <th>Tenant ID</th>
-          <th>Tenant Name</th>
-          <th>Code</th>
-          <th>City</th>
-          <th>State / District</th>
-          <th>Postal Code</th>
-          <th>Contact</th>
-          <th>Service</th>
-          
-          
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Loop through tenants and display their details -->
-        <tr *ngFor="let tenant of tenants">
-          <td>{{ tenant.id }}</td>
-          <td>{{ tenant.name }}</td>
-          <td>{{ tenant.code }}</td>
-          <td>{{ tenant.city }}</td>
-          <td>{{ tenant.stateOrDistrict }}</td>
-          <td>{{ tenant.postalCode }}</td>
-          <td>{{ tenant.contactNumber }}</td>
-          <td>{{ tenant.service }}</td>
-        
-          <td>{{ tenant.status === 'Active' ? '✅ Active' : '❌ Inactive' }}</td>
-          <td class="actions">
-            <button class="btn view">👁️ View</button>
-            <button class="btn edit">✏️ Edit</button>
-            <button class="btn delete">🗑️ Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- Display message if no tenants are found -->
-    <div *ngIf="tenants.length === 0 && !loading">
-      No tenants available.
-    </div>
-
-    <!-- Display any error messages -->
-    <div *ngIf="message">{{ message }}</div>
-  </section>
+  <p *ngIf="!loading && filteredTenants.length === 0">No tenants found for {{ selectedServiceType }}.</p>
 </div>
+
+<div *ngIf="message">{{ message }}</div>

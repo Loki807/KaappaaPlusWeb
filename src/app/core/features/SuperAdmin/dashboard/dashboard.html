@@ -1,19 +1,52 @@
-<div class="dashboard-wrapper">
-  <div class="dashboard-card animate-fadeIn">
-    <h1>🧭 Super Admin Dashboard</h1>
+<div class="dashboard-actions">
+  <button class="btn view-all" (click)="go()">👁️ View All Tenants</button>
+  <button class="btn create" (click)="goToTenantCreate()">➕ Create New Tenant</button>
+</div>
 
-    <p>Welcome SuperAdmin! Manage Tenants and Users here.</p>
 
-    <div class="button-container">
-      <!-- Left aligned button for 'Create New Tenant' -->
-      <button (click)="goToTenantCreate()" class="dashboard-btn left-btn">
-        ➕ Create New Tenant
-      </button>
 
-      <!-- Right aligned button for 'View Details' -->
-      <button (click)="go()" class="dashboard-btn right-btn">
-        ➕ View Details
-      </button>
+
+<section class="dashboard-container">
+  <!-- 👮 Police Section -->
+  <div class="section police" (click)="viewTenants('Police')">
+    <div class="section-head">
+      <h2>👮 Police Tenants</h2>
+      <span class="count">{{ policeCount }}</span>
+    </div>
+
+    <!-- 🟢 View Details Footer -->
+    <div class="section-footer">
+      <span>View Details</span>
+      <i class="bi bi-chevron-right"></i>
     </div>
   </div>
-</div>
+
+  <!-- 🔥 Fire Section -->
+  <div class="section fire" (click)="viewTenants('Fire')">
+    <div class="section-head">
+      <h2>🔥 Fire Tenants</h2>
+      <span class="count">{{ fireCount }}</span>
+    </div>
+
+    <div class="section-footer">
+      <span>View Details</span>
+      <i class="bi bi-chevron-right"></i>
+    </div>
+  </div>
+
+  <!-- 🚑 Ambulance Section -->
+  <div class="section ambulance" (click)="viewTenants('Ambulance')">
+    <div class="section-head">
+      <h2>🚑 Ambulance Tenants</h2>
+      <span class="count">{{ ambulanceCount }}</span>
+    </div>
+
+    <div class="section-footer">
+      <span>View Details</span>
+      <i class="bi bi-chevron-right"></i>
+    </div>
+  </div>
+</section>
+
+
+

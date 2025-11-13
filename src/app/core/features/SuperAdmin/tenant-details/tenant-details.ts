@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TenantService } from '../../../services/tenant.service';
 import { Tenant } from '../../../../Types/tenant.model';
 import { CommonModule } from '@angular/common';
-
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-tenant-details',
    imports: [CommonModule,], 
@@ -10,27 +10,42 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./tenant-details.css'],
 })
 export class TenantDetails implements OnInit {
-  tenants: Tenant[] = []; // To store tenant data
-  loading: boolean = true; // Loading state
-  message: string = ''; // For error or info messages
+ tenants: Tenant[] = [];
+  filteredTenants: Tenant[] = [];
+  selectedServiceType: string | null = null;
+  loading = true;
+   router = inject(Router);
+  
+  message: string = '';
+ 
 
-  constructor(private tenantService: TenantService) {}
+  constructor(private tenantService: TenantService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.loadTenants(); // Fetch tenants when the component initializes
+    // Read query param
+    this.selectedServiceType = this.route.snapshot.queryParamMap.get('serviceType');
+    this.loadTenants();
   }
 
   loadTenants() {
     this.tenantService.getAllTenants().subscribe({
       next: (data) => {
-        this.tenants = data; // Store fetched tenants
-        this.loading = false; // Stop loading
+        this.tenants = data;
+        if (this.selectedServiceType) {
+          this.filteredTenants = data.filter(t => t.serviceType === this.selectedServiceType);
+        } else {
+          this.filteredTenants = data;
+        }
+        this.loading = false;
       },
-      error: (err) => {
-        this.message = '❌ Error fetching tenants. Please try again!';
-        this.loading = false; // Stop loading
-      },
+      error: () => (this.loading = false),
     });
+  }
+
+   Back() {
+    this.router.navigate(['/dashboard']);///this coding for the back button///
+   
+     
   }
 }
 

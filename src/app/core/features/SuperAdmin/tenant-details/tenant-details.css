@@ -66,3 +66,8 @@ td.actions {
 .btn.delete { background: #ef4444; } /* red */
 
 .btn:hover { opacity: 0.9; transform: scale(1.05); }
+
+
+.btn.view-all:hover {
+  background: linear-gradient(135deg, #0f1f1e, #2a2aa7);
+}
