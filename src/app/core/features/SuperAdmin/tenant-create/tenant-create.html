@@ -3,48 +3,72 @@
     <h1>🏢 Create New Tenant</h1>
 
     <form [formGroup]="form" (ngSubmit)="submit()" class="tenant-form">
+
+      <!-- Tenant Name -->
       <label>Tenant Name</label>
       <input formControlName="name" type="text" placeholder="Enter tenant name" />
 
+      <!-- Tenant Code -->
       <label>Tenant Code</label>
       <input formControlName="code" type="text" placeholder="Enter tenant code" />
 
+      <!-- Address Line 1 -->
       <label>Address Line 1</label>
       <input formControlName="addressLine1" type="text" placeholder="Enter address line 1" />
 
+      <!-- Address Line 2 -->
       <label>Address Line 2</label>
       <input formControlName="addressLine2" type="text" placeholder="Enter address line 2" />
 
+      <!-- City -->
       <label>City</label>
       <input formControlName="city" type="text" placeholder="Enter city" />
 
+      <!-- State -->
       <label>State / District</label>
       <input formControlName="stateOrDistrict" type="text" placeholder="Enter state or district" />
 
+      <!-- Postal Code -->
       <label>Postal Code</label>
       <input formControlName="postalCode" type="text" placeholder="Enter postal code" />
 
+      <!-- Contact No -->
       <label>Contact Number</label>
       <input formControlName="contactNumber" type="text" placeholder="Enter contact number" />
 
+      <!-- Logo URL -->
       <label>Logo URL</label>
       <input formControlName="logoUrl" type="text" placeholder="Enter logo URL (optional)" />
 
-      <select formControlName="serviceType" title="Select service type">
-  <option value="" disabled selected>-- Select Service Type --</option>
-  <option value="Police">Police</option>
-  <option value="Fire">Fire</option>
-  <option value="Ambulance">Ambulance</option>
-</select>
+      <!-- Service Type -->
+      <label>Service Type</label>
+      <select formControlName="serviceType">
+        <option value="" disabled>-- Select Service Type --</option>
+        <option value="Police">Police</option>
+        <option value="Fire">Fire</option>
+        <option value="Ambulance">Ambulance</option>
+      </select>
 
+      <!-- Submit Button -->
       <div class="actions">
         <button type="submit" class="btn btn-primary" [disabled]="loading">
-          <span *ngIf="!loading">Create Tenant</span>
-          <span *ngIf="loading">Creating...</span>
+          
+          @if(!loading) {
+            <span>Create Tenant</span>
+          }
+          
+          @if(loading) {
+            <span>Creating...</span>
+          }
+
         </button>
       </div>
 
-      <p class="msg">{{ message }}</p>
+      <!-- Message Output -->
+      @if(message) {
+        <p class="msg">{{ message }}</p>
+      }
+
     </form>
   </div>
 </div>

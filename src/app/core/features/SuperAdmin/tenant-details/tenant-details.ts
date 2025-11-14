@@ -1,51 +1,47 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { TenantService } from '../../../services/tenant.service';
+import { Component, OnInit, inject } from '@angular/core';
 import { Tenant } from '../../../../Types/tenant.model';
-import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-tenant-details',
-   imports: [CommonModule,], 
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './tenant-details.html',
   styleUrls: ['./tenant-details.css'],
 })
 export class TenantDetails implements OnInit {
- tenants: Tenant[] = [];
-  filteredTenants: Tenant[] = [];
-  selectedServiceType: string | null = null;
-  loading = true;
-   router = inject(Router);
-  
-  message: string = '';
- 
 
-  constructor(private tenantService: TenantService, private route: ActivatedRoute) {}
+  tenants: Tenant[] = [];            // Full data from resolver
+  filteredTenants: Tenant[] = [];    // Filtered by serviceType
+  loading = true;
+  message = '';
+  selectedServiceType: string | null = null;
+
+  router = inject(Router);
+  route = inject(ActivatedRoute);
 
   ngOnInit(): void {
-    // Read query param
+    // 1️⃣ read serviceType from query params
     this.selectedServiceType = this.route.snapshot.queryParamMap.get('serviceType');
-    this.loadTenants();
-  }
 
-  loadTenants() {
-    this.tenantService.getAllTenants().subscribe({
-      next: (data) => {
-        this.tenants = data;
-        if (this.selectedServiceType) {
-          this.filteredTenants = data.filter(t => t.serviceType === this.selectedServiceType);
-        } else {
-          this.filteredTenants = data;
-        }
-        this.loading = false;
-      },
-      error: () => (this.loading = false),
-    });
-  }
+    // 2️⃣ read tenants from resolver
+    this.tenants = this.route.snapshot.data['tenants'];
 
-   Back() {
-    this.router.navigate(['/dashboard']);///this coding for the back button///
-   
-     
+    // 3️⃣ now filter
+    if (this.selectedServiceType) {
+      this.filteredTenants = this.tenants.filter(
+        t => t.serviceType === this.selectedServiceType
+      );
+    } else {
+      this.filteredTenants = this.tenants;
+    }
+
+    this.loading = false;
+  }
+  
+
+  Back() {
+    this.router.navigate(['/dashboard']);
   }
 }
-

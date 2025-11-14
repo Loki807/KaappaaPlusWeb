@@ -10,4 +10,6 @@ export interface Tenant {
   email: string;
   role: string;
   status: string;
+  AddressLine1:string;
+  AddressLine2:string;
 }

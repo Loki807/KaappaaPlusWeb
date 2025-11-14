@@ -1,38 +1,54 @@
 <div class="tenant-list-wrapper">
+
   <header>
     <h1>🏢 {{ selectedServiceType || 'All' }} Tenants</h1>
   </header>
 
-<button class="btn view-all" (click)="Back()">Back</button>
+  <button class="btn view-all" (click)="Back()">⬅ Back</button>
 
-  <table *ngIf="!loading && filteredTenants.length > 0">
-    <thead>
-      <tr>
-        <th>Service Type</th>
-        <th>Name</th>
-        <th>Code</th>
-        <th>City</th>
-        <th>State / District</th>
-        <th>Postal Code</th>
-        <th>Contact</th>
-       
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let tenant of filteredTenants">
-        <td>{{ tenant.serviceType }}</td>
-        <td>{{ tenant.name }}</td>
-        <td>{{ tenant.code }}</td>
-        <td>{{ tenant.city }}</td>
-        <td>{{ tenant.stateOrDistrict }}</td>
-         <td>{{ tenant.postalCode }}</td>
-        <td>{{ tenant.contactNumber }}</td>
-      
-      </tr>
-    </tbody>
-  </table>
+  <!-- ✅ Show table only if tenants available -->
+  @if (!loading && filteredTenants.length > 0) {
+    <table>
+      <thead>
+        <tr>
+          <th>Service Type</th>
+          <th>Name</th>
+          <th>Code</th>
+          <th>State / District</th>
+          <th>Postal Code</th>
+          
+          <th>City</th>
+          <th>Contact</th>
+          <th>Actions</th>
+         
 
-  <p *ngIf="!loading && filteredTenants.length === 0">No tenants found for {{ selectedServiceType }}.</p>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (tenant of filteredTenants; track tenant.id) {
+          <tr>
+            <td>{{ tenant.serviceType }}</td>
+            <td>{{ tenant.name }}</td>
+            <td>{{ tenant.code }}</td>
+            <td>{{ tenant.stateOrDistrict }}</td>
+            <td>{{ tenant.postalCode }}</td>
+            <td>{{ tenant.city }}</td>
+            <td>{{ tenant.  contactNumber}}</td>
+
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+  <!-- ❌ Show empty message -->
+  @if (!loading && filteredTenants.length === 0) {
+    <p>No tenants found for {{ selectedServiceType }}.</p>
+  }
+
+  <!-- ⚠️ Error message -->
+  @if (message) {
+    <div class="error-msg">{{ message }}</div>
+  }
 </div>
-
-<div *ngIf="message">{{ message }}</div>
