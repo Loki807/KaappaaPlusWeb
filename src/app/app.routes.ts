@@ -1,6 +1,6 @@
 
 import { Routes } from '@angular/router';
-import { tenantResolver } from './core/services/tenant-resolver-resolver';
+import {  tenantResolver } from './core/services/tenant-resolver-resolver';
 
 export const routes: Routes = [
 { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,6 +14,14 @@ export const routes: Routes = [
   loadComponent: () => import('./core/features/SuperAdmin/tenant-details/tenant-details').then(m => m.TenantDetails),
   resolve: { tenants: tenantResolver }},
 
-      { path: 'tenant-dashboard', loadComponent: () => import('./core/features/tenant-admin/dashboard/dashboard').then(m => m.Dashboard) },
-         { path: 'users-create', loadComponent: () => import('./core/features/tenant-admin/users-create/users-create').then(m => m.UsersCreate) }
+  {
+  path: 'tenant/view/:id',
+  loadComponent: () =>
+    import('./core/features/SuperAdmin/tenant-view/tenant-view')
+      .then(m => m.TenantView)
+},
+
+
+{ path: 'tenant-dashboard', loadComponent: () => import('./core/features/tenant-admin/dashboard/dashboard').then(m => m.Dashboard) },
+{ path: 'users-create', loadComponent: () => import('./core/features/tenant-admin/users-create/users-create').then(m => m.UsersCreate) }
 ];

@@ -34,8 +34,8 @@ export class TenantService {
     return this.http.put(`${this.apiUrl}/update/${id}`, data);
   }
 
-  // 🗑️ Delete tenant
-  deleteTenant(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/delete/${id}`);
-  }
+deleteTenant(id: string): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/delete/${id}`);
+}
+
 }

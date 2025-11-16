@@ -11,8 +11,14 @@ export const tenantResolver: ResolveFn<Tenant[]> = (route, state) => {
 
   return service.getAllTenants().pipe(
     catchError(err => {
-      router.navigateByUrl('/error');  // optional
+      console.error("Resolver failed:", err);
+
+      // OPTIONAL: redirect to error page
+      router.navigateByUrl('/error');
+
+      // return EMPTY observable so page still loads
       return EMPTY;
     })
   );
 };
+

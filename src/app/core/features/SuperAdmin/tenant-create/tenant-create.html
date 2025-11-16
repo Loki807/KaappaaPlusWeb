@@ -8,9 +8,10 @@
       <label>Tenant Name</label>
       <input formControlName="name" type="text" placeholder="Enter tenant name" />
 
-      <!-- Tenant Code -->
-      <label>Tenant Code</label>
-      <input formControlName="code" type="text" placeholder="Enter tenant code" />
+     
+      <!-- Email (Required in backend) -->
+      <label>Email</label>
+      <input formControlName="email" type="email" placeholder="Enter tenant admin email" />
 
       <!-- Address Line 1 -->
       <label>Address Line 1</label>
@@ -52,11 +53,11 @@
       <!-- Submit Button -->
       <div class="actions">
         <button type="submit" class="btn btn-primary" [disabled]="loading">
-          
+
           @if(!loading) {
             <span>Create Tenant</span>
           }
-          
+
           @if(loading) {
             <span>Creating...</span>
           }

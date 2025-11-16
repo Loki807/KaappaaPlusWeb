@@ -86,6 +86,11 @@ fb = inject(FormBuilder);
         this.loading = false;
         console.error('Login error:', err);
         this.message = '❌ Invalid email or password.';
+
+
+      // Clear the email and password fields
+        this.form.controls['email'].setValue('');
+        this.form.controls['password'].setValue('');
       }
     });
   }

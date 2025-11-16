@@ -1,0 +1,37 @@
+.view-wrapper {
+  max-width: 650px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.action-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.tenant-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+}
+
+.info-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.info-row label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.info-row input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f9f9f9;
+}

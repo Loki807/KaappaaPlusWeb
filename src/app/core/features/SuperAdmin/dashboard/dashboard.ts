@@ -35,13 +35,10 @@ export class Dashboard {
   viewTenants(serviceType: string) {
     this.router.navigate(['/tenant-details'], { queryParams: { serviceType } });
   }
-  goToTenantCreate() {
-    this.router.navigate(['/tenant-create']);}
 
-     go() {
-    this.router.navigate(['/tenant-details']);
-   
-}
+  goToTenantCreate() {this.router.navigate(['/tenant-create'])}
+
+  go() {this.router.navigate(['/tenant-details'])}
 
 
 }

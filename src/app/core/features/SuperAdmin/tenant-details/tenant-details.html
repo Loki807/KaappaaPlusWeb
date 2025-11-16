@@ -11,13 +11,15 @@
     <table>
       <thead>
         <tr>
-          <th>Service Type</th>
+           <th>Service Type</th>
+           <th>TennatId</th>
           <th>Name</th>
           <th>Code</th>
           <th>State / District</th>
+          <th>City</th> 
+          <th>Address01</th>
+          <th>Address02</th>  
           <th>Postal Code</th>
-          
-          <th>City</th>
           <th>Contact</th>
           <th>Actions</th>
          
@@ -28,14 +30,31 @@
       <tbody>
         @for (tenant of filteredTenants; track tenant.id) {
           <tr>
-            <td>{{ tenant.serviceType }}</td>
+             <td>{{ tenant.serviceType }}</td>
+            <td>{{ tenant.id }}</td>
             <td>{{ tenant.name }}</td>
             <td>{{ tenant.code }}</td>
             <td>{{ tenant.stateOrDistrict }}</td>
-            <td>{{ tenant.postalCode }}</td>
             <td>{{ tenant.city }}</td>
+            <td>{{ tenant.addressLine1 }}</td>
+            <td>{{ tenant.addressLine2}}</td>
+            <td>{{ tenant.postalCode }}</td>
+           
             <td>{{ tenant.  contactNumber}}</td>
+            <td class="actions-cell">
 
+
+              <!-- 🗑️ Delete -->
+            <button class="action-btn delete" (click)="deleteTenant(tenant.id)">
+            <i class="bi bi-trash3"></i>
+            </button>
+            
+
+            <button class="action-btn view" (click)="viewTenant(tenant.id)">
+            <i class="bi bi-eye"></i>
+            </button>
+
+            </td>
           </tr>
         }
       </tbody>

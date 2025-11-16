@@ -1,0 +1,77 @@
+<div class="view-wrapper">
+
+ 
+
+  @if (loading) {
+    <p>Loading tenant details...</p>
+  }
+
+  @if (!loading && tenant) {
+
+    <div class="tenant-card">
+      <h2>🏢 {{ tenant.name }}</h2>
+
+      <!-- SERVICE TYPE -->
+      <div class="info-row">
+        <label>Service Type</label>
+        <input type="text" [value]="tenant.serviceType" readonly />
+      </div>
+
+      <!-- CODE -->
+      <div class="info-row">
+        <label>Tenant Code</label>
+        <input type="text" [value]="tenant.code" readonly />
+      </div>
+
+      <!-- CITY -->
+      <div class="info-row">
+        <label>City</label>
+        <input type="text" [value]="tenant.city" readonly />
+      </div>
+
+      <!-- STATE -->
+      <div class="info-row">
+        <label>State / District</label>
+        <input type="text" [value]="tenant.stateOrDistrict" readonly />
+      </div>
+
+      <!-- POSTAL CODE -->
+      <div class="info-row">
+        <label>Postal Code</label>
+        <input type="text" [value]="tenant.postalCode" readonly />
+      </div>
+
+      <!-- ADDRESS 1 -->
+      <div class="info-row">
+        <label>Address Line 1</label>
+        <input type="text" [value]="tenant.addressLine1" readonly />
+      </div>
+
+      <!-- ADDRESS 2 -->
+      <div class="info-row">
+        <label>Address Line 2</label>
+        <input type="text" [value]="tenant.addressLine2" readonly />
+      </div>
+
+      <!-- CONTACT -->
+      <div class="info-row">
+        <label>Contact Number</label>
+        <input type="text" [value]="tenant.contactNumber" readonly />
+      </div>
+
+    </div>
+  }
+
+  @if (message) {
+    <p class="error">{{ message }}</p>
+  }
+
+
+  <!-- ACTION BUTTONS ROW -->
+  <div class="action-row">
+    <button class="btn back" (click)="Back()">⬅ Back</button>
+    <button class="btn edit" (click)="Edit(tenant.id)">✏️ Edit</button>
+    <button class="btn delete" (click)="Delete(tenant.id)">🗑 Delete</button>
+  </div>
+
+</div>
