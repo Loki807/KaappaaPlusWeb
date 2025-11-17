@@ -41,9 +41,14 @@ export class TenantView implements OnInit {
     this.router.navigate(['/tenant-details']);
   }
 
-  Edit(id: string) {
-    this.router.navigate(['/tenant/edit', id]);
-  }
+// ✏️ 4️⃣ UPDATE BUTTON
+  // ------------------------------------------------------------------
+ editTenant(id: string) {
+  this.router.navigate(['/tenant/update', id], {
+    queryParams: { from: 'view' }
+  });
+}
+
 
   Delete(id: string) {
     if (!confirm("⚠ Are you sure you want to delete this tenant?")) return;

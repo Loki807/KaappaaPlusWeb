@@ -1,11 +1,23 @@
 <div class="dashboard-actions">
-  <button class="btn view-all" (click)="go()">👁️ View All Tenants</button>
+ 
   <button class="btn create" (click)="goToTenantCreate()">➕ Create New Tenant</button>
 </div>
 
 
 
 <section class="dashboard-container">
+  <!-- 🟦 TOTAL Tenants Section -->
+<div class="section total" (click)="viewAllTenants()">
+  <div class="section-head">
+    <h2>📊 Total Tenants</h2>
+    <span class="count">{{ totalCount }}</span>
+  </div>
+
+  <div class="section-footer">
+    <span>View All</span>
+    <i class="bi bi-chevron-right"></i>
+  </div>
+</div>
   <!-- 👮 Police Section -->
   <div class="section police" (click)="viewTenants('Police')">
     <div class="section-head">

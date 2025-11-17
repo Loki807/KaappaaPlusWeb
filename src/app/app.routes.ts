@@ -20,6 +20,12 @@ export const routes: Routes = [
     import('./core/features/SuperAdmin/tenant-view/tenant-view')
       .then(m => m.TenantView)
 },
+{
+  path: 'tenant/update/:id',
+  loadComponent: () =>
+    import('./core/features/SuperAdmin/tenant-update/tenant-update')
+      .then(m => m.TenantUpdate)
+},
 
 
 { path: 'tenant-dashboard', loadComponent: () => import('./core/features/tenant-admin/dashboard/dashboard').then(m => m.Dashboard) },

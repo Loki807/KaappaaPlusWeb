@@ -65,13 +65,16 @@
   @if (message) {
     <p class="error">{{ message }}</p>
   }
+<td class="actions-cell">
 
+  <!-- DELETE BUTTON -->
+  <button class="action-btn delete" (click)="Delete(tenant.id)">
+    🗑
+  </button>
 
-  <!-- ACTION BUTTONS ROW -->
-  <div class="action-row">
-    <button class="btn back" (click)="Back()">⬅ Back</button>
-    <button class="btn edit" (click)="Edit(tenant.id)">✏️ Edit</button>
-    <button class="btn delete" (click)="Delete(tenant.id)">🗑 Delete</button>
-  </div>
+  <!-- EDIT BUTTON -->
+  <button class="action-btn edit" (click)="editTenant(tenant.id)">
+    ✏
+  </button>
 
-</div>
+</td>

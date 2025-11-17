@@ -7,7 +7,7 @@
 }
 
 .section {
-  width: 280px;
+  width: 230px;
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
@@ -41,6 +41,9 @@
 
 .section-footer:hover {
   background: rgba(255, 255, 255, 0.25);
+}
+.section.total {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
 }
 
 /* 🎨 Colors */

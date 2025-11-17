@@ -1,0 +1,47 @@
+<div class="update-wrapper">
+
+  <h1>✏️ Update Tenant</h1>
+
+  <button class="btn back" (click)="Back()">⬅ Back</button>
+
+  @if (loading) {
+    <p>Loading...</p>
+  }
+
+  @if (!loading) {
+    <form [formGroup]="form" (ngSubmit)="submit()" class="update-form">
+
+      <label>Name</label>
+      <input type="text" formControlName="name">
+
+      <label>Code</label>
+      <input type="text" formControlName="code">
+
+      <label>State / District</label>
+      <input type="text" formControlName="stateOrDistrict">
+      
+      <label>City</label>
+      <input type="text" formControlName="city">
+
+      <label>Address Line 1</label>
+      <input type="text" formControlName="addressLine1">
+
+      <label>Address Line 2</label>
+      <input type="text" formControlName="addressLine2">
+
+       <label>Postal Code</label>
+      <input type="text" formControlName="postalCode">
+
+      <label>Contact Number</label>
+      <input type="text" formControlName="contactNumber">
+ 
+      
+      <label>LogoUrl</label>
+      <input type="text" formControlName="logoUrl">
+
+      <button type="submit" class="btn update">Update Tenant</button>
+    </form>
+  }
+</div>
+
+

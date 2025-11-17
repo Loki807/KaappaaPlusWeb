@@ -1,109 +1,114 @@
-/* 🌄 FULL PAGE BACKGROUND */
+/* Page background */
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #eef3f7;
+  padding: 30px 0;
+}
+
+/* Wrapper */
 .tenant-wrapper {
-  min-height: 100vh;                     /* Full screen height */
-  display: flex;                          /* Center content */
-  align-items: center;
-  justify-content: center;
-  
-  /* 🌈 BEAUTIFUL SAFETY GRADIENT BACKGROUND */
-  background: linear-gradient(135deg, #ff4d4d, #b30000);
-  
-  font-family: 'Poppins', sans-serif;
-  color: white;
-}
-
-/* 🧊 GLASS CARD */
-.tenant-card {
-  background: rgba(255, 255, 255, 0.15);  /* Transparent white */
-  backdrop-filter: blur(15px);            /* Glass blur */
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 24px;
-  padding: 45px 35px;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 10px 35px rgba(0,0,0,0.35);
-  animation: fadeIn 0.8s ease-in-out;
-  text-align: center;
-}
-
-/* 🧭 HEADING */
-.tenant-card h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #ffffff;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-}
-
-/* 📑 FORM LAYOUT */
-.tenant-form {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-  text-align: left;
+  justify-content: center;
 }
 
-/* 🏷 LABEL */
-label {
-  font-size: 0.95rem;
-  color: #f0f9ff;
-  font-weight: 500;
-}
-
-/* ✏ INPUT BOX */
-input, select {
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  background: rgba(255, 255, 255, 0.85);
-  font-size: 1rem;
-  color: #1e293b;
-  transition: 0.3s ease;
-}
-
-input:focus,
-select:focus {
-  background: #ffffff;
-  box-shadow: 0 0 10px rgba(255, 71, 71, 0.6);
-}
-
-/* 🔘 SUBMIT BUTTON */
-button {
-  margin-top: 15px;
-  background: linear-gradient(90deg, #dc2626, #b91c1c);
-  color: white;
-  padding: 12px;
+/* Card */
+.tenant-card {
+  width: 100%;
+  max-width: 1100px;
+  background: #fff;
+  padding: 30px 35px;
   border-radius: 12px;
-  border: none;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s ease;
-  box-shadow: 0 4px 20px rgba(220, 38, 38, 0.5);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-button:hover {
-  background: linear-gradient(90deg, #b91c1c, #7f1d1d);
-  transform: translateY(-2px);
-}
-
-/* 📢 MESSAGE */
-.msg {
-  margin-top: 10px;
-  font-size: 0.95rem;
-  color: #00ffae;
+/* Title */
+h1 {
   text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
 }
 
-/* ✨ ANIMATION */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Two-column rows */
+.row {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.col {
+  flex: 1;
+}
+
+/* Labels */
+label {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 3px;
+  display: block;
+}
+
+/* Inputs */
+input,
+select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  background: #f7f9fc;
+}
+
+/* Buttons Section */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+/* Back button */
+.back-btn {
+  background: #adb5bd;
+  color: white;
+  padding: 12px 28px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #868e96;
+}
+
+/* Submit button */
+.submit-btn {
+  background: #007bff;
+  color: white;
+  padding: 12px 35px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #005fcc;
+}
+
+.submit-btn:disabled {
+  background: #a1bce1;
+  cursor: not-allowed;
+}
+
+/* Success message */
+.msg {
+  text-align: center;
+  margin-top: 12px;
+  color: green;
+  font-weight: bold;
 }

@@ -14,6 +14,7 @@ export class Dashboard {
 
 
   tenants: Tenant[] = [];
+  totalCount = 0;
   policeCount = 0;
   fireCount = 0;
   ambulanceCount = 0;
@@ -24,6 +25,7 @@ export class Dashboard {
     this.tenantService.getAllTenants().subscribe({
       next: (data) => {
         this.tenants = data;
+         this.totalCount = data.length;  // 🟢 TOTAL tenants count
         this.policeCount = data.filter(t => t.serviceType === 'Police').length;
         this.fireCount = data.filter(t => t.serviceType === 'Fire').length;
         this.ambulanceCount = data.filter(t => t.serviceType === 'Ambulance').length;
@@ -36,9 +38,13 @@ export class Dashboard {
     this.router.navigate(['/tenant-details'], { queryParams: { serviceType } });
   }
 
+  viewAllTenants() {
+  this.router.navigate(['/tenant-details']); 
+}
+
   goToTenantCreate() {this.router.navigate(['/tenant-create'])}
 
-  go() {this.router.navigate(['/tenant-details'])}
+
 
 
 }

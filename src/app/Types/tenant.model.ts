@@ -1,3 +1,5 @@
+import { SafeResourceUrl } from "@angular/platform-browser";
+
 export interface Tenant {
   id: string;
   name: string;
@@ -12,4 +14,5 @@ export interface Tenant {
   status: string;
   addressLine1:string;
   addressLine2:string;
+  logoUrl:string;
 }

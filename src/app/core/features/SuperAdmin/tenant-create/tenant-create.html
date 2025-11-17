@@ -1,72 +1,98 @@
 <div class="tenant-wrapper">
-  <div class="tenant-card animate-fadeIn">
+  <div class="tenant-card">
     <h1>🏢 Create New Tenant</h1>
 
-    <form [formGroup]="form" (ngSubmit)="submit()" class="tenant-form">
+    <form [formGroup]="form" (ngSubmit)="submit()">
 
-      <!-- Tenant Name -->
-      <label>Tenant Name</label>
-      <input formControlName="name" type="text" placeholder="Enter tenant name" />
+      <!-- Row 1 -->
+      <div class="row">
+        <div class="col">
+          <label>Tenant Name</label>
+          <input formControlName="name" type="text" placeholder="Enter tenant name">
+        </div>
 
-     
-      <!-- Email (Required in backend) -->
-      <label>Email</label>
-      <input formControlName="email" type="email" placeholder="Enter tenant admin email" />
-
-      <!-- Address Line 1 -->
-      <label>Address Line 1</label>
-      <input formControlName="addressLine1" type="text" placeholder="Enter address line 1" />
-
-      <!-- Address Line 2 -->
-      <label>Address Line 2</label>
-      <input formControlName="addressLine2" type="text" placeholder="Enter address line 2" />
-
-      <!-- City -->
-      <label>City</label>
-      <input formControlName="city" type="text" placeholder="Enter city" />
-
-      <!-- State -->
-      <label>State / District</label>
-      <input formControlName="stateOrDistrict" type="text" placeholder="Enter state or district" />
-
-      <!-- Postal Code -->
-      <label>Postal Code</label>
-      <input formControlName="postalCode" type="text" placeholder="Enter postal code" />
-
-      <!-- Contact No -->
-      <label>Contact Number</label>
-      <input formControlName="contactNumber" type="text" placeholder="Enter contact number" />
-
-      <!-- Logo URL -->
-      <label>Logo URL</label>
-      <input formControlName="logoUrl" type="text" placeholder="Enter logo URL (optional)" />
-
-      <!-- Service Type -->
-      <label>Service Type</label>
-      <select formControlName="serviceType">
-        <option value="" disabled>-- Select Service Type --</option>
-        <option value="Police">Police</option>
-        <option value="Fire">Fire</option>
-        <option value="Ambulance">Ambulance</option>
-      </select>
-
-      <!-- Submit Button -->
-      <div class="actions">
-        <button type="submit" class="btn btn-primary" [disabled]="loading">
-
-          @if(!loading) {
-            <span>Create Tenant</span>
-          }
-
-          @if(loading) {
-            <span>Creating...</span>
-          }
-
-        </button>
+        <div class="col">
+          <label>Email</label>
+          <input formControlName="email" type="email" placeholder="Enter tenant admin email">
+        </div>
       </div>
 
-      <!-- Message Output -->
-      @if(message) {
+      <!-- Row 2 -->
+      <div class="row">
+        <div class="col">
+          <label>Address Line 1</label>
+          <input formControlName="addressLine1" type="text" placeholder="Enter address line 1">
+        </div>
+
+        <div class="col">
+          <label>Address Line 2</label>
+          <input formControlName="addressLine2" type="text" placeholder="Enter address line 2">
+        </div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="row">
+        <div class="col">
+          <label>City</label>
+          <input formControlName="city" type="text" placeholder="Enter city">
+        </div>
+
+        <div class="col">
+          <label>State / District</label>
+          <input formControlName="stateOrDistrict" type="text" placeholder="Enter state or district">
+        </div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="row">
+        <div class="col">
+          <label>Postal Code</label>
+          <input formControlName="postalCode" type="text" placeholder="Enter postal code">
+        </div>
+
+        <div class="col">
+          <label>Contact Number</label>
+          <input formControlName="contactNumber" type="text" placeholder="Enter contact number">
+        </div>
+      </div>
+
+      <!-- Row 5 -->
+      <div class="row">
+        <div class="col">
+          <label>Logo URL</label>
+          <input formControlName="logoUrl" type="text" placeholder="Enter logo URL (optional)">
+        </div>
+
+        <div class="col">
+          <label>Service Type</label>
+          <select formControlName="serviceType">
+            <option value="" disabled>-- Select Service Type --</option>
+            <option value="Police">Police</option>
+            <option value="Fire">Fire</option>
+            <option value="Ambulance">Ambulance</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="actions">
+
+        <!-- BACK BUTTON -->
+        <button type="button" class="btn back-btn" (click)="back()">⬅ Back</button>
+
+        <!-- CREATE BUTTON -->
+        <button type="submit" class="btn submit-btn" [disabled]="loading">
+          @if (!loading) {
+            <span>Create Tenant</span>
+          }
+          @if (loading) {
+            <span>Creating...</span>
+          }
+        </button>
+
+      </div>
+
+      @if (message) {
         <p class="msg">{{ message }}</p>
       }
 

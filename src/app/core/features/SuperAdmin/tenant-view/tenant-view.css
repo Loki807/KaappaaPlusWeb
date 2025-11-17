@@ -35,3 +35,42 @@
   border-radius: 6px;
   background: #f9f9f9;
 }
+/* Align Delete + Edit buttons */
+.actions-cell {
+  display: flex;
+  gap: 10px;              /* space between buttons */
+  justify-content: center;
+  padding: 6px 0;
+}
+
+/* Base button */
+.action-btn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+/* DELETE = Red */
+.action-btn.delete {
+  background: #ffe3e3;
+  color: #c92a2a;
+}
+.action-btn.delete:hover {
+  background: #ffc9c9;
+}
+
+/* EDIT = Orange */
+.action-btn.edit {
+  background: #ffe8cc;
+  color: #d9480f;
+}
+.action-btn.edit:hover {
+  background: #ffd8a8;
+}

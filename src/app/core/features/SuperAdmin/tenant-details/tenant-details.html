@@ -4,7 +4,19 @@
     <h1>🏢 {{ selectedServiceType || 'All' }} Tenants</h1>
   </header>
 
-  <button class="btn view-all" (click)="Back()">⬅ Back</button>
+<div class="search-wrapper">
+  <input
+    type="text"
+    placeholder="Search tenants..."
+    [(ngModel)]="searchText"
+    (input)="applySearch()"
+  />
+</div>
+
+
+
+<button class="btn back-btn" (click)="Back()">⬅ Back</button>
+
 
   <!-- ✅ Show table only if tenants available -->
   @if (!loading && filteredTenants.length > 0) {
@@ -43,16 +55,18 @@
             <td>{{ tenant.  contactNumber}}</td>
             <td class="actions-cell">
 
-
+            <button class="action-btn view" (click)="viewTenant(tenant.id)">
+            <i class="bi bi-eye"></i>
+            </button>
               <!-- 🗑️ Delete -->
             <button class="action-btn delete" (click)="deleteTenant(tenant.id)">
             <i class="bi bi-trash3"></i>
             </button>
-            
-
-            <button class="action-btn view" (click)="viewTenant(tenant.id)">
-            <i class="bi bi-eye"></i>
+            <!-- ✏️ Update -->
+            <button class="action-btn edit" (click)="editTenant(tenant.id)">
+              <i class="bi bi-pencil-square"></i>
             </button>
+
 
             </td>
           </tr>
