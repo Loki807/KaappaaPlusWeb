@@ -1,26 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { TenantService } from '../../../services/tenant.service';
 
 @Component({
-  selector: 'app-maindashboard',
-  imports: [],
+  selector: 'app-main-dashboard',
   templateUrl: './maindashboard.html',
-  styleUrl: './maindashboard.css',
+  styleUrls: ['./maindashboard.css']
 })
 export class Maindashboard {
- currentYear = new Date().getFullYear();
-  
-   constructor(private router: Router) {}
 
-  logout() {
-    console.log('Logout clicked');
+  totalTenants = 0;
+  currentYear = new Date().getFullYear();
+  router = inject(Router);                 // ⭐ MUST HAVE
+  tenantService = inject(TenantService);   // ⭐ MUST HAVE
+
+  ngOnInit(): void {
+    this.tenantService.getAllTenants().subscribe({
+      next: (data) => {
+        this.totalTenants = data.length;
+      },
+      error: (err) => console.error(err)
+    });
   }
 
-  openTenants()  
-  {this.router.navigate(['/dashboard'])}
-
+  openTenants() {
+    this.router.navigate(['/dashboard']); // ⭐ Works now
+  }
 
   openUsers() {
-    console.log('User Management opened');
+    this.router.navigate(['/users-details']);  // ⭐ Works now
+  }
+
+  logout() {
+   this.router.navigate(['/login']);
   }
 }

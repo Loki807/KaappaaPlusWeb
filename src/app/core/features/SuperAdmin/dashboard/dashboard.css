@@ -58,6 +58,12 @@
   padding: 20px;
 }
 
+.logout-corner {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
 .btn-create {
   background: linear-gradient(90deg, #ef4444, #b91c1c);
   border: none;

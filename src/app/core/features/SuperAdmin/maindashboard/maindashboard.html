@@ -14,7 +14,7 @@
             <i class="bi bi-building me-1"></i> Tenants
           </button>
           <button class="btn btn-nav" (click)="openUsers()">
-            <i class="bi bi-people me-1"></i> Users
+            <i class="bi bi-people me-1"></i> Admins
           </button>
         </div>
       </div>
@@ -40,7 +40,7 @@
           <div class="dashboard-card h-100">
             <i class="bi bi-building text-info fs-1 mb-3"></i>
             <h5 class="fw-bold">Total Tenants</h5>
-            <p class="display-6 fw-bold text-info">18</p>
+          <p class="display-6 fw-bold text-info">{{ totalTenants }}</p>
             <p class="text-gray">Active Tenant Organizations</p>
           </div>
         </div>
@@ -48,7 +48,7 @@
         <div class="col-md-4">
           <div class="dashboard-card h-100">
             <i class="bi bi-people-fill text-success fs-1 mb-3"></i>
-            <h5 class="fw-bold">Total Users</h5>
+            <h5 class="fw-bold">Total Admin</h5>
             <p class="display-6 fw-bold text-success">96</p>
             <p class="text-gray">Registered Admins & Responders</p>
           </div>
@@ -58,7 +58,7 @@
           <div class="dashboard-card h-100">
             <i class="bi bi-exclamation-triangle-fill text-warning fs-1 mb-3"></i>
             <h5 class="fw-bold">Active Alerts</h5>
-            <p class="display-6 fw-bold text-warning">12</p>
+            <p class="display-6 fw-bold text-warning">Coming Soon</p>
             <p class="text-gray">Ongoing Emergency Alerts</p>
           </div>
         </div>
