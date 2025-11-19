@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './tenant-update.html',
   styleUrl: './tenant-update.css',
+  
 })
 export class TenantUpdate implements OnInit{
 
@@ -21,6 +22,7 @@ export class TenantUpdate implements OnInit{
   route = inject(ActivatedRoute);
   router = inject(Router);
   tenantService = inject(TenantService);
+  currentYear = new Date().getFullYear();
 
   ngOnInit(): void {
     this.tenantId = this.route.snapshot.paramMap.get('id')!;

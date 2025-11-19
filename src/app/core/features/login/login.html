@@ -1,6 +1,14 @@
 <div class="login-page">
+  <div class="overlay"></div>
+
   <div class="login-card">
-    <h2>🔐 Kaappaan Login</h2>
+    <img
+      src="/assets/images/kaappaan-logo.png"
+      alt="Kaappaan Logo"
+      class="logo mb-3"
+    />
+
+    <h2>🔐 Kaappaan Admin Login</h2>
 
     <form (ngSubmit)="submit()" [formGroup]="form" class="form-content">
       <label>Email</label>
@@ -16,5 +24,8 @@
       <p class="error">{{ message }}</p>
     </form>
   </div>
-</div>
 
+  <footer class="footer text-center">
+    <small>© {{ currentYear }} Kaappaan Safety Portal | All Rights Reserved.</small>
+  </footer>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-maindashboard',
@@ -8,14 +9,16 @@ import { Component } from '@angular/core';
 })
 export class Maindashboard {
  currentYear = new Date().getFullYear();
+  
+   constructor(private router: Router) {}
 
   logout() {
     console.log('Logout clicked');
   }
 
-  openTenants() {
-    console.log('Tenant Management opened');
-  }
+  openTenants()  
+  {this.router.navigate(['/dashboard'])}
+
 
   openUsers() {
     console.log('User Management opened');

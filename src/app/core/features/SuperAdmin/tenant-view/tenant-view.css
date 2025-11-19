@@ -1,76 +1,108 @@
-.view-wrapper {
-  max-width: 650px;
-  margin: 30px auto;
-  padding: 20px;
+@import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css";
+
+/* 🌌 Page background */
+.tenant-view-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  padding-top: 90px;
 }
 
-.action-row {
+/* ===== Navbar ===== */
+.modern-nav {
+  background: rgba(17, 25, 40, 0.95);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Wrapper ===== */
+.tenant-view-wrapper {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px 20px 100px;
 }
 
-.tenant-card {
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+/* ===== Glass Card ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  padding: 40px 50px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
-.info-row {
+/* ===== Info Section ===== */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.info-item {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
 }
 
-.info-row label {
+.info-item label {
   font-weight: 600;
-  margin-bottom: 5px;
-  color: #333;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #cbd5e1;
 }
 
-.info-row input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: #f9f9f9;
-}
-/* Align Delete + Edit buttons */
-.actions-cell {
-  display: flex;
-  gap: 10px;              /* space between buttons */
-  justify-content: center;
-  padding: 6px 0;
-}
-
-/* Base button */
-.action-btn {
-  width: 34px;
-  height: 34px;
+.info-item input {
+  padding: 10px 14px;
+  border-radius: 8px;
   border: none;
-  border-radius: 6px;
-  font-size: 18px;
-  cursor: pointer;
+  outline: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  font-size: 0.95rem;
+}
+
+/* ===== Buttons ===== */
+.actions {
   display: flex;
-  align-items: center;
   justify-content: center;
-  transition: 0.2s;
+  gap: 15px;
 }
 
-/* DELETE = Red */
-.action-btn.delete {
-  background: #ffe3e3;
-  color: #c92a2a;
-}
-.action-btn.delete:hover {
-  background: #ffc9c9;
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 0.95rem;
 }
 
-/* EDIT = Orange */
 .action-btn.edit {
-  background: #ffe8cc;
-  color: #d9480f;
+  background: #3b82f6;
 }
-.action-btn.edit:hover {
-  background: #ffd8a8;
+
+.action-btn.delete {
+  background: #ef4444;
+}
+
+.action-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* ===== Footer ===== */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }

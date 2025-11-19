@@ -1,80 +1,92 @@
-<div class="view-wrapper">
-
- 
-
-  @if (loading) {
-    <p>Loading tenant details...</p>
-  }
-
-  @if (!loading && tenant) {
-
-    <div class="tenant-card">
-      <h2>🏢 {{ tenant.name }}</h2>
-
-      <!-- SERVICE TYPE -->
-      <div class="info-row">
-        <label>Service Type</label>
-        <input type="text" [value]="tenant.serviceType" readonly />
+<div class="tenant-view-page">
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4" href="#">
+        <i class="bi bi-shield-lock me-2 text-info"></i>
+        Kaappaan <span class="text-light">Admin</span>
+      </a>
+      <div class="ms-auto">
+        <button class="btn btn-outline-info btn-sm" (click)="Back()">⬅ Back</button>
       </div>
-
-      <!-- CODE -->
-      <div class="info-row">
-        <label>Tenant Code</label>
-        <input type="text" [value]="tenant.code" readonly />
-      </div>
-
-      <!-- CITY -->
-      <div class="info-row">
-        <label>City</label>
-        <input type="text" [value]="tenant.city" readonly />
-      </div>
-
-      <!-- STATE -->
-      <div class="info-row">
-        <label>State / District</label>
-        <input type="text" [value]="tenant.stateOrDistrict" readonly />
-      </div>
-
-      <!-- POSTAL CODE -->
-      <div class="info-row">
-        <label>Postal Code</label>
-        <input type="text" [value]="tenant.postalCode" readonly />
-      </div>
-
-      <!-- ADDRESS 1 -->
-      <div class="info-row">
-        <label>Address Line 1</label>
-        <input type="text" [value]="tenant.addressLine1" readonly />
-      </div>
-
-      <!-- ADDRESS 2 -->
-      <div class="info-row">
-        <label>Address Line 2</label>
-        <input type="text" [value]="tenant.addressLine2" readonly />
-      </div>
-
-      <!-- CONTACT -->
-      <div class="info-row">
-        <label>Contact Number</label>
-        <input type="text" [value]="tenant.contactNumber" readonly />
-      </div>
-
     </div>
-  }
+  </nav>
 
-  @if (message) {
-    <p class="error">{{ message }}</p>
-  }
-<td class="actions-cell">
+  <!-- ===== MAIN VIEW SECTION ===== -->
+  <div class="tenant-view-wrapper">
+    @if (loading) {
+      <p class="text-center text-light mt-5">Loading tenant details...</p>
+    }
 
-  <!-- DELETE BUTTON -->
-  <button class="action-btn delete" (click)="Delete(tenant.id)">
-    🗑
-  </button>
+    @if (!loading && tenant) {
+      <div class="tenant-card glass-card shadow-lg">
+        <h2 class="fw-bold text-info mb-4 text-center">
+          🏢 {{ tenant.name }}
+        </h2>
 
-  <!-- EDIT BUTTON -->
-  <button class="action-btn edit" (click)="editTenant(tenant.id)">
-    ✏
-  </button>
+        <div class="tenant-info">
+          <div class="info-grid">
+            <div class="info-item">
+              <label>Service Type</label>
+              <input type="text" [value]="tenant.serviceType" readonly />
+            </div>
 
-</td>
+            <div class="info-item">
+              <label>Tenant Code</label>
+              <input type="text" [value]="tenant.code" readonly />
+            </div>
+
+            <div class="info-item">
+              <label>City</label>
+              <input type="text" [value]="tenant.city" readonly />
+            </div>
+
+            <div class="info-item">
+              <label>State / District</label>
+              <input type="text" [value]="tenant.stateOrDistrict" readonly />
+            </div>
+
+            <div class="info-item">
+              <label>Postal Code</label>
+              <input type="text" [value]="tenant.postalCode" readonly />
+            </div>
+
+            <div class="info-item">
+              <label>Address Line 1</label>
+              <input type="text" [value]="tenant.addressLine1" readonly />
+            </div>
+
+            <div class="info-item">
+              <label>Address Line 2</label>
+              <input type="text" [value]="tenant.addressLine2" readonly />
+            </div>
+
+            <div class="info-item">
+              <label>Contact Number</label>
+              <input type="text" [value]="tenant.contactNumber" readonly />
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="actions text-center mt-4">
+            <button class="action-btn edit" (click)="editTenant(tenant.id)">
+              <i class="bi bi-pencil-square"></i> Edit
+            </button>
+            <button class="action-btn delete" (click)="Delete(tenant.id)">
+              <i class="bi bi-trash3"></i> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (message) {
+      <p class="text-center text-warning mt-3">{{ message }}</p>
+    }
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer bg-dark text-center text-white-50 py-3">
+    <small>© {{ currentYear }} Kaappaan Safety System | All Rights Reserved.</small>
+  </footer>
+</div>

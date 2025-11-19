@@ -1,34 +1,104 @@
-.update-wrapper {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
+@import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css";
+
+/* 🌌 Page layout */
+.tenant-update-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+  padding-top: 90px;
 }
 
-.update-form {
+/* ===== NAVBAR ===== */
+.modern-nav {
+  background: rgba(17, 25, 40, 0.95);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Form Wrapper ===== */
+.tenant-update-wrapper {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px 100px;
+}
+
+/* ===== Glass Card ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  padding: 40px 50px;
+  width: 100%;
+  max-width: 800px;
+  color: #fff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== Inputs ===== */
+label {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #cbd5e1;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  transition: 0.3s;
+}
+
+input:focus {
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+}
+
+/* ===== Row structure ===== */
+.row {
+  display: flex;
+  flex-wrap: wrap;
   gap: 15px;
+  margin-bottom: 16px;
 }
 
-input, select {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+.col-md-6, .col-md-12 {
+  flex: 1 1 calc(50% - 10px);
 }
 
-.btn {
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
+/* ===== Button Styles ===== */
+.btn-gradient {
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  transition: 0.3s;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
 }
 
-.btn.update {
-  background: #2563eb;
-  color: white;
+.btn-gradient:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.8);
 }
 
-.btn.back {
-  background: #ef4444;
-  color: white;
-  margin-bottom: 20px;
+.btn-gradient:disabled {
+  background: rgba(56, 189, 248, 0.3);
+  cursor: not-allowed;
+}
+
+/* ===== Footer ===== */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }

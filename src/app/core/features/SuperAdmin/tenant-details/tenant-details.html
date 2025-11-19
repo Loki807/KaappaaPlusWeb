@@ -1,87 +1,100 @@
-<div class="tenant-list-wrapper">
+<div class="tenant-list-page">
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4" href="#">
+        <i class="bi bi-shield-lock me-2 text-info"></i>
+        Kaappaan <span class="text-light">Admin</span>
+      </a>
+      <div class="ms-auto">
+        <button class="btn btn-outline-info btn-sm" (click)="Back()">⬅ Back</button>
+      </div>
+    </div>
+  </nav>
 
-  <header>
-    <h1>🏢 {{ selectedServiceType || 'All' }} Tenants</h1>
-  </header>
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="tenant-list-container">
+    <div class="tenant-card glass-card shadow-lg">
+      <header class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold text-info mb-0">
+          🏢 {{ selectedServiceType || 'All' }} Tenants
+        </h1>
 
-<div class="search-wrapper">
-  <input
-    type="text"
-    placeholder="Search tenants..."
-    [(ngModel)]="searchText"
-    (input)="applySearch()"
-  />
-</div>
+        <div class="search-wrapper">
+          <input
+            type="text"
+            placeholder="Search tenants..."
+            [(ngModel)]="searchText"
+            (input)="applySearch()"
+          />
+        </div>
+      </header>
 
+      <!-- ✅ Tenant Table -->
+      @if (!loading && filteredTenants.length > 0) {
+        <div class="table-responsive">
+          <table class="tenant-table table table-hover align-middle">
+            <thead>
+              <tr>
+                <th>Service Type</th>
+                <th>Tenant ID</th>
+                <th>Name</th>
+                <th>Code</th>
+                <th>District</th>
+                <th>City</th>
+                <th>Address 1</th>
+                <th>Address 2</th>
+                <th>Postal Code</th>
+                <th>Contact</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
 
+            <tbody>
+              @for (tenant of filteredTenants; track tenant.id) {
+                <tr>
+                  <td>{{ tenant.serviceType }}</td>
+                  <td>{{ tenant.id }}</td>
+                  <td>{{ tenant.name }}</td>
+                  <td>{{ tenant.code }}</td>
+                  <td>{{ tenant.stateOrDistrict }}</td>
+                  <td>{{ tenant.city }}</td>
+                  <td>{{ tenant.addressLine1 }}</td>
+                  <td>{{ tenant.addressLine2 }}</td>
+                  <td>{{ tenant.postalCode }}</td>
+                  <td>{{ tenant.contactNumber }}</td>
+                  <td class="actions-cell text-center">
+                    <button class="action-btn view" (click)="viewTenant(tenant.id)">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                    <button class="action-btn edit" (click)="editTenant(tenant.id)">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button class="action-btn delete" (click)="deleteTenant(tenant.id)">
+                      <i class="bi bi-trash3"></i>
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
 
-<button class="btn back-btn" (click)="Back()">⬅ Back</button>
+      <!-- ❌ Empty -->
+      @if (!loading && filteredTenants.length === 0) {
+        <p class="text-center text-light fs-5 mt-4">No tenants found.</p>
+      }
 
+      <!-- ⚠️ Message -->
+      @if (message) {
+        <div class="alert alert-warning text-center mt-3">{{ message }}</div>
+      }
+    </div>
+  </div>
 
-  <!-- ✅ Show table only if tenants available -->
-  @if (!loading && filteredTenants.length > 0) {
-    <table>
-      <thead>
-        <tr>
-           <th>Service Type</th>
-           <th>TennatId</th>
-          <th>Name</th>
-          <th>Code</th>
-          <th>State / District</th>
-          <th>City</th> 
-          <th>Address01</th>
-          <th>Address02</th>  
-          <th>Postal Code</th>
-          <th>Contact</th>
-          <th>Actions</th>
-         
-
-        </tr>
-      </thead>
-
-      <tbody>
-        @for (tenant of filteredTenants; track tenant.id) {
-          <tr>
-             <td>{{ tenant.serviceType }}</td>
-            <td>{{ tenant.id }}</td>
-            <td>{{ tenant.name }}</td>
-            <td>{{ tenant.code }}</td>
-            <td>{{ tenant.stateOrDistrict }}</td>
-            <td>{{ tenant.city }}</td>
-            <td>{{ tenant.addressLine1 }}</td>
-            <td>{{ tenant.addressLine2}}</td>
-            <td>{{ tenant.postalCode }}</td>
-           
-            <td>{{ tenant.  contactNumber}}</td>
-            <td class="actions-cell">
-
-            <button class="action-btn view" (click)="viewTenant(tenant.id)">
-            <i class="bi bi-eye"></i>
-            </button>
-              <!-- 🗑️ Delete -->
-            <button class="action-btn delete" (click)="deleteTenant(tenant.id)">
-            <i class="bi bi-trash3"></i>
-            </button>
-            <!-- ✏️ Update -->
-            <button class="action-btn edit" (click)="editTenant(tenant.id)">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-
-
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  }
-
-  <!-- ❌ Show empty message -->
-  @if (!loading && filteredTenants.length === 0) {
-    <p>No tenants found for {{ selectedServiceType }}.</p>
-  }
-
-  <!-- ⚠️ Error message -->
-  @if (message) {
-    <div class="error-msg">{{ message }}</div>
-  }
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer bg-dark text-center text-white-50 py-3">
+    <small>© {{ currentYear }} Kaappaan Safety System | All Rights Reserved.</small>
+  </footer>
 </div>

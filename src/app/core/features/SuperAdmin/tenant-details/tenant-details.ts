@@ -20,6 +20,7 @@ export class TenantDetails implements OnInit {
   loading = true;
   message = '';
   searchText = '';
+  currentYear = new Date().getFullYear();
 
   selectedServiceType: string | null = null;
 

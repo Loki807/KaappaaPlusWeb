@@ -20,6 +20,7 @@ fb = inject(FormBuilder);
   auth = inject(Auth);
   router = inject(Router);
   storage = inject(Storage);
+   currentYear = new Date().getFullYear();
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],

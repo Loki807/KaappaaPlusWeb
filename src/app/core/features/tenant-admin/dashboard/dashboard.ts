@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   imports: [CommonModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
+  
 })
 export class Dashboard {
  private router = inject(Router);

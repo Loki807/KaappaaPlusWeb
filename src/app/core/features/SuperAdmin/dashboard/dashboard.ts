@@ -8,6 +8,7 @@ import { TenantService } from '../../../services/tenant.service';
   imports: [],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
+  
 })
 export class Dashboard {
 
@@ -18,6 +19,7 @@ export class Dashboard {
   policeCount = 0;
   fireCount = 0;
   ambulanceCount = 0;
+  currentYear: number = new Date().getFullYear();
 
   constructor(private tenantService: TenantService, private router: Router) {}
 
@@ -45,6 +47,11 @@ export class Dashboard {
   goToTenantCreate() {this.router.navigate(['/tenant-create'])}
 
 
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 
 
 }

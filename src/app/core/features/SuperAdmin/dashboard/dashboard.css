@@ -1,102 +1,169 @@
+/* 🌈 Page background */
+.tenant-dashboard {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #fff, #fee2e2);
+  color: #111827;
+  font-family: "Poppins", sans-serif;
+}
+
+/* 🔝 Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #b91c1c, #ef4444);
+  color: #fff;
+  padding: 15px 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+.navbar .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-nav {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-nav:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* 🧭 Dashboard Actions */
+.dashboard-actions {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.btn-create {
+  background: linear-gradient(90deg, #ef4444, #b91c1c);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-create:hover {
+  background: linear-gradient(90deg, #b91c1c, #991b1b);
+  transform: translateY(-3px);
+}
+
+/* 🧩 Dashboard Sections */
 .dashboard-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: space-around;
-  padding: 1rem;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem;
 }
 
 .section {
-  width: 230px;
-  border-radius: 10px;
+  width: 250px;
+  border-radius: 15px;
   color: #fff;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(15px);
 }
 
 .section:hover {
   transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(185, 28, 28, 0.4);
 }
 
-/* 🔹 Head part */
 .section-head {
-  padding: 20px;
+  padding: 25px;
   text-align: center;
 }
 
-/* 🔹 Footer part (View Details bar) */
 .section-footer {
   background: rgba(255, 255, 255, 0.15);
-  padding: 10px 15px;
+  padding: 12px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-weight: 500;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.section-footer:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
-.section.total {
-  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  border-radius: 0 0 15px 15px;
 }
 
 /* 🎨 Colors */
+.section.total {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
 .section.police {
-  background: #1e3a8a; /* Blue */
+  background: linear-gradient(135deg, #2563eb, #1e40af);
 }
 .section.fire {
-  background: #d97706; /* Orange */
+  background: linear-gradient(135deg, #d97706, #b45309);
 }
-.section.ambulance { 
-  background: #b91c1c; /* Red */
-}
-.actions-wrapper {
-  min-height: 100vh;         /* full screen height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.dashboard-actions {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  width: 84%;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 15px 25px;
- 
-  border-radius: 15px;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+.section.ambulance {
+  background: linear-gradient(135deg, #991b1b, #7f1d1d);
 }
 
-.dashboard-actions .btn {
-  padding: 10px 25px;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: 0.2s ease-in-out;
+/* 📊 Text & count */
+.section-head h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.count {
+  font-size: 2rem;
+  font-weight: 700;
 }
 
-.btn.view-all {
-  background: #e5e7eb;
-  color: #1f2937;
+/* 🦶 Footer */
+.footer {
+  text-align: center;
+  padding: 15px;
+  margin-top: auto;
+  background: linear-gradient(90deg, #fff, #fee2e2);
+  color: #b91c1c;
+  font-size: 0.9rem;
 }
 
-
-
-.btn.create {
-  background: #2563eb;
-  color: white;
+/* ✨ Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.btn.create:hover {
-  background: #1d4ed8;
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease;
 }

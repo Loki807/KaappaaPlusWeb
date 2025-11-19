@@ -1,47 +1,96 @@
-<div class="update-wrapper">
+<div class="tenant-update-page">
 
-  <h1>✏️ Update Tenant</h1>
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4" href="#">
+        <i class="bi bi-shield-lock me-2 text-info"></i>
+        Kaappaan <span class="text-light">Admin</span>
+      </a>
+      <div class="ms-auto">
+        <button class="btn btn-outline-info btn-sm" (click)="Back()">⬅ Back</button>
+      </div>
+    </div>
+  </nav>
 
-  <button class="btn back" (click)="Back()">⬅ Back</button>
+  <!-- ===== UPDATE FORM SECTION ===== -->
+  <div class="tenant-update-wrapper">
+    <div class="glass-card shadow-lg">
 
-  @if (loading) {
-    <p>Loading...</p>
-  }
+      <h1 class="fw-bold text-center text-info mb-4">✏️ Update Tenant</h1>
 
-  @if (!loading) {
-    <form [formGroup]="form" (ngSubmit)="submit()" class="update-form">
+      @if (loading) {
+        <p class="text-center text-light">Loading...</p>
+      }
 
-      <label>Name</label>
-      <input type="text" formControlName="name">
+      @if (!loading) {
+        <form [formGroup]="form" (ngSubmit)="submit()" class="tenant-update-form">
 
-      <label>Code</label>
-      <input type="text" formControlName="code">
+          <div class="row">
+            <div class="col-md-6">
+              <label>Name</label>
+              <input type="text" formControlName="name" />
+            </div>
+            <div class="col-md-6">
+              <label>Code</label>
+              <input type="text" formControlName="code" />
+            </div>
+          </div>
 
-      <label>State / District</label>
-      <input type="text" formControlName="stateOrDistrict">
-      
-      <label>City</label>
-      <input type="text" formControlName="city">
+          <div class="row">
+            <div class="col-md-6">
+              <label>State / District</label>
+              <input type="text" formControlName="stateOrDistrict" />
+            </div>
+            <div class="col-md-6">
+              <label>City</label>
+              <input type="text" formControlName="city" />
+            </div>
+          </div>
 
-      <label>Address Line 1</label>
-      <input type="text" formControlName="addressLine1">
+          <div class="row">
+            <div class="col-md-6">
+              <label>Address Line 1</label>
+              <input type="text" formControlName="addressLine1" />
+            </div>
+            <div class="col-md-6">
+              <label>Address Line 2</label>
+              <input type="text" formControlName="addressLine2" />
+            </div>
+          </div>
 
-      <label>Address Line 2</label>
-      <input type="text" formControlName="addressLine2">
+          <div class="row">
+            <div class="col-md-6">
+              <label>Postal Code</label>
+              <input type="text" formControlName="postalCode" />
+            </div>
+            <div class="col-md-6">
+              <label>Contact Number</label>
+              <input type="text" formControlName="contactNumber" />
+            </div>
+          </div>
 
-       <label>Postal Code</label>
-      <input type="text" formControlName="postalCode">
+          <div class="row">
+            <div class="col-md-12">
+              <label>Logo URL</label>
+              <input type="text" formControlName="logoUrl" />
+            </div>
+          </div>
 
-      <label>Contact Number</label>
-      <input type="text" formControlName="contactNumber">
- 
-      
-      <label>LogoUrl</label>
-      <input type="text" formControlName="logoUrl">
+          <div class="actions text-center mt-4">
+            <button type="submit" class="btn btn-gradient px-4 py-2" [disabled]="loading">
+              {{ loading ? 'Updating...' : 'Update Tenant' }}
+            </button>
+          </div>
 
-      <button type="submit" class="btn update">Update Tenant</button>
-    </form>
-  }
+        </form>
+      }
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer bg-dark text-center text-white-50 py-3">
+    <small>© {{ currentYear }} Kaappaan Safety System | All Rights Reserved.</small>
+  </footer>
+
 </div>
-
-

@@ -1,63 +1,75 @@
-<div class="dashboard-actions">
- 
-  <button class="btn create" (click)="goToTenantCreate()">➕ Create New Tenant</button>
+<div class="tenant-dashboard">
+  <!-- 🔝 Navbar -->
+  <nav class="navbar">
+    <div class="brand">
+      <i class="bi bi-shield-lock"></i>
+      <span>Kaappaan <strong>Admin</strong></span>
+    </div>
+
+    <div class="nav-buttons">
+      
+      <button class="btn-nav" (click)="logout()">🚪 Logout</button>
+    </div>
+  </nav>
+
+  <!-- 🧭 Dashboard actions -->
+  <div class="dashboard-actions">
+    <button class="btn-create" (click)="goToTenantCreate()">➕ Create New Tenant</button>
+  </div>
+
+  <!-- 🏢 Tenant Statistics -->
+  <section class="dashboard-container">
+    <!-- TOTAL -->
+    <div class="section total" (click)="viewAllTenants()">
+      <div class="section-head">
+        <h2>📊 Total Tenants</h2>
+        <span class="count">{{ totalCount }}</span>
+      </div>
+      <div class="section-footer">
+        <span>View All</span>
+        <i class="bi bi-chevron-right"></i>
+      </div>
+    </div>
+
+    <!-- POLICE -->
+    <div class="section police" (click)="viewTenants('Police')">
+      <div class="section-head">
+        <h2>👮 Police Tenants</h2>
+        <span class="count">{{ policeCount }}</span>
+      </div>
+      <div class="section-footer">
+        <span>View Details</span>
+        <i class="bi bi-chevron-right"></i>
+      </div>
+    </div>
+
+    <!-- FIRE -->
+    <div class="section fire" (click)="viewTenants('Fire')">
+      <div class="section-head">
+        <h2>🔥 Fire Tenants</h2>
+        <span class="count">{{ fireCount }}</span>
+      </div>
+      <div class="section-footer">
+        <span>View Details</span>
+        <i class="bi bi-chevron-right"></i>
+      </div>
+    </div>
+
+    <!-- AMBULANCE -->
+    <div class="section ambulance" (click)="viewTenants('Ambulance')">
+      <div class="section-head">
+        <h2>🚑 Ambulance Tenants</h2>
+        <span class="count">{{ ambulanceCount }}</span>
+      </div>
+      <div class="section-footer">
+        <span>View Details</span>
+        <i class="bi bi-chevron-right"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⚫ Footer -->
+  <footer class="footer">
+    <small>© {{ currentYear }} Kaappaan | Tenant Management System</small>
+  </footer>
 </div>
-
-
-
-<section class="dashboard-container">
-  <!-- 🟦 TOTAL Tenants Section -->
-<div class="section total" (click)="viewAllTenants()">
-  <div class="section-head">
-    <h2>📊 Total Tenants</h2>
-    <span class="count">{{ totalCount }}</span>
-  </div>
-
-  <div class="section-footer">
-    <span>View All</span>
-    <i class="bi bi-chevron-right"></i>
-  </div>
-</div>
-  <!-- 👮 Police Section -->
-  <div class="section police" (click)="viewTenants('Police')">
-    <div class="section-head">
-      <h2>👮 Police Tenants</h2>
-      <span class="count">{{ policeCount }}</span>
-    </div>
-
-    <!-- 🟢 View Details Footer -->
-    <div class="section-footer">
-      <span>View Details</span>
-      <i class="bi bi-chevron-right"></i>
-    </div>
-  </div>
-
-  <!-- 🔥 Fire Section -->
-  <div class="section fire" (click)="viewTenants('Fire')">
-    <div class="section-head">
-      <h2>🔥 Fire Tenants</h2>
-      <span class="count">{{ fireCount }}</span>
-    </div>
-
-    <div class="section-footer">
-      <span>View Details</span>
-      <i class="bi bi-chevron-right"></i>
-    </div>
-  </div>
-
-  <!-- 🚑 Ambulance Section -->
-  <div class="section ambulance" (click)="viewTenants('Ambulance')">
-    <div class="section-head">
-      <h2>🚑 Ambulance Tenants</h2>
-      <span class="count">{{ ambulanceCount }}</span>
-    </div>
-
-    <div class="section-footer">
-      <span>View Details</span>
-      <i class="bi bi-chevron-right"></i>
-    </div>
-  </div>
-</section>
-
-
-

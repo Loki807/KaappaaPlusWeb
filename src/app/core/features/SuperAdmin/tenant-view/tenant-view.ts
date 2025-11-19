@@ -13,6 +13,7 @@ export class TenantView implements OnInit {
   route = inject(ActivatedRoute);
   router = inject(Router);
   tenantService = inject(TenantService);
+  currentYear = new Date().getFullYear();
 
   tenant!: Tenant;
   loading = true;
