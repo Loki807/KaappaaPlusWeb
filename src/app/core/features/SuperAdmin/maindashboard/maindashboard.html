@@ -1,0 +1,104 @@
+<div class="dashboard-page">
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
+    <div class="container d-flex align-items-center justify-content-between">
+      <!-- 🔰 Brand + Tenant/User Buttons -->
+      <div class="d-flex align-items-center gap-3">
+        <a class="navbar-brand fw-bold fs-4 m-0" href="#">
+          <i class="bi bi-shield-lock me-2 text-info"></i>
+          Kaappaan <span class="text-light">Admin</span>
+        </a>
+
+        <div class="d-flex gap-2 ms-3">
+          <button class="btn btn-nav" (click)="openTenants()">
+            <i class="bi bi-building me-1"></i> Tenants
+          </button>
+          <button class="btn btn-nav" (click)="openUsers()">
+            <i class="bi bi-people me-1"></i> Users
+          </button>
+        </div>
+      </div>
+
+      <!-- 🔘 Logout -->
+      <button class="btn btn-outline-info btn-sm" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN SCROLLABLE BODY ===== -->
+  <main class="dashboard-content text-light text-center">
+    <div class="container pt-5">
+      <h1 class="fw-bold mb-3 animate__animated animate__fadeInDown">
+        🧭 Super Admin Dashboard
+      </h1>
+      <p class="lead mb-5 animate__animated animate__fadeInUp">
+        Manage your platform — Tenants, Users, and System Stats.
+      </p>
+
+      <!-- 📊 Stat Cards -->
+      <div class="row g-4 justify-content-center mb-5">
+        <div class="col-md-4">
+          <div class="dashboard-card h-100">
+            <i class="bi bi-building text-info fs-1 mb-3"></i>
+            <h5 class="fw-bold">Total Tenants</h5>
+            <p class="display-6 fw-bold text-info">18</p>
+            <p class="text-gray">Active Tenant Organizations</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="dashboard-card h-100">
+            <i class="bi bi-people-fill text-success fs-1 mb-3"></i>
+            <h5 class="fw-bold">Total Users</h5>
+            <p class="display-6 fw-bold text-success">96</p>
+            <p class="text-gray">Registered Admins & Responders</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="dashboard-card h-100">
+            <i class="bi bi-exclamation-triangle-fill text-warning fs-1 mb-3"></i>
+            <h5 class="fw-bold">Active Alerts</h5>
+            <p class="display-6 fw-bold text-warning">12</p>
+            <p class="text-gray">Ongoing Emergency Alerts</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⚙️ Tenant & User Management Panels -->
+      <div class="row g-4 justify-content-center mb-5">
+        <div class="col-md-5">
+          <div class="option-card h-100">
+            <i class="bi bi-building-gear fs-1 text-info mb-3"></i>
+            <h4 class="fw-bold text-white">Tenant Management</h4>
+            <p class="text-gray mb-4">
+              View, edit, or remove tenants from the Kaappaan platform.
+            </p>
+            <button class="btn btn-modern px-4 py-2" (click)="openTenants()">
+              Manage Tenants
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="option-card h-100">
+            <i class="bi bi-person-gear fs-1 text-success mb-3"></i>
+            <h4 class="fw-bold text-white">User Management</h4>
+            <p class="text-gray mb-4">
+              View or assign roles to users across all tenants.
+            </p>
+            <button class="btn btn-modern px-4 py-2" (click)="openUsers()">
+              Manage Users
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== FIXED FOOTER ===== -->
+  <footer class="footer text-center text-white-50">
+    <div class="container">
+      <small>© {{ currentYear }} Kaappaan Safety System | All Rights Reserved.</small>
+    </div>
+  </footer>
+</div>

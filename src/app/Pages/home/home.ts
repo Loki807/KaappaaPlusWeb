@@ -8,10 +8,10 @@ import { Router } from '@angular/router';
   styleUrl: './home.css',
 })
 export class Home {
-router = inject(Router);
+  private router = inject(Router);
+  currentYear = new Date().getFullYear();
 
-  // 🧭 Navigate to login page
-  goToLogin() {
+  goToLogin(): void {
     this.router.navigate(['/login']);
-}
+  }
 }

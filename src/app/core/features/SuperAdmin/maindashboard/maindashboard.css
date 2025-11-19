@@ -1,0 +1,137 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css";
+
+/* 🌌 Main Layout */
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e3a8a, #0f172a);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+/* ===== NAVBAR ===== */
+.modern-nav {
+  background: rgba(10, 20, 40, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  height: 70px;
+  z-index: 1000;
+  transition: 0.3s;
+}
+.modern-nav:hover {
+  background: rgba(20, 30, 60, 0.97);
+}
+
+/* ===== NAVBAR BUTTONS (Tenants / Users) ===== */
+.btn-nav {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0f2fe;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 6px 14px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+.btn-nav:hover {
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+}
+
+/* Logout Button */
+.btn-outline-info {
+  border-radius: 8px;
+  border-color: #38bdf8;
+  color: #38bdf8;
+  font-weight: 500;
+}
+.btn-outline-info:hover {
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+  color: #fff;
+}
+
+/* ===== MAIN BODY SCROLLABLE ===== */
+.dashboard-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background: radial-gradient(circle at top, rgba(30, 58, 138, 0.9), rgba(15, 23, 42, 0.95));
+}
+.dashboard-content::-webkit-scrollbar {
+  width: 8px;
+}
+.dashboard-content::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.5);
+  border-radius: 10px;
+}
+
+/* ===== STATS CARDS ===== */
+.dashboard-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  backdrop-filter: blur(18px);
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.dashboard-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.6);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+.text-gray {
+  color: #9ca3af;
+}
+
+/* ===== TENANT / USER OPTION CARDS ===== */
+.option-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(16px);
+}
+.option-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(56, 189, 248, 0.5);
+}
+
+/* ===== BLUE GLOW BUTTONS ===== */
+.btn-modern {
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 0 18px rgba(37, 99, 235, 0.4);
+}
+.btn-modern:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(56, 189, 248, 0.6);
+}
+
+/* ===== FIXED FOOTER ===== */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: rgba(10, 15, 25, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

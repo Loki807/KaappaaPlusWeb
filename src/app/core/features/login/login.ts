@@ -57,7 +57,7 @@ fb = inject(FormBuilder);
         // 🧭 3️⃣ Role-based navigation
         switch (res.role) {
           case 'SuperAdmin':
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/maindashboard']);
             break;
 
           case 'TenantAdmin':
