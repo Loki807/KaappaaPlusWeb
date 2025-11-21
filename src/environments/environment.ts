@@ -1,7 +1,7 @@
 // src/environments/environment.ts
 export const environment = {
   production: false,
-  apiBase: 'https://localhost:7055/api',  // Base API URL
+  apiBase: 'https://kaappaan.duckdns.org/api',  // Base API URL
 
   // Define the endpoints related to tenants and tenant users
   endpoints: {
