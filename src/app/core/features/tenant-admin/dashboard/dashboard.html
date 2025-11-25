@@ -1,49 +1,66 @@
 <div class="tenant-dashboard">
-  <!-- 🧭 Header -->
-  <header class="header">
-    <div class="header-left">
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <div class="logo-box">
+      <i class="bi bi-shield-lock text-info fs-1"></i>
+      <h2 class="fw-bold mt-2">Kaappaan Safety</h2>
+      <p>Empowering safer communities.</p>
+    </div>
+
+    <div class="contact-details">
+      <p><i class="bi bi-envelope me-2 text-info"></i> support@kaappaan.com</p>
+      <p><i class="bi bi-telephone me-2 text-info"></i> +94 77 123 4567</p>
+      <p><i class="bi bi-geo-alt me-2 text-info"></i> Colombo, Sri Lanka</p>
+    </div>
+
+    <div class="social-icons mt-3">
+      <a href="#"><i class="bi bi-facebook"></i></a>
+      <a href="#"><i class="bi bi-linkedin"></i></a>
+      <a href="#"><i class="bi bi-twitter"></i></a>
+      <a href="#"><i class="bi bi-instagram"></i></a>
+    </div>
+  </div>
+
+  <!-- RIGHT CONTENT -->
+  <div class="right-panel">
+
+    <!-- HEADER CARD -->
+    <div class="glass-card dashboard-header">
       <h1>🛡️ Tenant Admin Dashboard</h1>
-      <p>Manage your tenant’s users efficiently.</p>
+      <button class="btn-primary" (click)="goToCreateUser()">➕ Create User</button>
     </div>
-    <div class="header-actions">
-      <button class="btn btn-primary" (click)="goToCreateUser()">
-        ➕ Create User
-      </button>
+
+    <!-- QUICK TIPS -->
+    <div class="glass-card tips-box">
+      <h2>Quick Tips</h2>
+      <ul>
+        <li>Create Users for Police, Fire, Traffic, etc.</li>
+        <li>First-time users must change their password.</li>
+      </ul>
     </div>
-  </header>
 
-  <!-- 💡 Quick Tips Panel -->
-  <section class="panel">
-    <h2 class="panel-title">Quick Tips</h2>
-    <ul class="tips">
-      <li>Click “Create User” to add staff (Police, Fire, etc.).</li>
-      <li>First-time users must change their password on first login.</li>
-    </ul>
-  </section>
+    <!-- RECENT USERS -->
+    <div class="glass-card">
+      <h2 class="mb-3">Recent Users</h2>
 
-  <!-- 👥 Recent Users List -->
-  <section class="panel">
-    <h2 class="panel-title">Recent Users</h2>
-
-    <div class="list">
-      <div class="row">
-        <div class="col name">John Perera</div>
-        <div class="col email">john@tenant.lk</div>
-        <div class="col role">Police</div>
-        <div class="col status on">Active</div>
+      <div class="user-row">
+        <div>John Perera</div>
+        <div>john@tenant.lk</div>
+        <div>Police</div>
+        <div class="user-status on">Active</div>
       </div>
 
-      <div class="row">
-        <div class="col name">Kumara Silva</div>
-        <div class="col email">kumara@tenant.lk</div>
-        <div class="col role">Traffic</div>
-        <div class="col status off">Inactive</div>
+      <div class="user-row">
+        <div>Kumara Silva</div>
+        <div>kumara@tenant.lk</div>
+        <div>Traffic</div>
+        <div class="user-status off">Inactive</div>
       </div>
     </div>
-  </section>
 
-  <!-- 🦶 Footer -->
-  <footer class="footer">
-    <small>Kaappaan Tenant • © 2025</small>
-  </footer>
+    <!-- FOOTER -->
+    <footer class="footer">Kaappaan Tenant • © 2025</footer>
+
+  </div>
 </div>

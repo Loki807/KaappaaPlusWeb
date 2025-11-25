@@ -1,60 +1,84 @@
 @import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css";
 
-/* 🌌 Page layout */
+/* ------------------ PAGE LAYOUT ------------------ */
 .tenant-update-page {
+  display: flex;
   min-height: 100vh;
   background: linear-gradient(135deg, #0f172a, #1e3a8a);
   font-family: "Poppins", sans-serif;
-  color: #fff;
-  overflow-x: hidden;
-  padding-top: 90px;
+  color: white;
 }
 
-/* ===== NAVBAR ===== */
-.modern-nav {
-  background: rgba(17, 25, 40, 0.95);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* ===== Form Wrapper ===== */
-.tenant-update-wrapper {
+/* ------------------ LEFT PANEL ------------------ */
+.tenant-left {
+  width: 35%;
+  background: rgba(15, 23, 42, 0.85);
+  padding: 60px 40px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 50px 20px 100px;
+  align-items: flex-start;
 }
 
-/* ===== Glass Card ===== */
+.logo-box {
+  text-align: center;
+}
+
+.contact-details {
+  margin-top: 40px;
+}
+
+.social-icons a {
+  color: #38bdf8;
+  margin-right: 10px;
+  font-size: 1.3rem;
+}
+
+/* ------------------ RIGHT PANEL ------------------ */
+.tenant-right {
+  width: 65%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 40px;
+}
+
+/* ------------------ GLASS CARD ------------------ */
 .glass-card {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.10);
   backdrop-filter: blur(25px);
   border-radius: 20px;
   padding: 40px 50px;
   width: 100%;
-  max-width: 800px;
-  color: #fff;
+  max-width: 900px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* ===== Inputs ===== */
+/* ------------------ HEADER ------------------ */
+.update-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+/* ------------------ FORM LABEL ------------------ */
 label {
   font-weight: 600;
   font-size: 14px;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   color: #cbd5e1;
   display: block;
 }
 
+/* ------------------ INPUT BOX ------------------ */
 input {
   width: 100%;
-  padding: 10px 14px;
-  font-size: 14px;
-  border-radius: 8px;
+  padding: 12px 16px;
+  border-radius: 10px;
   border: none;
   outline: none;
-  background: rgba(255, 255, 255, 0.9);
   color: #111;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 14px;
   transition: 0.3s;
 }
 
@@ -62,43 +86,71 @@ input:focus {
   box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
 }
 
-/* ===== Row structure ===== */
+/* ------------------ ROW STRUCTURE ------------------ */
 .row {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 16px;
+  gap: 18px;
+  margin-bottom: 20px;
 }
 
-.col-md-6, .col-md-12 {
+.col-md-6 {
   flex: 1 1 calc(50% - 10px);
 }
 
-/* ===== Button Styles ===== */
-.btn-gradient {
-  background: linear-gradient(90deg, #2563eb, #38bdf8);
-  color: #fff;
+.col-md-12 {
+  flex: 1 1 100%;
+}
+
+/* ------------------ BUTTONS ------------------ */
+.btn-area {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.btn-back {
+  padding: 12px 20px;
+  background: #475569;
   border: none;
-  border-radius: 8px;
+  color: white;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-back:hover {
+  background: #64748b;
+}
+
+.btn-gradient {
+  padding: 12px 22px;
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
   transition: 0.3s;
   box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
 }
 
-.btn-gradient:hover:not(:disabled) {
+.btn-gradient:hover {
   transform: scale(1.05);
   box-shadow: 0 0 30px rgba(56, 189, 248, 0.8);
 }
 
-.btn-gradient:disabled {
-  background: rgba(56, 189, 248, 0.3);
-  cursor: not-allowed;
-}
-
-/* ===== Footer ===== */
+/* ------------------ FOOTER ------------------ */
 .footer {
+  background: rgba(15, 23, 42, 0.95);
+  padding: 15px;
+  text-align: center;
+  color: #cbd5e1;
+  font-size: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: rgba(15, 23, 42, 0.95);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }

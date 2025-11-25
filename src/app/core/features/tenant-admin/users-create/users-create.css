@@ -1,238 +1,158 @@
-/* 🌈 Theme Variables (Light Mode) */
-:root {
-  --bg: #f1f5ff;          /* Soft light blue background */
-  --panel: #ffffff;        /* White panels */
-  --border: #d0d7e3;       /* Subtle gray border */
-  --text: #1e293b;         /* Dark text */
-  --dim: #64748b;          /* Lighter gray text */
-  --blue: #2563eb;         /* Primary Kaappaan blue */
-  --blue-dark: #1e40af;    /* Darker hover blue */
+@import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css";
+
+/* ============================
+   PAGE WRAPPER (Same Theme)
+============================ */
+.user-create-page {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  font-family: "Poppins", sans-serif;
+  color: #fff;
 }
 
-/* 🌍 Global Setup */
-* {
-  box-sizing: border-box;
+/* ============================
+   LEFT PANEL (Copied from Tenant Dashboard)
+============================ */
+.left-panel {
+  width: 32%;
+  background: rgba(15, 23, 42, 0.85);
+  padding: 60px 40px;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  font-family: 'Poppins', system-ui, 'Segoe UI', Roboto, Arial;
-  background: var(--bg);
-  color: var(--text);
-}
-
-/* 🧭 Header */
-.header {
-  background: linear-gradient(90deg, #2563eb, #1d4ed8);
-  padding: 18px 24px;
+.logo-box {
   text-align: center;
-  border-bottom: 1px solid var(--border);
-  color: white;
-  animation: fadeIn 0.6s ease-in-out;
-  border-radius: 0 0 20px 20px;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+  margin-bottom: 40px;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 1.8rem;
+.logo-box i {
+  font-size: 3.2rem;
+  color: #38bdf8;
+}
+
+.contact-details p {
+  margin: 6px 0;
+  color: #cbd5e1;
+}
+
+.social-icons a {
+  color: #38bdf8;
+  margin-right: 12px;
+  font-size: 1.3rem;
+}
+
+/* ============================
+   RIGHT SIDE PANEL
+============================ */
+.right-panel {
+  width: 68%;
+  padding: 60px 40px;
+}
+
+/* ============================
+   GLASS CARD (Same card style)
+============================ */
+.glass-card {
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 35px 45px;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  animation: fadeInUp 0.6s ease;
+}
+
+/* ============================
+   HEADER CARD
+============================ */
+.header-section h1 {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.btn-create {
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+  padding: 12px 24px;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
   font-weight: 600;
+  transition: 0.3s;
+}
+.btn-create:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.7);
 }
 
-/* 🧾 Form Panel */
-.panel {
-  margin: 40px auto;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: var(--panel);
-  padding: 35px 40px;
-  max-width: 620px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  animation: fadeInUp 0.8s ease-in-out;
-}
-
-/* 📝 Form Layout */
-.form {
+/* ============================
+   FORM STYLING
+============================ */
+.form-grid {
   display: grid;
-  gap: 16px;
+  gap: 18px;
 }
 
-.field {
-  display: grid;
-  gap: 6px;
-}
-
-label {
-  font-weight: 500;
-  color: var(--dim);
+.field label {
+  color: #cbd5e1;
   font-size: 0.95rem;
+  font-weight: 500;
 }
 
-/* ✏️ Input & Select */
 input,
 select {
   width: 100%;
   padding: 12px 14px;
+  background: rgba(255,255,255,0.95);
+  color: #111;
   border-radius: 10px;
-  background: #f8fafc;
-  color: var(--text);
-  border: 1px solid var(--border);
-  outline: none;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-}
-
-input:focus,
-select:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 8px rgba(37, 99, 235, 0.2);
-}
-
-/* 🔘 Buttons */
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.btn {
-  appearance: none;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 18px;
-  color: #fff;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.25s ease;
-}
-
-.btn-primary {
-  background: linear-gradient(90deg, #2563eb, #1e40af);
-  box-s
-
-
-/* 🧭 Header */
-.header {
-  padding: 18px 24px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(18, 24, 38, 0.95);
-  backdrop-filter: blur(8px);
-  text-align: center;
-  animation: fadeIn 0.6s ease-in-out;
-}
-
-.header h1 {
-  margin: 0;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-/* 🧾 Panel container */
-.panel {
-  margin: 40px auto;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: var(--panel);
-  padding: 30px 40px;
-  max-width: 620px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-  animation: fadeInUp 0.8s ease-in-out;
-}
-
-/* 📝 Form */
-.form {
-  display: grid;
-  gap: 16px;
-}
-
-.field {
-  display: grid;
-  gap: 6px;
-}
-
-label {
-  font-weight: 500;
-  color: var(--dim);
-  font-size: 0.95rem;
-}
-
-/* ✏️ Inputs & Selects */
-input,
-select {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 10px;
-  background: #0e1526;
-  color: var(--text);
-  border: 1px solid var(--border);
-  outline: none;
-  font-size: 0.95rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-input:focus,
-select:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 8px rgba(47, 109, 246, 0.3);
-}
-
-/* 🔘 Buttons */
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.btn {
-  appearance: none;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 18px;
-  color: #fff;
-  cursor: pointer;
-  font-weight: 600;
+  border: 1px solid rgba(56, 189, 248, 0.4);
   transition: 0.25s;
 }
 
-.btn-primary {
-  background: var(--blue);
-  box-shadow: 0 4px 20px rgba(47, 109, 246, 0.4);
+input:focus,
+select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56,189,248,0.7);
 }
 
-.btn-primary:hover {
-  background: var(--blue-dark);
-  transform: translateY(-2px);
+/* ============================
+   BUTTON AREA
+============================ */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
 }
 
-/* 💬 Message */
+.btn-submit {
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+  padding: 12px 30px;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.btn-submit:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(56,189,248,0.8);
+}
+
 .msg {
-  color: var(--dim);
-  font-size: 0.9rem;
+  color: #e2e8f0;
 }
 
-/* ✨ Animations */
+/* ============================
+   ANIMATION
+============================ */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(25px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 }

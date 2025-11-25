@@ -1,50 +1,63 @@
 <div class="tenant-list-page">
-  <!-- ===== NAVBAR ===== -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
-    <div class="container">
-      <a class="navbar-brand fw-bold fs-4" href="#">
-        <i class="bi bi-shield-lock me-2 text-info"></i>
-        Kaappaan <span class="text-light">Admin</span>
-      </a>
-      <div class="ms-auto">
-        <button class="btn btn-outline-info btn-sm" (click)="Back()">⬅ Back</button>
+
+  <!-- ===== LEFT PANEL ===== -->
+  <div class="tenant-left">
+    <div class="tenant-info">
+      <div class="logo-box">
+        <i class="bi bi-shield-lock text-info fs-1"></i>
+        <h2 class="fw-bold">Kaappaan Safety</h2>
+        <p class="tagline">Empowering safer communities.</p>
+      </div>
+
+      <div class="contact-details">
+        <p><i class="bi bi-envelope me-2 text-info"></i> support@kaappaan.com</p>
+        <p><i class="bi bi-telephone me-2 text-info"></i> +94 77 123 4567</p>
+        <p><i class="bi bi-geo-alt me-2 text-info"></i> Colombo, Sri Lanka</p>
+      </div>
+
+      <div class="social-icons">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-linkedin"></i></a>
+        <a href="#"><i class="bi bi-twitter"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
       </div>
     </div>
-  </nav>
+  </div>
 
-  <!-- ===== MAIN CONTENT ===== -->
-  <div class="tenant-list-container">
-    <div class="tenant-card glass-card shadow-lg">
-      <header class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="fw-bold text-info mb-0">
-          🏢 {{ selectedServiceType || 'All' }} Tenants
-        </h1>
+  <!-- ===== RIGHT PANEL ===== -->
+  <div class="tenant-right">
+    <div class="glass-card">
+
+      <div class="header-flex">
+        <h1 class="fw-bold text-info">🏢 {{ selectedServiceType || 'All' }} Tenants</h1>
 
         <div class="search-wrapper">
-          <input
+          <input 
             type="text"
             placeholder="Search tenants..."
             [(ngModel)]="searchText"
             (input)="applySearch()"
           />
         </div>
-      </header>
 
-      <!-- ✅ Tenant Table -->
+        <button class="btn back-btn" (click)="Back()">⬅ Back</button>
+      </div>
+
+      <!-- TABLE -->
       @if (!loading && filteredTenants.length > 0) {
-        <div class="table-responsive">
+        <div class="table-responsive mt-4">
           <table class="tenant-table table table-hover align-middle">
             <thead>
               <tr>
-                <th>Service Type</th>
-                <th>Tenant ID</th>
+                <th>Service</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Code</th>
                 <th>District</th>
                 <th>City</th>
                 <th>Address 1</th>
                 <th>Address 2</th>
-                <th>Postal Code</th>
+                <th>Postal</th>
                 <th>Contact</th>
                 <th class="text-center">Actions</th>
               </tr>
@@ -63,7 +76,8 @@
                   <td>{{ tenant.addressLine2 }}</td>
                   <td>{{ tenant.postalCode }}</td>
                   <td>{{ tenant.contactNumber }}</td>
-                  <td class="actions-cell text-center">
+
+                  <td class="actions-cell">
                     <button class="action-btn view" (click)="viewTenant(tenant.id)">
                       <i class="bi bi-eye"></i>
                     </button>
@@ -81,20 +95,15 @@
         </div>
       }
 
-      <!-- ❌ Empty -->
+      <!-- Empty -->
       @if (!loading && filteredTenants.length === 0) {
         <p class="text-center text-light fs-5 mt-4">No tenants found.</p>
       }
 
-      <!-- ⚠️ Message -->
-      @if (message) {
-        <div class="alert alert-warning text-center mt-3">{{ message }}</div>
-      }
     </div>
   </div>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer bg-dark text-center text-white-50 py-3">
-    <small>© {{ currentYear }} Kaappaan Safety System | All Rights Reserved.</small>
-  </footer>
 </div>
+
+<footer class="footer">
+  <small>© {{ currentYear }} Kaappaan Safety System | All Rights Reserved.</small>
+</footer>
