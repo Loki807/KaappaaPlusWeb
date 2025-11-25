@@ -1,36 +1,39 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Storage } from '../../Store/storage';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { CreateUserRequest, UserDto } from '../../Types/user';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-private http = inject(HttpClient);
 
-  private createUrl = `${environment.apiBase}/${environment.endpoints.admin.tenantUser.create}`;
-  private allUrl    = (tenantId: string) =>
-    `${environment.apiBase}/${environment.endpoints.admin.tenantUser.allByTenant(tenantId)}`;
-  private byIdUrl   = (id: string) =>
-    `${environment.apiBase}/${environment.endpoints.admin.tenantUser.byId(id)}`;
-  private updUrl    = (id: string) =>
-    `${environment.apiBase}/${environment.endpoints.admin.tenantUser.update(id)}`;
-  private delUrl    = (id: string) =>
-    `${environment.apiBase}/${environment.endpoints.admin.tenantUser.delete(id)}`;
+  private http = inject(HttpClient);
+  private storage = inject(Storage);
 
-  createUser(data: CreateUserRequest): Observable<UserDto> {
-    return this.http.post<UserDto>(this.createUrl, data);
+  private baseUrl = `${environment.apiBase}/admin/tenant`;
+
+  getTenantUsers(): Observable<any[]> {
+    const tid = this.storage.getTenantId();
+    return this.http.get<any[]>(`${this.baseUrl}/user/all/${tid}`);
   }
-  getAllUsers(tenantId: string): Observable<UserDto[]> {
-    return this.http.get<UserDto[]>(this.allUrl(tenantId));
+
+  getUserById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/user/${id}`);
   }
-  getUser(id: string): Observable<UserDto> {
-    return this.http.get<UserDto>(this.byIdUrl(id));
-  }
-  updateUser(id: string, data: Partial<CreateUserRequest>): Observable<UserDto> {
-    return this.http.put<UserDto>(this.updUrl(id), data);
-  }
-  deleteUser(id: string): Observable<void> {
-    return this.http.delete<void>(this.delUrl(id));
-  }
+deleteUser(id: string) {
+  return this.http.delete(`${this.baseUrl}/user/delete/${id}`);
+  // or use the correct backend route you have
+}
+
+
+   // 🧾 Create new tenant
+createUser(req: CreateUserRequest) {
+  return this.http.post(`${this.baseUrl}/user/create`, req);
+}
+ updateUser(id: string, req: any) {
+  return this.http.put(`${this.baseUrl}/user/update/${id}`, req);
+}
+
+   
 }

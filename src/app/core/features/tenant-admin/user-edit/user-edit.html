@@ -1,0 +1,37 @@
+<div class="container" *ngIf="!loading">
+  <h2>Edit User</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <label>Name</label>
+    <input formControlName="name"/>
+
+    <label>Email</label>
+    <input formControlName="email"/>
+
+    <label>Phone</label>
+    <input formControlName="phone"/>
+
+    <label>Role</label>
+    <select formControlName="role">
+      <option value="TenantAdmin">TenantAdmin</option>
+      <option value="Police">Police</option>
+      <option value="Fire">Fire</option>
+      <option value="Traffic">Traffic</option>
+      <option value="Ambulance">Ambulance</option>
+    </select>
+
+    <label>Status</label>
+    <select formControlName="isActive">
+      <option [value]="true">Active</option>
+      <option [value]="false">Inactive</option>
+    </select>
+
+    <button type="submit">Update</button>
+
+    <p class="msg">{{ message }}</p>
+  </form>
+
+  <button class="back" (click)="back()">← Back</button>
+</div>
+

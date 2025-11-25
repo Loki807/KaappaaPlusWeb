@@ -13,10 +13,10 @@ import { Storage } from '../../../../Store/storage';
   styleUrl: './users-create.css',
 })
 export class UsersCreate {
-   private fb = inject(FormBuilder);
-  private storage = inject(Storage);
-  private api = inject(UserService);
-  private router = inject(Router);
+   fb = inject(FormBuilder);
+  storage = inject(Storage);
+  api = inject(UserService);
+  router = inject(Router);
 
   message = '';
   loading = false;
@@ -26,46 +26,74 @@ export class UsersCreate {
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     phone: ['', Validators.required],
-    role: ['', Validators.required] as unknown as AppRole | '',
-    password: ['', [Validators.required, Validators.minLength(6)]]
+    role: ['', Validators.required],
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
-  ngOnInit(): void {
-    this.tenantId = this.storage.get('tenantId') ?? this.storage.getTenantId() ?? '';
-    if (!this.tenantId) this.message = '⚠️ Missing tenant id (please login again).';
+  ngOnInit() {
+    this.tenantId =
+      this.storage.get('tenantId') ??
+      this.storage.getTenantId() ??
+      '';
+
+    if (!this.tenantId) {
+      this.message = '⚠️ Missing tenant ID. Please login again.';
+    }
   }
 
   submit() {
     this.message = '';
-    if (this.form.invalid) { this.message = '⚠️ Fill all required fields.'; return; }
-    if (!this.tenantId)    { this.message = '⚠️ Missing tenant id.'; return; }
+
+    if (this.form.invalid) {
+      this.message = '⚠️ Please fill all fields correctly.';
+      return;
+    }
+
+    if (!this.tenantId) {
+      this.message = '⚠️ Missing tenant ID.';
+      return;
+    }
 
     const req: CreateUserRequest = {
       tenantId: this.tenantId,
-      name: this.form.value.name!.trim(),
-      email: this.form.value.email!.trim(),
-      phone: this.form.value.phone!.trim(),
-      password: this.form.value.password!,           // send it; backend will hash
-      role: this.form.value.role as AppRole
+      name: this.form.value.name!,
+      email: this.form.value.email!,
+      phone: this.form.value.phone!,
+      password: this.form.value.password!,
+      role: this.form.value.role! as AppRole,
     };
 
     this.loading = true;
+
     this.api.createUser(req).subscribe({
       next: () => {
         this.loading = false;
-        this.message = '✅ User created!';
-        setTimeout(() => this.router.navigate(['/tenant-dashboard']), 800);
+        this.message = '✅ User created successfully';
+
+        setTimeout(() => {
+          this.router.navigate(['/tenant-dashboard']);
+        }, 800);
       },
+
       error: (err) => {
         this.loading = false;
+
         const details =
-          err?.error?.errors ? JSON.stringify(err.error.errors) :
-          err?.error?.title   ? err.error.title :
-          err?.error?.message ? err.error.message :
-          'Bad Request';
-        this.message = `❌ ${err.status ?? ''} ${details}`;
-      }
+          err?.error?.errors
+            ? JSON.stringify(err.error.errors)
+            : err?.error?.message
+            ? err.error.message
+            : err?.status === 403
+            ? 'Forbidden: You are not allowed'
+            : 'Bad Request';
+
+        this.message = `❌ ${details}`;
+      },
     });
+
+  }
+  back() {
+    this.router.navigate(['/tenant-dashboard']);
   }
 }
 

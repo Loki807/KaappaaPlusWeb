@@ -40,59 +40,55 @@ fb = inject(FormBuilder);
     this.loading = true;
     this.message = '';
 
-    this.auth.login(request).subscribe({
-      next: (res) => {
-        this.loading = false;
+   this.auth.login(request).subscribe({
+  next: (res) => {
+    this.loading = false;
 
-        // 🧩 1️⃣ First-time login → change password
-        if (res.message?.includes('Password change required')) {
-          this.router.navigate(['/change-password'], {
-            queryParams: { email: request.email },
-          });
-          return;
-        }
+    // 1️⃣ First-time login → change password
+    if (res.message?.includes('Password change required')) {
+      this.router.navigate(['/change-password'], {
+        queryParams: { email: request.email },
+      });
+      return;
+    }
 
-        // 💾 2️⃣ Save token
-        this.storage.setToken(res.token);
+    // 2️⃣ Save token
+    this.storage.setToken(res.token);
+    
+    // 3️⃣ Extract tenantId from the token
+    const tid = this.storage.getTenantId();
 
-        // 🧭 3️⃣ Role-based navigation
-        switch (res.role) {
-          case 'SuperAdmin':
-            this.router.navigate(['/maindashboard']);
-            break;
+    // 4️⃣ Save tenantId so dashboard can read it
+    if (tid) {
+      localStorage.setItem('tenantId', tid);
+    }
 
-          case 'TenantAdmin':
-            this.router.navigate(['/tenant-dashboard']);
-            break;
+    // 5️⃣ Role-based navigation
+    switch (res.role) {
+      case 'SuperAdmin':
+        this.router.navigate(['/maindashboard']);
+        break;
 
-          // 🚫 Tenant users — no dashboard access
-          case 'Police':
-          case 'Fire':
-          case 'Traffic':
-          case 'Ambulance':
-          case 'Citizen':
-            this.message = '🚫 Access denied: You do not have permission to open the dashboard.';
-            this.router.navigate(['/home']); // or stay on same page
-            break;
+      case 'TenantAdmin':
+        this.router.navigate(['/tenant-dashboard']);
+        break;
 
-          // 🚫 Unknown / Unhandled role
-          default:
-            this.message = '⚠️ Unknown role detected. Please contact support.';
-            this.router.navigate(['/home']);
-            break;
-        }
-      },
+      default:
+        this.message = '🚫 Access denied.';
+        this.router.navigate(['/home']);
+        break;
+    }
+  },
 
-      error: (err) => {
-        this.loading = false;
-        console.error('Login error:', err);
-        this.message = '❌ Invalid email or password.';
+  error: (err) => {
+    this.loading = false;
+    console.error('Login error:', err);
+    this.message = '❌ Invalid email or password.';
 
-
-      // Clear the email and password fields
-        this.form.controls['email'].setValue('');
-        this.form.controls['password'].setValue('');
-      }
-    });
+    this.form.controls['email'].setValue('');
+    this.form.controls['password'].setValue('');
   }
-}
+});
+
+   }
+  }

@@ -1,83 +1,39 @@
-<div class="user-create-page">
+<div class="create-user-card">
+  <h2>Create User</h2>
 
-  <!-- LEFT PANEL -->
-  <div class="left-panel">
-    <div class="logo-box">
-      <i class="bi bi-shield-lock"></i>
-      <h2 class="fw-bold mt-2">Kaappaan Safety</h2>
-      <p>Empowering safer communities.</p>
-    </div>
+  <form [formGroup]="form" (ngSubmit)="submit()">
 
-    <div class="contact-details">
-      <p><i class="bi bi-envelope me-2 text-info"></i> support@kaappaan.com</p>
-      <p><i class="bi bi-telephone me-2 text-info"></i> +94 77 123 4567</p>
-      <p><i class="bi bi-geo-alt me-2 text-info"></i> Colombo, Sri Lanka</p>
-    </div>
+    <label>Name</label>
+    <input formControlName="name" type="text" />
 
-    <div class="social-icons mt-3">
-      <a href="#"><i class="bi bi-facebook"></i></a>
-      <a href="#"><i class="bi bi-linkedin"></i></a>
-      <a href="#"><i class="bi bi-twitter"></i></a>
-      <a href="#"><i class="bi bi-instagram"></i></a>
-    </div>
-  </div>
+    <label>Email</label>
+    <input formControlName="email" type="email" />
 
-  <!-- RIGHT SIDE -->
-  <div class="right-panel">
+    <label>Phone</label>
+    <input formControlName="phone" type="text" />
 
-    <!-- PAGE HEADER -->
-    <div class="glass-card header-section">
-      <h1>👤 Create New User</h1>
-    </div>
+    <label>Role</label>
+    <select formControlName="role">
+      <option value="">Select Role</option>
+      <option value="Police">Police</option>
+      <option value="Fire">Fire</option>
+      <option value="Traffic">Traffic</option>
+      <option value="Ambulance">Ambulance</option>
+      <option value="TenantAdmin">TenantAdmin</option>
+    </select>
 
-    <!-- USER FORM -->
-    <div class="glass-card">
-      <form [formGroup]="form" (ngSubmit)="submit()" class="form-grid">
+    <label>Temporary Password</label>
+    <input formControlName="password" type="password" />
 
-        <div class="field">
-          <label>Name</label>
-          <input formControlName="name" placeholder="Full name" />
-        </div>
+    <button class="btn btn-primary" [disabled]="loading">
+      {{ loading ? 'Creating...' : 'Create' }}
+    </button>
 
-        <div class="field">
-          <label>Email</label>
-          <input type="email" formControlName="email" placeholder="user@tenant.lk" />
-        </div>
-
-        <div class="field">
-          <label>Phone</label>
-          <input formControlName="phone" placeholder="07x xxxxxxx" />
-        </div>
-
-        <div class="field">
-          <label>Role</label>
-          <select formControlName="role">
-            <option value="" disabled>-- Select Role --</option>
-            <option value="Police">Police</option>
-            <option value="Fire">Fire</option>
-            <option value="Traffic">Traffic</option>
-            <option value="Ambulance">Ambulance</option>
-            <option value="Citizen">Citizen</option>
-            <option value="TenantAdmin">Tenant Admin</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Temporary Password</label>
-          <input type="password" formControlName="password" placeholder="P@ssw0rd123" />
-          <small style="color:#cbd5e1;">User must change password at first login.</small>
-        </div>
-
-        <div class="actions">
-          <button class="btn-submit" type="submit" [disabled]="loading">
-            <span *ngIf="!loading">Create User</span>
-            <span *ngIf="loading">Creating...</span>
-          </button>
-          <span class="msg">{{ message }}</span>
-        </div>
-
-      </form>
-    </div>
-
-  </div>
+    @if (message) {
+      <p class="message">{{ message }}</p>
+    }
+  </form>
+    <button (click)="back() ">Back</button>
 </div>
+
+ 
