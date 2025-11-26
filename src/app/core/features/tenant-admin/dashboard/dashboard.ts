@@ -3,7 +3,6 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { Storage } from '../../../../Store/storage';
-
 @Component({
   selector: 'app-dashboard',
   imports: [CommonModule],
@@ -12,7 +11,7 @@ import { Storage } from '../../../../Store/storage';
   
 })
 export class Dashboard {
- service = inject(UserService);
+   service = inject(UserService);
   storage = inject(Storage);
   router = inject(Router);
 
@@ -20,6 +19,8 @@ export class Dashboard {
   tenantId = '';
   users: any[] = [];
   loading = true;
+serviceType = '';
+themeClass = '';
 
   // ------------------------------
   // 1️⃣ LOAD DASHBOARD
@@ -42,16 +43,13 @@ export class Dashboard {
   // ------------------------------
   // 2️⃣ LOAD USERS OF THIS TENANT
   // ------------------------------
-  loadUsers() {
+    loadUsers() {
     this.service.getTenantUsers().subscribe({
       next: (res) => {
-        this.users = res;
+        this.users = res.filter(u => u.role !== "TenantAdmin");
         this.loading = false;
       },
-      error: (err) => {
-        console.error(err);
-        this.loading = false;
-      }
+      error: () => this.loading = false
     });
   }
 
@@ -83,8 +81,14 @@ export class Dashboard {
       alert("❌ Delete failed!");
     }
   });
+
 }
+
+
 createUser() {
     this.router.navigate(['/users-create']);
-  }
+}
+Back() {
+    this.router.navigate(['/users-create']);
+}
 }

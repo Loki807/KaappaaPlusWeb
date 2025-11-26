@@ -1,10 +1,19 @@
+
+
 <div class="dashboard-container">
+
+
 
   <h1 class="title">Tenant Admin Dashboard</h1>
   <h2 class="tenant">Tenant: {{ tenantName }}</h2>
 
-  <button class="create-btn" (click)="createUser()">+ Create User</button>
+  <!-- ⭐ SHOW TENANT ID -->
+  <h3 class="tenant-id">Tenant ID: {{ tenantId }}</h3>
 
+  <button class="create-btn" (click)="createUser()">+ Create User</button>
+ <div class="ms-auto">
+        <button class="btn btn-outline-info btn-sm" (click)="Back()">⬅ Back</button>
+      </div>
   <!-- =======================
        SHOW TABLE IF USERS EXIST
   ======================== -->
