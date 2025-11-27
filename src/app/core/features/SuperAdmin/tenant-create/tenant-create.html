@@ -1,80 +1,112 @@
 <div class="tenant-page">
-  
-  <!-- LEFT SIDE -->
+
+  <!-- LEFT SECTION -->
   <div class="tenant-left">
     <div class="tenant-info">
       <div class="logo-box">
-        <i class="bi bi-shield-lock"></i>
+        <i class="bi bi-building fs-1 text-info"></i>
         <h2 class="fw-bold">Kaappaan Safety</h2>
         <p class="tagline">Empowering safer communities.</p>
-      </div>
-
-      <div class="contact-details">
-        <p><i class="bi bi-envelope me-2"></i> support@kaappaan.com</p>
-        <p><i class="bi bi-telephone me-2"></i> +94 77 123 4567</p>
-        <p><i class="bi bi-geo-alt me-2"></i> Colombo, Sri Lanka</p>
-      </div>
-
-      <div class="social-icons">
-        <a href="#"><i class="bi bi-facebook"></i></a>
-        <a href="#"><i class="bi bi-linkedin"></i></a>
-        <a href="#"><i class="bi bi-twitter"></i></a>
-        <a href="#"><i class="bi bi-instagram"></i></a>
       </div>
     </div>
   </div>
 
-  <!-- RIGHT SIDE -->
+  <!-- RIGHT FORM SECTION -->
   <div class="tenant-right">
     <div class="form-container">
+
       <h1 class="fw-bold text-center mb-4">🏢 Create New Tenant</h1>
 
       <form [formGroup]="form" (ngSubmit)="submit()">
-        
+
+        <!-- ROW 1 -->
         <div class="row">
           <div class="col">
             <label>Tenant Name</label>
-            <input formControlName="name" type="text" placeholder="Enter tenant name">
+            <input formControlName="name" type="text" placeholder="Enter tenant name" />
+            @if (form.controls['name'].invalid && form.controls['name'].touched) {
+              <p class="error">Tenant name is required.</p>
+            }
           </div>
+
           <div class="col">
             <label>Email</label>
-            <input formControlName="email" type="email" placeholder="Enter tenant admin email">
+            <input formControlName="email" type="email" placeholder="Enter tenant admin email" />
+            @if (form.controls['email'].invalid && form.controls['email'].touched) {
+              <p class="error">Enter a valid email address.</p>
+            }
           </div>
         </div>
 
+        <!-- ROW 2 -->
         <div class="row">
           <div class="col">
             <label>Address Line 1</label>
-            <input formControlName="addressLine1" placeholder="Enter address line 1">
+            <input formControlName="addressLine1" type="text" placeholder="Enter address line 1" />
+            @if (form.controls['addressLine1'].invalid && form.controls['addressLine1'].touched) {
+              <p class="error">Address Line 1 is required.</p>
+            }
           </div>
+
           <div class="col">
             <label>Address Line 2</label>
-            <input formControlName="addressLine2" placeholder="Enter address line 2">
+            <input formControlName="addressLine2" type="text" placeholder="Enter address line 2" />
+             @if (form.controls['addressLine2'].invalid && form.controls['addressLine2'].touched) {
+              <p class="error">Address Line 2 is required.</p>
+            }
           </div>
         </div>
 
+        <!-- ROW 3 -->
         <div class="row">
           <div class="col">
             <label>City</label>
-            <input formControlName="city" placeholder="Enter city">
+            <input formControlName="city" type="text" placeholder="Enter city" />
+            @if (form.controls['city'].invalid && form.controls['city'].touched) {
+              <p class="error">City is required.</p>
+            }
           </div>
-          <div class="col">
-            <label>State / District</label>
-            <input formControlName="stateOrDistrict" placeholder="Enter state/district">
-          </div>
+
+         <div class="col">
+  <label>State / District</label>
+
+  <select formControlName="stateOrDistrict">
+    <option value="" disabled>-- Select District --</option>
+
+                @for (d of districts; track d) {
+                  <option [value]="d">{{ d }}</option>
+                }
+
+              </select>
+
+              @if (form.controls['stateOrDistrict'].invalid && form.controls['stateOrDistrict'].touched) {
+                <p class="error">District is required.</p>
+              }
+
+            </div>
+
         </div>
 
+        <!-- ROW 4 -->
         <div class="row">
           <div class="col">
             <label>Postal Code</label>
-            <input formControlName="postalCode" placeholder="Enter postal code">
+            <input formControlName="postalCode" type="text" placeholder="Enter postal code" />
+            @if (form.controls['postalCode'].invalid && form.controls['postalCode'].touched) {
+              <p class="error">Postal code is required.</p>
+            }
           </div>
+
           <div class="col">
             <label>Contact Number</label>
-            <input formControlName="contactNumber" placeholder="Enter contact number">
+            <input formControlName="contactNumber" type="text" placeholder="Enter contact number" />
+            @if (form.controls['contactNumber'].invalid && form.controls['contactNumber'].touched) {
+              <p class="error">Contact number is required.</p>
+            }
           </div>
         </div>
 
+        <!-- ROW 5 -->
         <div class="row">
           <div class="col">
             <label>Service Type</label>
@@ -84,27 +116,38 @@
               <option value="Fire">Fire</option>
               <option value="Ambulance">Ambulance</option>
             </select>
+            @if (form.controls['serviceType'].invalid && form.controls['serviceType'].touched) {
+              <p class="error">Service Type is required.</p>
+            }
           </div>
+
           <div class="col">
             <label>Logo URL</label>
-            <input formControlName="logoUrl" placeholder="Enter logo URL (optional)">
+            <input formControlName="logoUrl" type="text" placeholder="Enter logo URL (optional)" />
+             @if (form.controls['logoUrl'].invalid && form.controls['logoUrl'].touched) {
+              <p class="error">logo is required.</p>
+            }
           </div>
+          
         </div>
 
+        <!-- BUTTONS -->
         <div class="actions mt-4">
           <button type="button" class="btn back-btn" (click)="back()">⬅ Back</button>
+
           <button type="submit" class="btn submit-btn" [disabled]="loading">
             @if (!loading) { <span>Create Tenant</span> }
             @if (loading) { <span>Creating...</span> }
           </button>
         </div>
 
+        <!-- GLOBAL MESSAGE -->
         @if (message) {
           <p class="msg">{{ message }}</p>
         }
 
       </form>
+
     </div>
   </div>
-
 </div>

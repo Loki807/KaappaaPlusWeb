@@ -12,11 +12,14 @@
 
     <form (ngSubmit)="submit()" [formGroup]="form" class="form-content">
       <label>Email</label>
-      <input type="email" formControlName="email" placeholder="Enter your email" />
-
+      <input type="email" formControlName="email" placeholder="Enter your email" 
+      />
+      
       <label>Password</label>
       <input type="password" formControlName="password" placeholder="Enter your password" />
-
+      @if (form.controls['password'].invalid && form.controls['password'].touched) {
+        <p class="error">password is required (min 6 chars).</p>
+      }
       <button type="submit" [disabled]="loading">
         {{ loading ? 'Logging in...' : 'Login' }}
       </button>

@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TenantService } from '../../../services/tenant.service';
 import { Router } from '@angular/router';
 
@@ -13,81 +13,68 @@ import { Router } from '@angular/router';
 })
 export class TenantCreate {
 
-  // Injecting Angular services (no constructor needed)
   fb = inject(FormBuilder);
-  tenantService = inject(TenantService);
+  service = inject(TenantService);
   router = inject(Router);
 
-  loading = false;
   message = '';
+  loading = false;
 
-  // -------------------------
-  //  FORM GROUP (IMPORTANT)
-  // -------------------------
+  // Sri Lankan districts
+  districts = [
+    "Ampara","Anuradhapura","Badulla","Batticaloa","Colombo",
+    "Galle","Gampaha","Hambantota","Jaffna","Kalutara",
+    "Kandy","Kegalle","Kilinochchi","Kurunegala","Mannar",
+    "Matale","Matara","Monaragala","Mullaitivu","Nuwara Eliya",
+    "Polonnaruwa","Puttalam","Ratnapura","Trincomalee","Vavuniya"
+  ];
+
   form = this.fb.group({
     name: ['', Validators.required],
-    
-    email: ['', [Validators.required, Validators.email]],   // REQUIRED by backend
-    
-    addressLine1: [''],
-    addressLine2: [''],
-    city: [''],
-    stateOrDistrict: [''],
-    postalCode: [''],
-    contactNumber: [''],
-    logoUrl: [''],
-
-    serviceType: ['', Validators.required]    // REQUIRED by backend
+   email: [
+  '',
+  [
+    Validators.required,
+    Validators.pattern(/^[a-zA-Z0-9._]+@gmail\.com$/)
+  ]
+],
+    addressLine1: ['', Validators.required],
+    addressLine2: ['',Validators.required],
+    city: ['', Validators.required],
+    stateOrDistrict: ['', Validators.required],
+    postalCode: ['', [Validators.required, Validators.pattern(/^\d{5}$/)]],
+    contactNumber: ['', [
+      Validators.required,
+      Validators.pattern(/^(?:\+94|0)\d{9}$/),Validators.maxLength(10)
+    ]],
+    serviceType: ['', Validators.required],
+    logoUrl: ['',Validators.required]
   });
 
-  // -------------------------
-  //  SUBMIT METHOD
-  // -------------------------
   submit() {
     if (this.form.invalid) {
-      this.message = '⚠️ Please fill all required fields correctly.';
+      this.form.markAllAsTouched();   // 👈 Highlight all errors
+      this.message = '⚠ Please fill all required fields correctly.';
       return;
     }
 
     this.loading = true;
     this.message = '';
 
-    // Create correct payload matching backend DTO
-    const payload = {
-      name: this.form.value.name!,
-     
-      email: this.form.value.email!,
-      addressLine1: this.form.value.addressLine1!,
-      addressLine2: this.form.value.addressLine2!,
-      city: this.form.value.city!,
-      stateOrDistrict: this.form.value.stateOrDistrict!,
-      postalCode: this.form.value.postalCode!,
-      contactNumber: this.form.value.contactNumber!,
-      logoUrl: this.form.value.logoUrl!,
-      serviceType: this.form.value.serviceType!   // 🔴 must match C# DTO
-    };
-
-    // API CALL
-    this.tenantService.createTenant(payload).subscribe({
+    this.service.createTenant(this.form.value).subscribe({
       next: () => {
         this.loading = false;
-        alert('✅ Tenant created successfully!');
-        this.router.navigate(['/tenant-details']);
+        this.message = "Tenant created successfully!";
+        setTimeout(() => this.router.navigate(['/maindashboard']), 1200);
       },
-      error: (err) => {
+      error: err => {
         this.loading = false;
         console.error(err);
-
-        this.message = err.error?.message
-          ? '❌ ' + err.error.message
-          : '❌ Tenant creation failed (Bad Request 400)';
+        this.message = err.error?.message || "❌ Tenant creation failed.";
       }
     });
   }
 
-  // -------------------------
-  //  BACK BUTTON
-  // -------------------------
   back() {
     this.router.navigate(['/dashboard']);
   }

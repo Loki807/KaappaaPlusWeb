@@ -5,12 +5,21 @@
 
     <label>Name</label>
     <input formControlName="name" type="text" />
+     @if (form.controls['name'].invalid && form.controls['name'].touched) {
+              <p class="error">Enter a the Name</p>
+            }
 
     <label>Email</label>
     <input formControlName="email" type="email" />
+    @if (form.controls['email'].invalid && form.controls['email'].touched) {
+              <p class="error">Enter a the Email</p>
+            }
 
-    <label>Phone</label>
+    <label>Phone Number</label>
     <input formControlName="phone" type="text" />
+    @if (form.controls['phone'].invalid && form.controls['phone'].touched) {
+              <p class="error">Enter a the phone</p>
+            }
 
     <label>Role</label>
     <select formControlName="role">
@@ -20,10 +29,16 @@
       <option value="Traffic">Traffic</option>
       <option value="Ambulance">Ambulance</option>
       <option value="TenantAdmin">TenantAdmin</option>
-    </select>
+    </select> 
+    @if (form.controls['role'].invalid && form.controls['role'].touched) {
+              <p class="error">Select the Role</p>
+            }
 
     <label>Temporary Password</label>
     <input formControlName="password" type="password" />
+    @if (form.controls['password'].invalid && form.controls['password'].touched) {
+              <p class="error">Enter the valid password</p>
+            }
 
     <button class="btn btn-primary" [disabled]="loading">
       {{ loading ? 'Creating...' : 'Create' }}

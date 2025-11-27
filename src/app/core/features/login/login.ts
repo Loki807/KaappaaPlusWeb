@@ -63,6 +63,8 @@ fb = inject(FormBuilder);
       localStorage.setItem('tenantId', tid);
     }
 
+       // ⭐ 5️⃣ Save tenant info (NEW)
+    
     // 5️⃣ Role-based navigation
     switch (res.role) {
       case 'SuperAdmin':
@@ -74,9 +76,10 @@ fb = inject(FormBuilder);
         break;
 
       default:
-        this.message = '🚫 Access denied.';
-        this.router.navigate(['/home']);
+        this.message = '🚫 Access denied you are User cannt Logining...';
+        setTimeout(() => this.router.navigate(['/home']), 1500);
         break;
+
     }
   },
 
