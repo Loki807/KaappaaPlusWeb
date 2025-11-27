@@ -34,4 +34,7 @@ export class Maindashboard {
   logout() {
    this.router.navigate(['/login']);
   }
+  goTo() {
+   this.router.navigate(['/dashboard']);
+  }
 }

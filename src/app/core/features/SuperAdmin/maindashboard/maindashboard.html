@@ -9,14 +9,7 @@
           Kaappaan <span class="text-light">Admin</span>
         </a>
 
-        <div class="d-flex gap-2 ms-3">
-          <button class="btn btn-nav" (click)="openTenants()">
-            <i class="bi bi-building me-1"></i> Tenants
-          </button>
-          <button class="btn btn-nav" (click)="openUsers()">
-            <i class="bi bi-people me-1"></i> Admins
-          </button>
-        </div>
+       
       </div>
 
       <!-- 🔘 Logout -->
@@ -37,11 +30,14 @@
       <!-- 📊 Stat Cards -->
       <div class="row g-4 justify-content-center mb-5">
         <div class="col-md-4">
-          <div class="dashboard-card h-100">
+          <div   class="dashboard-card h-100" 
+                    style="cursor:pointer" 
+                      (click)="goTo()">
             <i class="bi bi-building text-info fs-1 mb-3"></i>
             <h5 class="fw-bold">Total Tenants</h5>
           <p class="display-6 fw-bold text-info">{{ totalTenants }}</p>
             <p class="text-gray">Active Tenant Organizations</p>
+             
           </div>
         </div>
 
