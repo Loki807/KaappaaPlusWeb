@@ -28,15 +28,6 @@
               <p class="error">Tenant name is required.</p>
             }
           </div>
-           <!-- ROW 3 -->
-        <div class="row">
-          <div class="col">
-            <label>City</label>
-            <input formControlName="city" type="text" placeholder="Enter city" />
-            @if (form.controls['city'].invalid && form.controls['city'].touched) {
-              <p class="error">City is required.</p>
-            }
-          </div>
 
           <div class="col">
             <label>Email</label>
@@ -46,23 +37,37 @@
             }
           </div>
         </div>
-        <!-- ROW 4 -->
+
+        <!-- ROW 2 -->
         <div class="row">
           <div class="col">
-            <label>Postal Code</label>
-            <input formControlName="postalCode" type="text" placeholder="Enter postal code" />
-            @if (form.controls['postalCode'].invalid && form.controls['postalCode'].touched) {
-              <p class="error">Postal code is required.</p>
+            <label>Address Line 1</label>
+            <input formControlName="addressLine1" type="text" placeholder="Enter address line 1" />
+            @if (form.controls['addressLine1'].invalid && form.controls['addressLine1'].touched) {
+              <p class="error">Address Line 1 is required.</p>
             }
           </div>
-            <div class="col">
-            <label>Contact Number</label>
-            <input formControlName="contactNumber" type="text" placeholder="Enter contact number" />
-            @if (form.controls['contactNumber'].invalid && form.controls['contactNumber'].touched) {
-              <p class="error">Contact number is required.</p>
+
+          <div class="col">
+            <label>Address Line 2</label>
+            <input formControlName="addressLine2" type="text" placeholder="Enter address line 2" />
+             @if (form.controls['addressLine2'].invalid && form.controls['addressLine2'].touched) {
+              <p class="error">Address Line 2 is required.</p>
             }
           </div>
-              <div class="col">
+        </div>
+
+        <!-- ROW 3 -->
+        <div class="row">
+          <div class="col">
+            <label>City</label>
+            <input formControlName="city" type="text" placeholder="Enter city" />
+            @if (form.controls['city'].invalid && form.controls['city'].touched) {
+              <p class="error">City is required.</p>
+            }
+          </div>
+
+         <div class="col">
   <label>State / District</label>
 
   <select formControlName="stateOrDistrict">
@@ -82,46 +87,6 @@
 
         </div>
 
-
-        <!-- ROW 2 -->
-        <div class="row">
-          <div class="col">
-            <label>Address Line 1</label>
-            <input formControlName="addressLine1" type="text" placeholder="Enter address line 1" />
-            @if (form.controls['addressLine1'].invalid && form.controls['addressLine1'].touched) {
-              <p class="error">Address Line 1 is required.</p>
-            }
-          </div>
-        </div>
-
-       
-
-             <div class="col">
-            <label>Address Line 2</label>
-            <input formControlName="addressLine2" type="text" placeholder="Enter address line 2" />
-             @if (form.controls['addressLine2'].invalid && form.controls['addressLine2'].touched) {
-              <p class="error">Address Line 2 is required.</p>
-            }
-          </div>
-       
-
-   
-         <!-- ROW 5 -->
-        <div class="row">
-          <div class="col">
-            <label>Service Type</label>
-            <select formControlName="serviceType">
-              <option value="" disabled>-- Select Service Type --</option>
-              <option value="Police">Police</option>
-              <option value="Fire">Fire</option>
-              <option value="Ambulance">Ambulance</option>
-            </select>
-            @if (form.controls['serviceType'].invalid && form.controls['serviceType'].touched) {
-              <p class="error">Service Type is required.</p>
-            }
-          </div>
-        </div>
-
         <!-- ROW 4 -->
         <div class="row">
           <div class="col">
@@ -131,7 +96,6 @@
               <p class="error">Postal code is required.</p>
             }
           </div>
-        </div>
 
           <div class="col">
             <label>Contact Number</label>
@@ -140,7 +104,7 @@
               <p class="error">Contact number is required.</p>
             }
           </div>
-    
+        </div>
 
         <!-- ROW 5 -->
         <div class="row">
@@ -155,7 +119,6 @@
             @if (form.controls['serviceType'].invalid && form.controls['serviceType'].touched) {
               <p class="error">Service Type is required.</p>
             }
-          </div>
           </div>
 
           <div class="col">
