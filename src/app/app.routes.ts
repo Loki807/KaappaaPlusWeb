@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import {  tenantResolver } from './core/services/tenant-resolver-resolver';
 
 export const routes: Routes = [
-{ path: '', redirectTo: 'tenant-dashboard', pathMatch: 'full' },
+{ path: '', redirectTo: 'home', pathMatch: 'full' },
    { path: 'home', loadComponent: () => import('./Pages/home/home').then(m => m.Home) },
   { path: 'login', loadComponent: () => import('./core/features/login/login').then(m => m.Login) },
   { path: 'change-password', loadComponent: () => import('./core/features/change-password/change-password').then(m => m.ChangePassword) },
