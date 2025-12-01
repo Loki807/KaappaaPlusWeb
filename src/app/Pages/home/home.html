@@ -1,6 +1,6 @@
 <div class="home-container">
 
-  NAVBAR
+  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
     <div class="container">
       <a class="navbar-brand fw-bold fs-4" href="#">
@@ -30,9 +30,9 @@
 
         <!-- LEFT TEXT -->
         <div class="col-md-6 hero-red-text">
-          <h2 class="fw-bold">We Protect Citizens<br />With Our  Smart Safety Systems</h2>
+          <h2 class="fw-bold">We Protect Citizens<br />With Our Smart Safety Systems</h2>
           <p class="mt-3">
-            Real-time alerting, responder coordination and emergency automation — Everymoment
+            Real-time alerting, responder coordination and emergency automation — every moment 
             built to save lives instantly.
           </p>
           <button class="btn btn-danger px-4 py-2 mt-3" (click)="goToLogin()">Get Started</button>
@@ -40,7 +40,7 @@
 
         <!-- RIGHT IMAGE -->
         <div class="col-md-6 hero-red-img">
-          <img src="public/download01.png" class="hero-photo" alt="Safety" />
+          <img src="assets/my2.jpeg" class="hero-photo" alt="Safety" />
         </div>
 
       </div>
@@ -49,8 +49,6 @@
 
   <!-- OLD HOME HERO SECTION -->
   <section id="home" class="hero-tech d-flex align-items-center text-center text-white">
-
-    <div class="hero-slideshow"></div>
 
     <div class="container position-relative">
       <h1 class="display-5 fw-bold mb-3">🚨 Real-Time Safety Intelligence</h1>
@@ -69,23 +67,35 @@
       <h2 class="fw-bold mb-5 text-primary">Core System Modules</h2>
       <div class="row g-4 justify-content-center">
 
-        <div class="col-md-4"><div class="module-card p-4">
-          <i class="bi bi-people-fill text-primary fs-1 mb-3"></i>
-          <h5 class="fw-bold">Tenant Management</h5>
-          <p class="text-secondary">Manage tenants, assign admins, and monitor system-level performance.</p>
-        </div></div>
+        <div class="col-md-4">
+          <div class="module-card p-4">
+            <i class="bi bi-people-fill text-primary fs-1 mb-3"></i>
+            <h5 class="fw-bold">Tenant Management</h5>
+            <p class="text-secondary">
+              Manage tenants, assign admins, and monitor system-level performance.
+            </p>
+          </div>
+        </div>
 
-        <div class="col-md-4"><div class="module-card p-4">
-          <i class="bi bi-exclamation-triangle-fill text-warning fs-1 mb-3"></i>
-          <h5 class="fw-bold">Alert Monitoring</h5>
-          <p class="text-secondary">Track real-time alerts and respond quickly during emergencies.</p>
-        </div></div>
+        <div class="col-md-4">
+          <div class="module-card p-4">
+            <i class="bi bi-exclamation-triangle-fill text-warning fs-1 mb-3"></i>
+            <h5 class="fw-bold">Alert Monitoring</h5>
+            <p class="text-secondary">
+              Track real-time alerts and respond quickly during emergencies.
+            </p>
+          </div>
+        </div>
 
-        <div class="col-md-4"><div class="module-card p-4">
-          <i class="bi bi-bar-chart-line-fill text-success fs-1 mb-3"></i>
-          <h5 class="fw-bold">Analytics Dashboard</h5>
-          <p class="text-secondary">Data-driven insights for safety trends and system efficiency.</p>
-        </div></div>
+        <div class="col-md-4">
+          <div class="module-card p-4">
+            <i class="bi bi-bar-chart-line-fill text-success fs-1 mb-3"></i>
+            <h5 class="fw-bold">Analytics Dashboard</h5>
+            <p class="text-secondary">
+              Data-driven insights for safety trends and system efficiency.
+            </p>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -114,28 +124,41 @@
 
       <div class="row g-4 justify-content-center align-items-center">
 
-        <div class="col-md-3"><div class="alert-step-card">
-          <img src="assets/photo01.jpg" class="flow-img"><h1 class="step-number">1</h1>
-          <h5>Activate</h5><p class="text-secondary small">SOS is triggered instantly.</p>
-        </div></div>
-
-        <div class="col-md-1 d-none d-md-block">
-          <img src="assets/icons/arrow-right.png" class="flow-arrow">
+        <div class="col-md-3">
+          <div class="alert-step-card">
+            <img src="assets/photo01.jpg" class="flow-img">
+            <h1 class="step-number">1</h1>
+            <h5>Activate</h5>
+            <p class="text-secondary small">SOS is triggered instantly.</p>
+          </div>
         </div>
 
-        <div class="col-md-3"><div class="alert-step-card">
-          <img src="assets/photo02.jpg" class="flow-img"><h1 class="step-number">2</h1>
-          <h5>Populate</h5><p class="text-secondary small">Location & responders auto-fill.</p>
-        </div></div>
-
         <div class="col-md-1 d-none d-md-block">
-          <img src="assets/icons/arrow-right.png" class="flow-arrow">
+        <i class="bi bi-arrow-right-circle-fill flow-arrow-icon"></i>
+
         </div>
 
-        <div class="col-md-3"><div class="alert-step-card">
-          <img src="assets/photo03.jpg" class="flow-img"><h1 class="step-number">3</h1>
-          <h5>Respond</h5><p class="text-secondary small">Team responds immediately.</p>
-        </div></div>
+        <div class="col-md-3">
+          <div class="alert-step-card">
+            <img src="assets/photo02.jpg" class="flow-img">
+            <h1 class="step-number">2</h1>
+            <h5>Populate</h5>
+            <p class="text-secondary small">Location & responders auto-fill.</p>
+          </div>
+        </div>
+
+        <div class="col-md-1 d-none d-md-block">
+          <i class="bi bi-arrow-right-circle-fill flow-arrow-icon"></i>
+        </div>
+
+        <div class="col-md-3">
+          <div class="alert-step-card">
+            <img src="assets/photo03.jpg" class="flow-img">
+            <h1 class="step-number">3</h1>
+            <h5>Respond</h5>
+            <p class="text-secondary small">Team responds immediately.</p>
+          </div>
+        </div>
 
       </div>
     </div>

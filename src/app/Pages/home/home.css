@@ -8,7 +8,7 @@ body, .home-container {
 
 /* 🧭 NAVBAR */
 .modern-nav {
-  background: linear-gradient(135deg, #7A0000, #B30000);
+  background: linear-gradient(135deg, #992020, #B30000);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
@@ -44,14 +44,12 @@ body, .home-container {
   transform: translateY(-3px) scale(1.05);
 }
 
-
-
 /* =============================
    🔥 PREMIUM RED HERO SECTION
 ============================= */
 .kaappaan-red-hero {
   padding: 80px 0;
-  background: linear-gradient(135deg, #7d0a0a, #b30000, #ff1a1a);
+  background: linear-gradient(135deg, #130101, #b30000, #ff1a1a);
   color: #fff;
   position: relative;
 }
@@ -66,7 +64,6 @@ body, .home-container {
   font-size: 1rem;
 }
 
-/* RIGHT IMAGE */
 .hero-photo {
   width: 100%;
   height: 360px;
@@ -75,7 +72,6 @@ body, .home-container {
   box-shadow: 0 10px 25px rgba(0,0,0,0.35);
 }
 
-/* spacing fix */
 .hero-red-img {
   padding-left: 40px;
 }
@@ -86,7 +82,6 @@ body, .home-container {
   }
 }
 
-/* angled shape */
 .kaappaan-red-hero::before {
   content: "";
   position: absolute;
@@ -98,9 +93,7 @@ body, .home-container {
   transform: skewX(-18deg);
 }
 
-
-
-/* ✨ HERO (OLD SECTION BELOW NEW HERO) */
+/* OLD HERO SECTION */
 .hero-tech {
   height: 60vh;
   background: #fdf8f4;
@@ -112,17 +105,13 @@ body, .home-container {
   color: #7A0000 !important;
 }
 
-
-
-/* MODULE CARDS */
+/* MODULE CARD */
 .module-card {
   background: linear-gradient(135deg, #7A0000, #B30000);
   color: #F3E9D8;
   border-radius: 16px;
   padding: 22px;
 }
-
-
 
 /* INSIGHTS */
 .stats-card {
@@ -131,20 +120,43 @@ body, .home-container {
   border-radius: 14px;
 }
 
+/* ALERT FLOW */
+.flow-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+}
 
+.flow-arrow {
+  width: 40px;
+}
 
-/* CONTACT */
-.social-modern {
+.step-number {
+  font-size: 2.5rem;
+  font-weight: bold;
   color: #7A0000;
 }
-.social-modern:hover {
-  color: #B30000;
+
+.alert-step-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
-
+/* USER BADGES */
+.user-badge-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 
 /* FOOTER */
 .footer-modern {
   background: linear-gradient(90deg, #7A0000, #B30000);
   color: #eee;
 }
+
+
