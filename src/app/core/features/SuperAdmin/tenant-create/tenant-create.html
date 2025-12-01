@@ -1,11 +1,93 @@
 <div class="tenant-page">
-  
-  <!-- LEFT SIDE -->
-  <div class="tenant-left">
-    <div class="tenant-info">
+
+  <!-- ================= FORM (TOP) ================= -->
+  <section class="form-container">
+    <h2 class="form-title">Create New Tenant</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <div class="row">
+        <div class="col">
+          <label>Tenant Name</label>
+          <input formControlName="name" type="text" placeholder="Enter tenant name">
+        </div>
+        <div class="col">
+          <label>Email</label>
+          <input formControlName="email" type="email" placeholder="Enter tenant admin email">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label>Address Line 1</label>
+          <input formControlName="addressLine1" placeholder="Enter address line 1">
+        </div>
+        <div class="col">
+          <label>Address Line 2</label>
+          <input formControlName="addressLine2" placeholder="Enter address line 2">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label>City</label>
+          <input formControlName="city" placeholder="Enter city">
+        </div>
+        <div class="col">
+          <label>State / District</label>
+          <input formControlName="stateOrDistrict" placeholder="Enter state/district">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label>Postal Code</label>
+          <input formControlName="postalCode" placeholder="Enter postal code">
+        </div>
+        <div class="col">
+          <label>Contact Number</label>
+          <input formControlName="contactNumber" placeholder="Enter contact number">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label>Service Type</label>
+          <select formControlName="serviceType">
+            <option value="" disabled selected>Select service type</option>
+            <option value="Police">Police</option>
+            <option value="Fire">Fire</option>
+            <option value="Ambulance">Ambulance</option>
+          </select>
+        </div>
+        <div class="col">
+          <label>Logo URL</label>
+          <input formControlName="logoUrl" placeholder="Enter logo URL (optional)">
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn back-btn" (click)="back()">⬅ Back</button>
+        <button type="submit" class="btn submit-btn" [disabled]="loading">
+          @if (!loading) { Create Tenant }
+          @if (loading) { Creating... }
+        </button>
+      </div>
+
+      @if (message) {
+        <p class="msg">{{ message }}</p>
+      }
+
+    </form>
+  </section>
+
+  <!-- ================= LEFT PANEL (UNDER FORM) ================= -->
+  <section class="tenant-left">
+    <div class="left-inner">
+
       <div class="logo-box">
         <i class="bi bi-shield-lock"></i>
-        <h2 class="fw-bold">Kaappaan Safety</h2>
+        <h2>Kaappaan Safety</h2>
         <p class="tagline">Empowering safer communities.</p>
       </div>
 
@@ -21,90 +103,13 @@
         <a href="#"><i class="bi bi-twitter"></i></a>
         <a href="#"><i class="bi bi-instagram"></i></a>
       </div>
+
     </div>
-  </div>
-
-  <!-- RIGHT SIDE -->
-  <div class="tenant-right">
-    <div class="form-container">
-      <h1 class="fw-bold text-center mb-4">🏢 Create New Tenant</h1>
-
-      <form [formGroup]="form" (ngSubmit)="submit()">
-        
-        <div class="row">
-          <div class="col">
-            <label>Tenant Name</label>
-            <input formControlName="name" type="text" placeholder="Enter tenant name">
-          </div>
-          <div class="col">
-            <label>Email</label>
-            <input formControlName="email" type="email" placeholder="Enter tenant admin email">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <label>Address Line 1</label>
-            <input formControlName="addressLine1" placeholder="Enter address line 1">
-          </div>
-          <div class="col">
-            <label>Address Line 2</label>
-            <input formControlName="addressLine2" placeholder="Enter address line 2">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <label>City</label>
-            <input formControlName="city" placeholder="Enter city">
-          </div>
-          <div class="col">
-            <label>State / District</label>
-            <input formControlName="stateOrDistrict" placeholder="Enter state/district">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <label>Postal Code</label>
-            <input formControlName="postalCode" placeholder="Enter postal code">
-          </div>
-          <div class="col">
-            <label>Contact Number</label>
-            <input formControlName="contactNumber" placeholder="Enter contact number">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <label>Service Type</label>
-            <select formControlName="serviceType">
-              <option value="" disabled>-- Select Service Type --</option>
-              <option value="Police">Police</option>
-              <option value="Fire">Fire</option>
-              <option value="Ambulance">Ambulance</option>
-            </select>
-          </div>
-          <div class="col">
-            <label>Logo URL</label>
-            <input formControlName="logoUrl" placeholder="Enter logo URL (optional)">
-          </div>
-        </div>
-
-        <div class="actions mt-4">
-          <button type="button" class="btn back-btn" (click)="back()">⬅ Back</button>
-          <button type="submit" class="btn submit-btn" [disabled]="loading">
-            @if (!loading) { <span>Create Tenant</span> }
-            @if (loading) { <span>Creating...</span> }
-          </button>
-        </div>
-
-        @if (message) {
-          <p class="msg">{{ message }}</p>
-        }
-
-      </form>
-    </div>
-  </div>
+  </section>
 
 </div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="tenant-footer">
+  <p>© 2025 Kaappaan Safety — All Rights Reserved</p>
+</footer>

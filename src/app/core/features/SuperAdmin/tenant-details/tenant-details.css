@@ -1,125 +1,135 @@
 @import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css";
 
-/* ------------ Main Layout ------------ */
-.tenant-list-page {
-  display: flex;
+/* MAIN PAGE BACKGROUND */
+.tenant-page {
+  background: linear-gradient(135deg, #1e3a8a, #0f172a, #020617);
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a, #1e3a8a);
-  color: white;
+  padding: 40px 20px;
+  color: #fff;
   font-family: "Poppins", sans-serif;
 }
 
-/* LEFT SIDE (same as tenant create) */
-.tenant-left {
-  width: 35%;
-  background: rgba(15, 23, 42, 0.85);
-  padding: 60px 40px;
-}
-
-.logo-box {
-  text-align: center;
-}
-
-.contact-details {
-  margin-top: 40px;
-}
-
-.social-icons a {
-  color: #38bdf8;
-  margin-right: 10px;
-  font-size: 1.3rem;
-}
-
-/* RIGHT SIDE */
-.tenant-right {
-  width: 65%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 60px 40px;
-}
-
-/* Glass Card */
-.glass-card {
-  background: rgba(255, 255, 255, 0.10);
-  backdrop-filter: blur(25px);
-  border-radius: 20px;
+/* =======================
+   MAIN GLASS CONTENT (TOP)
+======================= */
+.glass-container {
+  max-width: 1100px;
+  margin: auto;
+  background: rgba(255,255,255,0.1);
   padding: 40px;
-  width: 100%;
-  max-width: 1200px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 12px 35px rgba(56,189,248,0.35);
+  animation: fadeIn 0.6s ease;
 }
 
-/* Header Row */
+/* Title */
+.page-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #38bdf8;
+}
+
+.page-title::after {
+  content: "";
+  width: 120px;
+  height: 4px;
+  background: #38bdf8;
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 10px;
+}
+
+/* Header */
 .header-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
-/* Search Box */
-.search-wrapper input {
-  padding: 10px 14px;
-  background: rgba(255, 255, 255, 0.95);
-  border: none;
-  border-radius: 10px;
-  color: #111;
-  width: 250px;
+/* Search */
+.search-box input {
+  padding: 12px 15px;
+  width: 260px;
+  border-radius: 12px;
+  border: 1px solid rgba(56,189,248,0.4);
+  background: rgba(255,255,255,0.95);
+  color: #0f172a;
 }
 
+.search-box input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56,189,248,0.7);
+  outline: none;
+}
+
+/* Back Button */
 .back-btn {
-  background: #475569;
+  padding: 12px 28px;
+  background: rgba(71,85,105,0.6);
+  border-radius: 12px;
   border: none;
-  padding: 10px 20px;
-  color: white;
-  border-radius: 8px;
-  transition: 0.2s;
+  color: #fff;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
 .back-btn:hover {
-  background: #64748b;
+  background: rgba(100,116,139,0.9);
+  transform: translateY(-3px);
 }
 
 /* Table */
+.table-wrapper {
+  margin-top: 15px;
+  overflow-x: auto;
+}
+
 .tenant-table {
+  width: 100%;
   border-collapse: separate;
   border-spacing: 0 10px;
-  margin-top: 20px;
 }
 
 .tenant-table thead tr {
   background: linear-gradient(90deg, #2563eb, #38bdf8);
-  color: white;
 }
 
-.tenant-table th, td {
-  padding: 12px 10px;
-  border: none;
+.tenant-table th {
+  padding: 12px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
 }
 
-.tenant-table tbody td {
-  background: rgba(255, 255, 255, 0.12);
+.tenant-table td {
+  padding: 14px;
+  background: rgba(255,255,255,0.12);
   border-radius: 6px;
 }
 
 .tenant-table tbody tr:hover td {
-  background: rgba(56, 189, 248, 0.2);
+  background: rgba(56,189,248,0.18);
 }
 
 /* Action Buttons */
-.actions-cell {
+.actions {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .action-btn {
-  border: none;
   padding: 8px 10px;
-  border-radius: 6px;
+  border-radius: 8px;
+  border: none;
   color: #fff;
-  font-size: 1rem;
+  transition: 0.25s;
 }
 
 .action-btn.view { background: #10b981; }
@@ -127,13 +137,94 @@
 .action-btn.delete { background: #ef4444; }
 
 .action-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.12);
 }
 
-/* Footer */
-.footer {
-  background: rgba(15, 23, 42, 0.95);
-  color: #fff;
+/* =======================
+   INFO PANEL (BOTTOM)
+======================= */
+/* =======================
+   INFO PANEL (BOTTOM) — SMALL VERSION
+======================= */
+.tenant-info {
+  max-width: 900px;
+  margin: 30px auto 0;              /* smaller top margin */
+  background: rgba(15,23,42,0.45);  /* lighter + slimmer */
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;              /* reduced */
+  padding: 25px;                    /* much smaller */
+  backdrop-filter: blur(14px);
   text-align: center;
-  padding: 12px;
+}
+
+/* Logo Section Small */
+.logo-box i {
+  font-size: 2.4rem;                /* reduced from 3.4rem */
+  color: #38bdf8;
+}
+
+.logo-box h2 {
+  font-size: 1.4rem;                /* smaller title */
+  margin-top: 6px;
+  font-weight: 700;
+}
+
+.tagline {
+  font-size: 0.85rem;
+  margin-top: 3px;
+  color: #cbd5e1;
+}
+
+/* Contact — small & tight */
+.contact-details p {
+  margin: 4px 0;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+/* =======================
+   SMALL SOCIAL ICONS
+======================= */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;                        /* small spacing */
+  margin-top: 12px;                /* small margin */
+  padding: 5px 0;                  /* slim padding */
+}
+
+.social-icons a {
+  font-size: 0.95rem;              /* smaller icons */
+  color: #94a3b8;
+  padding: 6px;                    /* small tap area */
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.social-icons a:hover {
+  color: #38bdf8;
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.05);          /* subtle hover */
+}
+
+
+/* FOOTER */
+.tenant-footer {
+  margin-top: 40px;
+  text-align: center;
+  padding: 16px;
+  background: #0f172a;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: #94a3b8;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(10px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+@media (max-width: 768px) {
+  .header-flex { flex-direction: column; text-align: center; }
+  .search-box input { width: 100%; }
 }

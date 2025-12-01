@@ -1,66 +1,81 @@
-<div class="tenant-dashboard">
+<div class="tenant-page">
 
-  <!-- LEFT PANEL -->
-  <div class="left-panel">
-    <div class="logo-box">
-      <i class="bi bi-shield-lock text-info fs-1"></i>
-      <h2 class="fw-bold mt-2">Kaappaan Safety</h2>
-      <p>Empowering safer communities.</p>
+  <!-- DASHBOARD CARD -->
+  <section class="dashboard-card">
+
+    <!-- Top -->
+    <div class="top-header">
+      <div>
+        <h2 class="title">Tenant Admin Dashboard</h2>
+        <p class="subtitle">Welcome back, Admin</p>
+      </div>
+
+      <button class="btn-create" (click)="goToCreateUser()">
+        <i class="bi bi-plus-lg me-1"></i> Create User
+      </button>
     </div>
 
-    <div class="contact-details">
-      <p><i class="bi bi-envelope me-2 text-info"></i> support@kaappaan.com</p>
-      <p><i class="bi bi-telephone me-2 text-info"></i> +94 77 123 4567</p>
-      <p><i class="bi bi-geo-alt me-2 text-info"></i> Colombo, Sri Lanka</p>
+    <!-- Stats Row -->
+    <div class="stats-row">
+      <div class="stat-box">
+        <h3>42</h3>
+        <p>Total Users</p>
+      </div>
+
+      <div class="stat-box">
+        <h3>18</h3>
+        <p>Active Responders</p>
+      </div>
+
+      <div class="stat-box">
+        <h3>7</h3>
+        <p>Pending Alerts</p>
+      </div>
     </div>
 
-    <div class="social-icons mt-3">
+    <!-- User List -->
+    <div class="users-section">
+      <h3 class="section-title">Recent Users</h3>
+
+      <div class="user-row">
+        <span>John Perera</span>
+        <span>john@tenant.lk</span>
+        <span>Police</span>
+        <span class="status active">Active</span>
+      </div>
+
+      <div class="user-row">
+        <span>Kumara Silva</span>
+        <span>kumara@tenant.lk</span>
+        <span>Traffic</span>
+        <span class="status inactive">Inactive</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER PANEL -->
+  <section class="footer-panel">
+
+    <h3 class="footer-title"><i class="bi bi-shield-lock me-2"></i>Kaappaan Safety</h3>
+    <p class="tagline">Empowering safer communities.</p>
+
+    <p class="contact"><i class="bi bi-envelope me-2"></i>support@kaappaan.com</p>
+    <p class="contact"><i class="bi bi-telephone me-2"></i>+94 77 123 4567</p>
+    <p class="contact"><i class="bi bi-geo-alt me-2"></i>Colombo, Sri Lanka</p>
+
+    <!-- Small Social Icons -->
+    <div class="social-sm">
       <a href="#"><i class="bi bi-facebook"></i></a>
       <a href="#"><i class="bi bi-linkedin"></i></a>
       <a href="#"><i class="bi bi-twitter"></i></a>
       <a href="#"><i class="bi bi-instagram"></i></a>
     </div>
-  </div>
 
-  <!-- RIGHT CONTENT -->
-  <div class="right-panel">
+  </section>
 
-    <!-- HEADER CARD -->
-    <div class="glass-card dashboard-header">
-      <h1>🛡️ Tenant Admin Dashboard</h1>
-      <button class="btn-primary" (click)="goToCreateUser()">➕ Create User</button>
-    </div>
-
-    <!-- QUICK TIPS -->
-    <div class="glass-card tips-box">
-      <h2>Quick Tips</h2>
-      <ul>
-        <li>Create Users for Police, Fire, Traffic, etc.</li>
-        <li>First-time users must change their password.</li>
-      </ul>
-    </div>
-
-    <!-- RECENT USERS -->
-    <div class="glass-card">
-      <h2 class="mb-3">Recent Users</h2>
-
-      <div class="user-row">
-        <div>John Perera</div>
-        <div>john@tenant.lk</div>
-        <div>Police</div>
-        <div class="user-status on">Active</div>
-      </div>
-
-      <div class="user-row">
-        <div>Kumara Silva</div>
-        <div>kumara@tenant.lk</div>
-        <div>Traffic</div>
-        <div class="user-status off">Inactive</div>
-      </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="footer">Kaappaan Tenant • © 2025</footer>
-
-  </div>
 </div>
+
+<footer class="tenant-footer">
+  © 2025 Kaappaan Tenant — All Rights Reserved
+</footer>

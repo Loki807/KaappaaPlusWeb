@@ -1,109 +1,110 @@
-<div class="tenant-list-page">
+<div class="tenant-page">
 
-  <!-- ===== LEFT PANEL ===== -->
-  <div class="tenant-left">
-    <div class="tenant-info">
-      <div class="logo-box">
-        <i class="bi bi-shield-lock text-info fs-1"></i>
-        <h2 class="fw-bold">Kaappaan Safety</h2>
-        <p class="tagline">Empowering safer communities.</p>
+  <!-- ========== MAIN TOP GLASS SECTION ========== -->
+  <section class="glass-container">
+
+    <h2 class="page-title">🏢 {{ selectedServiceType || 'All' }} Tenants</h2>
+
+    <div class="header-flex">
+      <div class="search-box">
+        <input 
+          type="text"
+          placeholder="Search tenants…"
+          [(ngModel)]="searchText"
+          (input)="applySearch()"
+        />
       </div>
 
-      <div class="contact-details">
-        <p><i class="bi bi-envelope me-2 text-info"></i> support@kaappaan.com</p>
-        <p><i class="bi bi-telephone me-2 text-info"></i> +94 77 123 4567</p>
-        <p><i class="bi bi-geo-alt me-2 text-info"></i> Colombo, Sri Lanka</p>
-      </div>
-
-      <div class="social-icons">
-        <a href="#"><i class="bi bi-facebook"></i></a>
-        <a href="#"><i class="bi bi-linkedin"></i></a>
-        <a href="#"><i class="bi bi-twitter"></i></a>
-        <a href="#"><i class="bi bi-instagram"></i></a>
-      </div>
+      <button class="back-btn" (click)="Back()">⬅ Back</button>
     </div>
-  </div>
 
-  <!-- ===== RIGHT PANEL ===== -->
-  <div class="tenant-right">
-    <div class="glass-card">
+    <!-- TABLE -->
+    @if (!loading && filteredTenants.length > 0) {
+      <div class="table-wrapper">
+        <table class="tenant-table">
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Code</th>
+              <th>District</th>
+              <th>City</th>
+              <th>Address 1</th>
+              <th>Address 2</th>
+              <th>Postal</th>
+              <th>Contact</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
 
-      <div class="header-flex">
-        <h1 class="fw-bold text-info">🏢 {{ selectedServiceType || 'All' }} Tenants</h1>
-
-        <div class="search-wrapper">
-          <input 
-            type="text"
-            placeholder="Search tenants..."
-            [(ngModel)]="searchText"
-            (input)="applySearch()"
-          />
-        </div>
-
-        <button class="btn back-btn" (click)="Back()">⬅ Back</button>
-      </div>
-
-      <!-- TABLE -->
-      @if (!loading && filteredTenants.length > 0) {
-        <div class="table-responsive mt-4">
-          <table class="tenant-table table table-hover align-middle">
-            <thead>
+          <tbody>
+            @for (tenant of filteredTenants; track tenant.id) {
               <tr>
-                <th>Service</th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Code</th>
-                <th>District</th>
-                <th>City</th>
-                <th>Address 1</th>
-                <th>Address 2</th>
-                <th>Postal</th>
-                <th>Contact</th>
-                <th class="text-center">Actions</th>
-              </tr>
-            </thead>
+                <td>{{ tenant.serviceType }}</td>
+                <td>{{ tenant.id }}</td>
+                <td>{{ tenant.name }}</td>
+                <td>{{ tenant.code }}</td>
+                <td>{{ tenant.stateOrDistrict }}</td>
+                <td>{{ tenant.city }}</td>
+                <td>{{ tenant.addressLine1 }}</td>
+                <td>{{ tenant.addressLine2 }}</td>
+                <td>{{ tenant.postalCode }}</td>
+                <td>{{ tenant.contactNumber }}</td>
 
-            <tbody>
-              @for (tenant of filteredTenants; track tenant.id) {
-                <tr>
-                  <td>{{ tenant.serviceType }}</td>
-                  <td>{{ tenant.id }}</td>
-                  <td>{{ tenant.name }}</td>
-                  <td>{{ tenant.code }}</td>
-                  <td>{{ tenant.stateOrDistrict }}</td>
-                  <td>{{ tenant.city }}</td>
-                  <td>{{ tenant.addressLine1 }}</td>
-                  <td>{{ tenant.addressLine2 }}</td>
-                  <td>{{ tenant.postalCode }}</td>
-                  <td>{{ tenant.contactNumber }}</td>
-
-                  <td class="actions-cell">
+                <td>
+                  <div class="actions">
                     <button class="action-btn view" (click)="viewTenant(tenant.id)">
                       <i class="bi bi-eye"></i>
                     </button>
                     <button class="action-btn edit" (click)="editTenant(tenant.id)">
-                      <i class="bi bi-pencil-square"></i>
+                      <i class="bi bi-pencil"></i>
                     </button>
                     <button class="action-btn delete" (click)="deleteTenant(tenant.id)">
-                      <i class="bi bi-trash3"></i>
+                      <i class="bi bi-trash"></i>
                     </button>
-                  </td>
-                </tr>
-              }
-            </tbody>
-          </table>
-        </div>
-      }
+                  </div>
+                </td>
 
-      <!-- Empty -->
-      @if (!loading && filteredTenants.length === 0) {
-        <p class="text-center text-light fs-5 mt-4">No tenants found.</p>
-      }
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
 
+    @if (!loading && filteredTenants.length === 0) {
+      <p class="text-center fs-5 mt-3">No tenants found.</p>
+    }
+
+  </section>
+
+  <!-- ========== BOTTOM LEFT PANEL ========== -->
+  <section class="tenant-info">
+
+    <div class="logo-box">
+      <i class="bi bi-shield-lock"></i>
+      <h2>Kaappaan Safety</h2>
+      <p class="tagline">Empowering safer communities</p>
     </div>
-  </div>
+
+    <div class="contact-details">
+      <p><i class="bi bi-envelope text-info me-2"></i> support@kaappaan.com</p>
+      <p><i class="bi bi-telephone text-info me-2"></i> +94 77 123 4567</p>
+      <p><i class="bi bi-geo-alt text-info me-2"></i> Colombo, Sri Lanka</p>
+    </div>
+
+    <div class="social-icons">
+      <a href="#"><i class="bi bi-facebook"></i></a>
+      <a href="#"><i class="bi bi-linkedin"></i></a>
+      <a href="#"><i class="bi bi-twitter"></i></a>
+      <a href="#"><i class="bi bi-instagram"></i></a>
+    </div>
+
+  </section>
+
 </div>
 
-<footer class="footer">
-  <small>© {{ currentYear }} Kaappaan Safety System | All Rights Reserved.</small>
+<footer class="tenant-footer">
+  <p>© {{ currentYear }} Kaappaan Safety — All Rights Reserved</p>
 </footer>

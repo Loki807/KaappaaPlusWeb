@@ -1,169 +1,201 @@
 @import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css";
 
-/* 🌌 Page Layout — Same Theme as Dashboard */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* MAIN PAGE BACKGROUND */
 .tenant-page {
-  display: flex;
-  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3a8a, #0f172a);
+  color: #fff;
   font-family: "Poppins", sans-serif;
-  color: #fff;
-  background: linear-gradient(135deg, #1e3a8a, #0f172a); /* SAME DASHBOARD THEME */
+  padding: 40px 20px;
 }
 
-/* ===== LEFT SECTION ===== */
-.tenant-left {
-  flex: 1;
-  background: rgba(15, 23, 42, 0.7); /* dark glass */
-  backdrop-filter: blur(18px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  color: #e2e8f0;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 6px 0 20px rgba(0, 0, 0, 0.25);
-}
-
-.logo-box i {
-  font-size: 4rem;
-  color: #38bdf8;
-}
-.logo-box h2 {
-  margin-top: 10px;
-  font-weight: 700;
-  color: #fff;
-}
-.tagline {
-  color: #94a3b8;
-  font-size: 0.9rem;
-  margin-top: -5px;
-}
-
-/* Contact Icons */
-.contact-details p {
-  margin-bottom: 10px;
-  font-size: 0.95rem;
-}
-.contact-details i {
-  color: #38bdf8;
-}
-
-.social-icons a {
-  color: #94a3b8;
-  font-size: 1.3rem;
-  transition: 0.3s;
-}
-.social-icons a:hover {
-  color: #38bdf8;
-}
-
-/* ===== RIGHT SECTION (Form) ===== */
-.tenant-right {
-  flex: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 60px;
-  background: radial-gradient(circle at top, rgba(30, 58, 138, 0.85), rgba(15, 23, 42, 0.95));
-}
-
-/* ===== Glass Form Container (MATCHED TO DASHBOARD CARD) ===== */
+/* =====================================
+   FORM SECTION (Top)
+===================================== */
 .form-container {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(18px); /* same depth */
-  padding: 50px;
+  max-width: 900px;
+  margin: auto;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 40px;
   border-radius: 20px;
-  width: 100%;
-  max-width: 850px;
-  box-shadow: 0 12px 25px rgba(56, 189, 248, 0.4); /* blue glow */
-  transition: 0.3s ease;
-}
-.form-container:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 35px rgba(56, 189, 248, 0.6);
+  backdrop-filter: blur(18px);
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(56,189,248,0.35);
 }
 
-/* ===== Form Elements ===== */
+.form-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.form-title::after {
+  content: "";
+  width: 100px;
+  height: 4px;
+  background: #38bdf8;
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 8px;
+}
+
+/* Form Rows */
+.row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+.col {
+  flex: 1;
+  text-align: left;
+}
+
+/* Inputs */
 label {
   font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 6px;
   color: #cbd5e1;
+  margin-bottom: 6px;
   display: block;
 }
 
 input,
 select {
   width: 100%;
-  padding: 12px;
-  font-size: 14px;
-  border-radius: 10px;
-  border: 1px solid rgba(56, 189, 248, 0.4);
-  background: rgba(255, 255, 255, 0.95);
-  color: #111;
-  transition: 0.2s;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(56,189,248,0.4);
+  background: rgba(255,255,255,0.95);
+  color: #0f172a;
+  font-size: 15px;
 }
+
 input:focus,
 select:focus {
   border-color: #38bdf8;
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+  box-shadow: 0 0 12px rgba(56,189,248,0.6);
   outline: none;
 }
 
-/* Row Layout */
-.row {
-  display: flex;
-  gap: 18px;
-  margin-bottom: 20px;
-}
-.col {
-  flex: 1;
-}
-
-/* ===== Buttons (Matched Dashboard Blue Theme) ===== */
+/* Buttons */
 .actions {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
+  margin-top: 15px;
 }
 
 .back-btn {
-  background: rgba(148, 163, 184, 0.5);
-  color: #fff;
-  padding: 12px 28px;
-  border-radius: 10px;
+  background: rgba(148,163,184,0.45);
+  padding: 12px 30px;
+  border-radius: 12px;
   border: none;
-  font-weight: 500;
-  transition: 0.3s;
+  color: #fff;
 }
 .back-btn:hover {
-  background: rgba(100, 116, 139, 0.9);
+  background: rgba(100,116,139,0.9);
 }
 
-/* Submit Button = Same Glow as Dashboard */
 .submit-btn {
   background: linear-gradient(90deg, #2563eb, #38bdf8);
+  padding: 12px 40px;
+  border-radius: 12px;
   color: #fff;
-  padding: 12px 36px;
-  border-radius: 10px;
-  font-weight: 600;
   border: none;
+  font-weight: 600;
   transition: 0.3s;
-  box-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
 }
 .submit-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(56, 189, 248, 0.8);
-}
-.submit-btn:disabled {
-  background: rgba(56, 189, 248, 0.3);
-  cursor: not-allowed;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(56,189,248,0.8);
 }
 
-/* ===== Success Message ===== */
 .msg {
-  text-align: center;
-  margin-top: 14px;
+  margin-top: 12px;
   color: #22c55e;
   font-weight: 600;
+}
+
+/* ===== SMALL + COMPACT SOCIAL MEDIA SECTION ===== */
+
+.tenant-left {
+  max-width: 900px;
+  margin: 30px auto 0;      /* Reduced vertical space */
+  background: rgba(15,23,42,0.45);
+  padding: 25px;            /* Smaller padding */
+  border-radius: 16px;
+  backdrop-filter: blur(14px);
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Reduce logo, text spacing */
+.logo-box i {
+  font-size: 2.4rem;        /* reduced from 3.5rem */
+}
+
+.logo-box h2 {
+  font-size: 1.4rem;        /* smaller title */
+  margin-top: 6px;
+}
+
+.tagline {
+  font-size: 0.85rem;
+  margin-top: 3px;
+}
+
+/* Contact details – smaller & tighter */
+.contact-details p {
+  margin: 4px 0;
+  font-size: 0.85rem;
+}
+
+/* FULL mini social section */
+.social-icons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;                 /* tight gap */
+  padding: 5px 0;           /* mini height */
+}
+
+.social-icons a {
+  font-size: 0.95rem;       /* much smaller icons */
+  color: #94a3b8;
+  padding: 6px;             /* small touch area */
+  border-radius: 50%;
+  transition: 0.15s;
+}
+
+.social-icons a:hover {
+  color: #38bdf8;
+  background: rgba(255,255,255,0.06);
+  transform: scale(1.03);
+}
+
+
+/* =====================================
+   FOOTER
+===================================== */
+.tenant-footer {
+  background: #0f172a;
+  text-align: center;
+  padding: 18px 0;
+  margin-top: 40px;
+  color: #94a3b8;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
 }

@@ -29,25 +29,34 @@
     </div>
   </nav>
 
-  <section id="home" class="hero-tech d-flex align-items-center text-center text-white">
+  <section id="home" class="hero-tech">
 
-  <!-- 🔥 Background Slideshow -->
-  <div class="hero-slideshow"></div>
+  <!-- 🌄 Slideshow Background -->
+  <div class="hero-slideshow">
+    <div class="slide slide1"></div>
+    <div class="slide slide2"></div>
+    <div class="slide slide3"></div>
+    <div class="slide slide4"></div>
+  </div>
 
-  <div class="container position-relative">
-    <h1 class="display-5 fw-bold mb-3 animate__animated animate__fadeInDown">
+  <!-- 🔥 Overlay Gradient -->
+  <div class="hero-overlay"></div>
+
+  <!-- ✨ Content -->
+  <div class="container hero-content animate__animated animate__fadeIn">
+    <h1 class="hero-title">
       🚨 Real-Time Safety Intelligence
     </h1>
-    <p class="lead mb-4 animate__animated animate__fadeInUp animate__delay-1s">
-      Empowering citizens and responders with next-gen safety analytics and alerts.
+
+    <p class="hero-subtitle">
+      Empowering citizens & responders with next-gen emergency technology.
     </p>
-    <button
-      class="btn btn-hero px-5 py-3 fw-semibold animate__animated animate__fadeInUp animate__delay-2s"
-      (click)="goToLogin()"
-    >
+
+    <button class="btn btn-hero" (click)="goToLogin()">
       Launch Admin Portal
     </button>
   </div>
+
 </section>
 
 
