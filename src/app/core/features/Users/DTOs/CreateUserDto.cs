@@ -12,3 +12,4 @@ namespace KaappaanPlus.Application.Features.Users.DTOs
         public string Password { get; set; } = default!;
     }
 }
+import { CanComponentDeactivate } from '../../../guards/unsaved-changes-guard';

@@ -51,6 +51,21 @@ export class TenantCreate {
     logoUrl: ['',Validators.required]
   });
 
+
+  formDirty = false;
+
+ngOnInit() {
+  this.form.valueChanges.subscribe(() => {
+    this.formDirty = true;
+  });
+}
+
+canDeactivate() {
+  if (this.formDirty && this.form.dirty) {
+    return confirm("⚠ You have unsaved changes! Do you really want to leave?");
+  }
+  return true;
+}
   submit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();   // 👈 Highlight all errors
@@ -75,7 +90,9 @@ export class TenantCreate {
     });
   }
 
-  back() {
-    this.router.navigate(['/dashboard']);
-  }
+ back() {
+  // User confirmed → go back
+  this.router.navigate(['/dashboard']);
+}
+
 }

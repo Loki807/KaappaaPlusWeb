@@ -2,6 +2,7 @@
 import { Routes } from '@angular/router';
 import {  tenantResolver } from './core/services/tenant-resolver-resolver';
 import { usersResolver } from './core/services/users-resolver';
+import { UnsavedChangesGuard } from './core/guards/unsaved-changes-guard';
 
 export const routes: Routes = [
 { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -10,7 +11,8 @@ export const routes: Routes = [
   { path: 'change-password', loadComponent: () => import('./core/features/change-password/change-password').then(m => m.ChangePassword) },
   { path: 'dashboard', loadComponent: () => import('./core/features/SuperAdmin/dashboard/dashboard').then(m => m.Dashboard) },
    { path: 'maindashboard', loadComponent: () => import('./core/features/SuperAdmin/maindashboard/maindashboard').then(m => m.Maindashboard) },
-   { path: 'tenant-create', loadComponent: () => import('./core/features/SuperAdmin/tenant-create/tenant-create').then(m => m.TenantCreate),   resolve: { tenants: tenantResolver }},
+   { path: 'tenant-create', loadComponent: () => import('./core/features/SuperAdmin/tenant-create/tenant-create').then(m => m.TenantCreate),   resolve: { tenants: tenantResolver },
+   canDeactivate: [UnsavedChangesGuard]},
    { 
   path: 'tenant-details',
   loadComponent: () => import('./core/features/SuperAdmin/tenant-details/tenant-details').then(m => m.TenantDetails),
@@ -33,7 +35,9 @@ export const routes: Routes = [
 { path: 'tenant-dashboard', loadComponent: () => import('./core/features/tenant-admin/dashboard/dashboard').then(m => m.Dashboard),
    resolve: { users: usersResolver }
 },
-{ path: 'users-create', loadComponent: () => import('./core/features/tenant-admin/users-create/users-create').then(m => m.UsersCreate) },
+{ path: 'users-create', loadComponent: () => import('./core/features/tenant-admin/users-create/users-create').then(m => m.UsersCreate),
+    canDeactivate: [UnsavedChangesGuard]
+ },
   // ✅ REQUIRED ROUTES
   {
     path: 'user-view/:id',

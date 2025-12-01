@@ -22,6 +22,10 @@ export class UsersCreate {
   loading = false;
   tenantId = '';
 
+  formDirty = false;  
+
+
+
   form = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -39,8 +43,16 @@ export class UsersCreate {
     if (!this.tenantId) {
       this.message = '⚠️ Missing tenant ID. Please login again.';
     }
+      this.form.valueChanges.subscribe(() => {
+    this.formDirty = true;     // user typed something
+  });
+  
   }
 
+
+
+
+  
   submit() {
     this.message = '';
 
@@ -92,8 +104,21 @@ export class UsersCreate {
     });
 
   }
-  back() {
-    this.router.navigate(['/tenant-dashboard']);
+    
+ 
+back() {
+  // Trigger navigation normally → Guard will handle confirmation
+  this.router.navigate(['/tenant-dashboard']);
+}
+
+
+canDeactivate() {
+  if (this.formDirty && this.form.dirty) {
+    return confirm("⚠ You have unsaved changes! Do you really want to leave?");
   }
+  return true;
+}
+
+
 }
 
