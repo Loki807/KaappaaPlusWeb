@@ -1,185 +1,106 @@
-@import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css";
-/* 🌈 Theme Variables (Light Mode) */
-
-@import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css";
-input.ng-touched.ng-invalid,
-select.ng-touched.ng-invalid {
-  border: 2px solid #ff4d4d !important;
-  background: #ffe6e6 !important;
-}
-
-.error {
-  color: #ff4d4d;
-  font-size: 13px;
-  margin-top: 4px;
-  font-weight: 600;
-}
-
-/* Shake animation */
-.shake {
-  animation: shake 0.3s ease-in-out;
-}
-
-@keyframes shake {
-  0% { transform: translateX(0px); }
-  25% { transform: translateX(-4px); }
-  50% { transform: translateX(4px); }
-  75% { transform: translateX(-4px); }
-  100% { transform: translateX(0px); }
-}
-/* ============================
-   PAGE WRAPPER (Same Theme)
-============================ */
+/* ⭐ FULL PAGE BACKGROUND — RED GRADIENT */
 .user-create-page {
   display: flex;
+  justify-content: center;   /* ⭐ Center horizontally */
+  align-items: center;       /* ⭐ Center vertically */
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  background: linear-gradient(135deg, #ff1a1a, #b30000);
   font-family: "Poppins", sans-serif;
   color: #fff;
+  padding: 40px 0;           /* ⭐ Prevent form touching top/bottom */
+  position: relative;        /* ⭐ Footer fix support */
 }
 
-/* ============================
-   LEFT PANEL (Copied from Tenant Dashboard)
-============================ */
+/* ⭐ LEFT PANEL (Still works if you use it, but hidden center mode) */
 .left-panel {
-  width: 32%;
-  background: rgba(15, 23, 42, 0.85);
-  padding: 60px 40px;
+  display: none;             /* ⭐ Removes side space & forces center */
 }
 
-.logo-box {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.logo-box i {
-  font-size: 3.2rem;
-  color: #38bdf8;
-}
-
-.contact-details p {
-  margin: 6px 0;
-  color: #cbd5e1;
-}
-
-.social-icons a {
-  color: #38bdf8;
-  margin-right: 12px;
-  font-size: 1.3rem;
-}
-
-/* ============================
-   RIGHT SIDE PANEL
-============================ */
+/* ⭐ RIGHT PANEL */
 .right-panel {
-  width: 68%;
-  padding: 60px 40px;
+  width: 100%;
+  max-width: 650px;          /* ⭐ Makes layout centered */
+  padding: 0;
+  display: flex;
+  justify-content: center;   /* ⭐ Center form */
 }
 
-/* ============================
-   GLASS CARD (Same card style)
-============================ */
-.glass-card {
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 35px 45px;
-  margin-bottom: 40px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
-  animation: fadeInUp 0.6s ease;
+/* ⭐ FORM CARD */
+.form-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  color: #000;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 520px;          /* ⭐ Perfect center width */
+  margin: auto;              /* ⭐ Center horizontally */
 }
 
-/* ============================
-   HEADER CARD
-============================ */
-.header-section h1 {
-  font-size: 1.7rem;
+/* TITLE */
+.form-title {
+  font-size: 1.9rem;
   font-weight: 700;
+  color: #b30000;
+  margin-bottom: 25px;
+  text-align: center;        /* ⭐ Center title text */
 }
 
-.btn-create {
-  background: linear-gradient(90deg, #2563eb, #38bdf8);
-  padding: 12px 24px;
-  border: none;
-  color: #fff;
-  border-radius: 10px;
-  font-weight: 600;
-  transition: 0.3s;
-}
-.btn-create:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.7);
-}
-
-/* ============================
-   FORM STYLING
-============================ */
-.form-grid {
-  display: grid;
-  gap: 18px;
-}
-
-.field label {
-  color: #cbd5e1;
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
+/* INPUTS */
 input,
 select {
   width: 100%;
-  padding: 12px 14px;
-  background: rgba(255,255,255,0.95);
-  color: #111;
-  border-radius: 10px;
-  border: 1px solid rgba(56, 189, 248, 0.4);
-  transition: 0.25s;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
 input:focus,
 select:focus {
-  border-color: #38bdf8;
-  box-shadow: 0 0 10px rgba(56,189,248,0.7);
+  border-color: #b30000;
+  outline: none;
 }
 
-/* ============================
-   BUTTON AREA
-============================ */
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 12px;
-}
-
-.btn-submit {
-  background: linear-gradient(90deg, #2563eb, #38bdf8);
-  padding: 12px 30px;
-  border: none;
-  color: #fff;
-  border-radius: 10px;
+/* BUTTONS */
+.btn-create {
+  background: #b30000;
+  color: white;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
   font-weight: 600;
-  transition: 0.3s;
-}
-.btn-submit:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(56,189,248,0.8);
+  border: none;
+  margin-top: 10px;
 }
 
-.msg {
-  color: #e2e8f0;
+.btn-create:hover {
+  background: #ff1a1a;
 }
 
-/* ============================
-   ANIMATION
-============================ */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.btn-back {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background: #333;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+}
+
+.btn-back:hover {
+  background: #555;
+}
+
+/* ⭐ FOOTER CENTER FIX */
+.footer {
+  background: #b30000;
+  color: white;
+  text-align: center;
+  padding: 12px;             /* ⭐ Better spacing */
+  font-size: 14px;
+  width: 100%;               /* ⭐ Full-width footer */
+  position: absolute;
+  bottom: 0;                 /* ⭐ Always stays at bottom */
+  left: 0;
 }

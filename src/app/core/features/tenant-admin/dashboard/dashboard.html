@@ -1,26 +1,43 @@
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
 
+  <!-- LEFT SIDE -->
+  <div class="left">
+    <i class="bi bi-shield-lock logo-icon"></i>
+    <span class="brand">Kaappaan Tenant Admin</span>
+  </div>
 
-<div class="dashboard-container">
+  <!-- RIGHT SIDE -->
+  <div class="right">
 
+    <!-- ⭐ PROFILE DROPDOWN ⭐ -->
+    <div class="profile-wrapper" (click)="toggleProfileMenu()">
+      <i class="bi bi-person-circle profile-icon"></i>
 
-
-  <h1 class="title">Tenant Admin Dashboard</h1>
-  <h2 class="tenant">Tenant: {{ tenantName }}</h2>
-
-  <!-- ⭐ SHOW TENANT ID -->
-  <h3 class="tenant-id">Tenant ID: {{ tenantId }}</h3>
-
-  <button class="create-btn" (click)="createUser()">+ Create User</button>
- <div class="ms-auto">
-        <button class="btn btn-outline-info btn-sm" (click)="Back()">⬅ Back</button>
+      <div class="profile-menu" [class.show]="menuOpen">
+        <button (click)="goToProfile()">My Profile</button>
+        <button (click)="goToSettings()">Settings</button>
+        <button (click)="logout()">Logout</button>
       </div>
-  <!-- =======================
-       SHOW TABLE IF USERS EXIST
-  ======================== -->
+    </div>
+
+  </div>
+</nav>
+
+<!-- ================= MAIN DASHBOARD CARD ================= -->
+<div class="dashboard-container">
+    <span class="tenant-name">Tenant ID: {{ tenantId }}</span>
+  <h2 class="tenant-id">Tenant: {{ tenantName }}</h2>
+
+  <!-- Create User button -->
+  <button class="create-btn" (click)="createUser()">+ Create User</button>
+
+ 
+
+  <!-- ================= USER TABLE ================= -->
   @if (!loading && users.length > 0) {
 
     <table class="user-table">
-
       <thead>
         <tr>
           <th>Name</th>
@@ -32,33 +49,26 @@
       </thead>
 
       <tbody>
-
         @for (u of users; track u.id) {
           <tr>
             <td>{{ u.name }}</td>
             <td>{{ u.email }}</td>
             <td>{{ u.role }}</td>
             <td>{{ u.isActive ? 'Active' : 'Inactive' }}</td>
-
             <td class="actions">
               <button class="view" (click)="viewUser(u.id)">View</button>
               <button class="edit" (click)="editUser(u.id)">Edit</button>
-             <button class="delete" (click)="deleteUser(u.id)">Delete</button>
-
+              <button class="delete" (click)="deleteUser(u.id)">Delete</button>
             </td>
           </tr>
         }
-
       </tbody>
     </table>
 
   }
 
-  <!-- =======================
-       SHOW EMPTY MESSAGE
-  ======================== -->
   @if (!loading && users.length === 0) {
-    <p>No users found.</p>
+    <p class="empty">No users found.</p>
   }
 
 </div>

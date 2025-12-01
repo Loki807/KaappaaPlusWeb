@@ -1,25 +1,19 @@
 <div class="home-container">
-  <!-- ===== NAVBAR ===== -->
+
+  NAVBAR
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
     <div class="container">
       <a class="navbar-brand fw-bold fs-4" href="#">
         <i class="bi bi-shield-lock me-2 text-info"></i>Kaappaan<span class="text-light">Admin</span>
       </a>
 
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-center">
-          <li class="nav-item"><a class="nav-link nav-link-modern" href="#home">Home</a></li>
-          <li class="nav-item"><a class="nav-link nav-link-modern" href="#modules">Modules</a></li>
-          <li class="nav-item"><a class="nav-link nav-link-modern" href="#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-modern" href="#privacy&policy">Home</a></li>
           <li class="nav-item"><a class="nav-link nav-link-modern" href="#contact">Contact</a></li>
           <li class="nav-item ms-lg-3">
             <button class="btn btn-modern px-4 py-2" (click)="goToLogin()">Login</button>
@@ -29,119 +23,143 @@
     </div>
   </nav>
 
+  <!-- 🔴 PREMIUM RED HERO SECTION -->
+  <section class="kaappaan-red-hero d-flex align-items-center">
+    <div class="container">
+      <div class="row align-items-center">
+
+        <!-- LEFT TEXT -->
+        <div class="col-md-6 hero-red-text">
+          <h2 class="fw-bold">We Protect Citizens<br />With Our  Smart Safety Systems</h2>
+          <p class="mt-3">
+            Real-time alerting, responder coordination and emergency automation — Everymoment
+            built to save lives instantly.
+          </p>
+          <button class="btn btn-danger px-4 py-2 mt-3" (click)="goToLogin()">Get Started</button>
+        </div>
+
+        <!-- RIGHT IMAGE -->
+        <div class="col-md-6 hero-red-img">
+          <img src="public/download01.png" class="hero-photo" alt="Safety" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OLD HOME HERO SECTION -->
   <section id="home" class="hero-tech d-flex align-items-center text-center text-white">
 
-  <!-- 🔥 Background Slideshow -->
-  <div class="hero-slideshow"></div>
+    <div class="hero-slideshow"></div>
 
-  <div class="container position-relative">
-    <h1 class="display-5 fw-bold mb-3 animate__animated animate__fadeInDown">
-      🚨 Real-Time Safety Intelligence
-    </h1>
-    <p class="lead mb-4 animate__animated animate__fadeInUp animate__delay-1s">
-      Empowering citizens and responders with next-gen safety analytics and alerts.
-    </p>
-    <button
-      class="btn btn-hero px-5 py-3 fw-semibold animate__animated animate__fadeInUp animate__delay-2s"
-      (click)="goToLogin()"
-    >
-      Launch Admin Portal
-    </button>
-  </div>
-</section>
+    <div class="container position-relative">
+      <h1 class="display-5 fw-bold mb-3">🚨 Real-Time Safety Intelligence</h1>
+      <p class="lead mb-4">
+        Empowering citizens and responders with next-gen safety analytics and alerts.
+      </p>
+      <button class="btn btn-hero px-5 py-3 fw-semibold" (click)="goToLogin()">
+        Launch Admin Portal
+      </button>
+    </div>
+  </section>
 
-
-  
-
-  <!-- ===== MODULES SECTION ===== -->
+  <!-- MODULES SECTION -->
   <section id="modules" class="py-5 bg-light text-center">
     <div class="container">
       <h2 class="fw-bold mb-5 text-primary">Core System Modules</h2>
       <div class="row g-4 justify-content-center">
-        <div class="col-md-4" data-aos="zoom-in">
-          <div class="module-card p-4">
-            <i class="bi bi-people-fill text-primary fs-1 mb-3"></i>
-            <h5 class="fw-bold">Tenant Management</h5>
-            <p class="text-secondary">
-              Manage tenants, assign admins, and monitor system-level performance.
-            </p>
-          </div>
-        </div>
 
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="150">
-          <div class="module-card p-4">
-            <i class="bi bi-exclamation-triangle-fill text-warning fs-1 mb-3"></i>
-            <h5 class="fw-bold">Alert Monitoring</h5>
-            <p class="text-secondary">
-              Track real-time alerts and respond quickly during emergencies.
-            </p>
-          </div>
-        </div>
+        <div class="col-md-4"><div class="module-card p-4">
+          <i class="bi bi-people-fill text-primary fs-1 mb-3"></i>
+          <h5 class="fw-bold">Tenant Management</h5>
+          <p class="text-secondary">Manage tenants, assign admins, and monitor system-level performance.</p>
+        </div></div>
 
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
-          <div class="module-card p-4">
-            <i class="bi bi-bar-chart-line-fill text-success fs-1 mb-3"></i>
-            <h5 class="fw-bold">Analytics Dashboard</h5>
-            <p class="text-secondary">
-              Data-driven insights for safety trends and system efficiency.
-            </p>
-          </div>
-        </div>
+        <div class="col-md-4"><div class="module-card p-4">
+          <i class="bi bi-exclamation-triangle-fill text-warning fs-1 mb-3"></i>
+          <h5 class="fw-bold">Alert Monitoring</h5>
+          <p class="text-secondary">Track real-time alerts and respond quickly during emergencies.</p>
+        </div></div>
+
+        <div class="col-md-4"><div class="module-card p-4">
+          <i class="bi bi-bar-chart-line-fill text-success fs-1 mb-3"></i>
+          <h5 class="fw-bold">Analytics Dashboard</h5>
+          <p class="text-secondary">Data-driven insights for safety trends and system efficiency.</p>
+        </div></div>
+
       </div>
     </div>
   </section>
 
-  <!-- ===== INSIGHTS ===== -->
+  <!-- INSIGHTS -->
   <section id="insights" class="py-5 bg-dark text-center text-light">
     <div class="container">
       <h2 class="fw-bold mb-4 text-info">System Insights</h2>
       <div class="row g-4">
-        <div class="col-md-3" data-aos="fade-up">
-          <div class="stats-card">
-            <h3 class="fw-bold">42+</h3>
-            <p>Active Tenants</p>
-          </div>
-        </div>
-        <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="stats-card">
-            <h3 class="fw-bold">320+</h3>
-            <p>Registered Users</p>
-          </div>
-        </div>
-        <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-          <div class="stats-card">
-            <h3 class="fw-bold">1500+</h3>
-            <p>Resolved Alerts</p>
-          </div>
-        </div>
-        <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
-          <div class="stats-card">
-            <h3 class="fw-bold">24/7</h3>
-            <p>Monitoring</p>
-          </div>
-        </div>
+        <div class="col-md-3"><div class="stats-card"><h3>42+</h3><p>Active Tenants</p></div></div>
+        <div class="col-md-3"><div class="stats-card"><h3>320+</h3><p>Registered Users</p></div></div>
+        <div class="col-md-3"><div class="stats-card"><h3>1500+</h3><p>Resolved Alerts</p></div></div>
+        <div class="col-md-3"><div class="stats-card"><h3>24/7</h3><p>Monitoring</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
-  <section id="contact" class="py-5 bg-white text-center">
+  <!-- ALERT FLOW -->
+  <section id="alert-flow" class="py-5 bg-white text-center alert-flow-section">
     <div class="container">
-      <h2 class="fw-bold text-primary mb-4">Contact & Support</h2>
-      <p class="text-secondary mb-5">We’re available 24/7 — your safety is our mission.</p>
-      <div class="d-flex justify-content-center gap-4 fs-3">
-        <a href="#" class="social-modern"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="social-modern"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="social-modern"><i class="bi bi-linkedin"></i></a>
-        <a href="mailto:info@kaappaan.com" class="social-modern"><i class="bi bi-envelope"></i></a>
+
+      <h2 class="fw-bold mb-5 text-dark">
+        What happens when you raise an <span class="text-primary">Alert</span>…
+      </h2>
+
+      <div class="row g-4 justify-content-center align-items-center">
+
+        <div class="col-md-3"><div class="alert-step-card">
+          <img src="assets/photo01.jpg" class="flow-img"><h1 class="step-number">1</h1>
+          <h5>Activate</h5><p class="text-secondary small">SOS is triggered instantly.</p>
+        </div></div>
+
+        <div class="col-md-1 d-none d-md-block">
+          <img src="assets/icons/arrow-right.png" class="flow-arrow">
+        </div>
+
+        <div class="col-md-3"><div class="alert-step-card">
+          <img src="assets/photo02.jpg" class="flow-img"><h1 class="step-number">2</h1>
+          <h5>Populate</h5><p class="text-secondary small">Location & responders auto-fill.</p>
+        </div></div>
+
+        <div class="col-md-1 d-none d-md-block">
+          <img src="assets/icons/arrow-right.png" class="flow-arrow">
+        </div>
+
+        <div class="col-md-3"><div class="alert-step-card">
+          <img src="assets/photo03.jpg" class="flow-img"><h1 class="step-number">3</h1>
+          <h5>Respond</h5><p class="text-secondary small">Team responds immediately.</p>
+        </div></div>
+
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- USER COUNT -->
+  <section class="user-count-section text-center py-5">
+    <div class="container">
+      <h2 class="display-6 fw-bold mb-3 text-dark">Sri Lanka’s largest safety app</h2>
+      <h3 class="fw-bold mb-4 text-primary">with over 05 trusted users</h3>
+
+      <div class="d-flex justify-content-center gap-3 mt-4">
+        <img src="assets/photo01.jpg" class="user-badge-img">
+        <img src="assets/photo03.jpg" class="user-badge-img">
+        <img src="assets/photo01.jpg" class="user-badge-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="py-3 bg-dark text-center text-white-50">
     <div class="container">
       <small>© {{ currentYear }} Kaappaan Safety Admin | All Rights Reserved.</small>
     </div>
   </footer>
+
 </div>

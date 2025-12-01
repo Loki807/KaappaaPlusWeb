@@ -84,11 +84,28 @@ themeClass = '';
 
 }
 
+menuOpen = false;
+
+toggleProfileMenu() {
+  this.menuOpen = !this.menuOpen;
+}
+
+goToProfile() {
+  this.router.navigate(['/profile']);
+}
+
+goToSettings() {
+  this.router.navigate(['/settings']);
+}
+
 
 createUser() {
     this.router.navigate(['/users-create']);
 }
 Back() {
     this.router.navigate(['/users-create']);
+}
+logout() {
+    this.router.navigate(['/login']);
 }
 }

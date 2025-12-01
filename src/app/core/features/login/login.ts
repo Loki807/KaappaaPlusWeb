@@ -92,6 +92,5 @@ fb = inject(FormBuilder);
     this.form.controls['password'].setValue('');
   }
 });
-
-   }
-  }
+}
+}
