@@ -1,188 +1,218 @@
-<div class="home-container">
+<div class="home-new">
 
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
+  <!-- ============= NAVBAR ============= -->
+  <nav class="navbar navbar-expand-lg fixed-top new-nav shadow-sm">
     <div class="container">
-      <a class="navbar-brand fw-bold fs-4" href="#">
-        <i class="bi bi-shield-lock me-2 text-info"></i>Kaappaan<span class="text-light">Admin</span>
+      <a class="navbar-brand fw-bold fs-3" href="#">
+        <i class="bi bi-shield-check text-cyan me-2"></i>Kaappaan<span class="text-light">Secure</span>
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-center">
-          <li class="nav-item"><a class="nav-link nav-link-modern" href="#privacy&policy">Home</a></li>
-          <li class="nav-item"><a class="nav-link nav-link-modern" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link new-link" href="#home">Overview</a></li>
+          <li class="nav-item"><a class="nav-link new-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link new-link" href="#stats">Performance</a></li>
+          <li class="nav-item"><a class="nav-link new-link" href="#support">Support</a></li>
           <li class="nav-item ms-lg-3">
-            <button class="btn btn-modern px-4 py-2" (click)="goToLogin()">Login</button>
+            <button class="btn new-btn px-4 py-2" (click)="goToLogin()">Login</button>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- 🔴 PREMIUM RED HERO SECTION -->
-  <section class="kaappaan-red-hero d-flex align-items-center">
-    <div class="container">
-      <div class="row align-items-center">
+  <!-- ============= HERO SECTION ============= -->
+  <section id="home" class="new-hero">
+    <div class="container d-flex flex-lg-row flex-column align-items-center justify-content-between">
 
-        <!-- LEFT TEXT -->
-        <div class="col-md-6 hero-red-text">
-          <h2 class="fw-bold">We Protect Citizens<br />With Our Smart Safety Systems</h2>
-          <p class="mt-3">
-            Real-time alerting, responder coordination and emergency automation — every moment 
-            built to save lives instantly.
-          </p>
-          <button class="btn btn-danger px-4 py-2 mt-3" (click)="goToLogin()">Get Started</button>
-        </div>
+      <!-- Left Content -->
+      <div class="hero-text">
+        <h1 class="hero-title">
+          Next-Gen Safety & Emergency Platform
+        </h1>
 
-        <!-- RIGHT IMAGE -->
-        <div class="col-md-6 hero-red-img">
-          <img src="assets/my2.jpeg" class="hero-photo" alt="Safety" />
-        </div>
+        <p class="hero-subtitle">
+          AI-powered insights, real-time alerting, instant communication and
+          a unified dashboard for faster emergency response.
+        </p>
 
+        <button class="btn hero-btn" (click)="goToLogin()">Get Started</button>
       </div>
+
+      <div class="hero-illustration">
+  <img src="assets/logo 2.png" class="hero-logo-animate" alt="Kaappaan Technology" />
+</div>
+
     </div>
   </section>
 
-  <!-- OLD HOME HERO SECTION -->
-  <section id="home" class="hero-tech d-flex align-items-center text-center text-white">
+  <!-- ============= HOW THE APP WORKS SECTION ============= -->
+<section id="how-it-works" class="how-section py-5">
+  <div class="container text-center">
 
-    <div class="container position-relative">
-      <h1 class="display-5 fw-bold mb-3">🚨 Real-Time Safety Intelligence</h1>
-      <p class="lead mb-4">
-        Empowering citizens and responders with next-gen safety analytics and alerts.
-      </p>
-      <button class="btn btn-hero px-5 py-3 fw-semibold" (click)="goToLogin()">
-        Launch Admin Portal
-      </button>
-    </div>
-  </section>
+    <h2 class="fw-bold mb-4 text-cyan">How Kaappaan Works</h2>
+    <p class="text-muted mb-5">A simple and powerful system connecting citizens and responders instantly.</p>
 
-  <!-- MODULES SECTION -->
-  <section id="modules" class="py-5 bg-light text-center">
-    <div class="container">
-      <h2 class="fw-bold mb-5 text-primary">Core System Modules</h2>
-      <div class="row g-4 justify-content-center">
+    <div class="row g-4">
 
-        <div class="col-md-4">
-          <div class="module-card p-4">
-            <i class="bi bi-people-fill text-primary fs-1 mb-3"></i>
-            <h5 class="fw-bold">Tenant Management</h5>
-            <p class="text-secondary">
-              Manage tenants, assign admins, and monitor system-level performance.
-            </p>
+      <!-- STEP 1 -->
+      <div class="col-md-4">
+        <div class="how-card p-4">
+          <div class="how-icon mb-3">
+            <i class="bi bi-phone-vibrate fs-1 text-cyan"></i>
           </div>
+          <h5 class="fw-bold mb-2">1. Citizen Sends Alert</h5>
+          <p>With one tap, the citizen triggers an SOS alert including live location.</p>
         </div>
-
-        <div class="col-md-4">
-          <div class="module-card p-4">
-            <i class="bi bi-exclamation-triangle-fill text-warning fs-1 mb-3"></i>
-            <h5 class="fw-bold">Alert Monitoring</h5>
-            <p class="text-secondary">
-              Track real-time alerts and respond quickly during emergencies.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="module-card p-4">
-            <i class="bi bi-bar-chart-line-fill text-success fs-1 mb-3"></i>
-            <h5 class="fw-bold">Analytics Dashboard</h5>
-            <p class="text-secondary">
-              Data-driven insights for safety trends and system efficiency.
-            </p>
-          </div>
-        </div>
-
       </div>
-    </div>
-  </section>
 
-  <!-- INSIGHTS -->
-  <section id="insights" class="py-5 bg-dark text-center text-light">
-    <div class="container">
-      <h2 class="fw-bold mb-4 text-info">System Insights</h2>
+      <!-- STEP 2 -->
+      <div class="col-md-4">
+        <div class="how-card p-4">
+          <div class="how-icon mb-3">
+            <i class="bi bi-broadcast-pin fs-1 text-cyan"></i>
+          </div>
+          <h5 class="fw-bold mb-2">2. Alert Reaches Responders</h5>
+          <p>Nearby responders receive instant notification and alert details.</p>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="col-md-4">
+        <div class="how-card p-4">
+          <div class="how-icon mb-3">
+            <i class="bi bi-map fs-1 text-cyan"></i>
+          </div>
+          <h5 class="fw-bold mb-2">3. Responders Take Action</h5>
+          <p>Responders navigate to the location and resolve the emergency quickly.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+
+  <!-- ============= FEATURES SECTION ============= -->
+  <section id="features" class="new-features py-5">
+    <div class="container text-center">
+
+      <h2 class="fw-bold mb-4 text-cyan">Platform Capabilities</h2>
+      <p class="text-muted mb-5">Built for cities, responders and safety teams.</p>
+
       <div class="row g-4">
-        <div class="col-md-3"><div class="stats-card"><h3>42+</h3><p>Active Tenants</p></div></div>
-        <div class="col-md-3"><div class="stats-card"><h3>320+</h3><p>Registered Users</p></div></div>
-        <div class="col-md-3"><div class="stats-card"><h3>1500+</h3><p>Resolved Alerts</p></div></div>
-        <div class="col-md-3"><div class="stats-card"><h3>24/7</h3><p>Monitoring</p></div></div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ALERT FLOW -->
-  <section id="alert-flow" class="py-5 bg-white text-center alert-flow-section">
-    <div class="container">
-
-      <h2 class="fw-bold mb-5 text-dark">
-        What happens when you raise an <span class="text-primary">Alert</span>…
-      </h2>
-
-      <div class="row g-4 justify-content-center align-items-center">
-
-        <div class="col-md-3">
-          <div class="alert-step-card">
-            <img src="assets/photo01.jpg" class="flow-img">
-            <h1 class="step-number">1</h1>
-            <h5>Activate</h5>
-            <p class="text-secondary small">SOS is triggered instantly.</p>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-broadcast fs-1 text-cyan"></i>
+            <h5 class="mt-3 fw-bold">Live Alert Tracking</h5>
+            <p>Monitor and respond to emergencies in real-time.</p>
           </div>
         </div>
 
-        <div class="col-md-1 d-none d-md-block">
-        <i class="bi bi-arrow-right-circle-fill flow-arrow-icon"></i>
-
-        </div>
-
-        <div class="col-md-3">
-          <div class="alert-step-card">
-            <img src="assets/photo02.jpg" class="flow-img">
-            <h1 class="step-number">2</h1>
-            <h5>Populate</h5>
-            <p class="text-secondary small">Location & responders auto-fill.</p>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-person-lines-fill fs-1 text-cyan"></i>
+            <h5 class="mt-3 fw-bold">Responder Coordination</h5>
+            <p>Instant notifications and action assignment.</p>
           </div>
         </div>
 
-        <div class="col-md-1 d-none d-md-block">
-          <i class="bi bi-arrow-right-circle-fill flow-arrow-icon"></i>
-        </div>
-
-        <div class="col-md-3">
-          <div class="alert-step-card">
-            <img src="assets/photo03.jpg" class="flow-img">
-            <h1 class="step-number">3</h1>
-            <h5>Respond</h5>
-            <p class="text-secondary small">Team responds immediately.</p>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-bar-chart fs-1 text-cyan"></i>
+            <h5 class="mt-3 fw-bold">Analytics & Insights</h5>
+            <p>Understand patterns, heatmaps and response times.</p>
           </div>
         </div>
 
       </div>
+
     </div>
   </section>
 
-  <!-- USER COUNT -->
-  <section class="user-count-section text-center py-5">
+  <!-- ============= PERFORMANCE STATS STRIP ============= -->
+  <section id="stats" class="stats-strip text-center">
     <div class="container">
-      <h2 class="display-6 fw-bold mb-3 text-dark">Sri Lanka’s largest safety app</h2>
-      <h3 class="fw-bold mb-4 text-primary">with over 05 trusted users</h3>
+      <div class="row text-light g-4">
 
-      <div class="d-flex justify-content-center gap-3 mt-4">
-        <img src="assets/photo01.jpg" class="user-badge-img">
-        <img src="assets/photo03.jpg" class="user-badge-img">
-        <img src="assets/photo01.jpg" class="user-badge-img">
+        <div class="col-md-3">
+          <h2 class="fw-bold text-cyan">42+</h2>
+          <p>Active Tenants</p>
+        </div>
+
+        <div class="col-md-3">
+          <h2 class="fw-bold text-cyan">680+</h2>
+          <p>Responders Onboarded</p>
+        </div>
+
+        <div class="col-md-3">
+          <h2 class="fw-bold text-cyan">2k+</h2>
+          <p>Emergency Alerts Managed</p>
+        </div>
+
+        <div class="col-md-3">
+          <h2 class="fw-bold text-cyan">99.9%</h2>
+          <p>System Uptime</p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="py-3 bg-dark text-center text-white-50">
+  <!-- ============= SUPPORT SECTION ============= -->
+  <section id="support" class="py-5 text-center">
     <div class="container">
-      <small>© {{ currentYear }} Kaappaan Safety Admin | All Rights Reserved.</small>
+      <h2 class="fw-bold text-cyan mb-4">Contact & Support</h2>
+      <p class="text-muted mb-4">Our team is available 24/7 to assist.</p>
+
+      <div class="d-flex justify-content-center gap-4 fs-3">
+        <a href="#" class="support-icon"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="support-icon"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="support-icon"><i class="bi bi-linkedin"></i></a>
+        <a href="mailto:support@kaappaan.com" class="support-icon"><i class="bi bi-envelope"></i></a>
+      </div>
     </div>
-  </footer>
+  </section>
+
+    <!-- ============================================================
+       ⭐⭐⭐ TERMS & CONDITIONS SECTION (ADDED UNDER PAGE) ⭐⭐⭐
+  ============================================================ -->
+  <section id="terms" class="py-4 text-center" style="background:#FFF5F5; border-top:1px solid #eee;">
+    <div class="container">
+
+      <h3 class="fw-bold mb-3" style="color:#C40000;">
+        TERMS & CONDITIONS
+      </h3>
+
+      <p style="color:#444; max-width:900px; margin:auto;">
+        By using the Kaappaan Secure Platform, you agree to our terms regarding safety reporting,
+        emergency communication, responsible alert usage, and data privacy.
+        Misuse of emergency services, providing false information or triggering fake alerts may result in
+        account suspension or legal action. Location access is required to enable accurate emergency response.
+        Continued use of this platform confirms your acceptance of all updated terms and policies.
+      </p>
+
+    </div>
+  </section>
 
 </div>
+
+  <!-- ============= FOOTER ============= -->
+  <footer class="new-footer text-center py-3">
+    <small>© {{ currentYear }} Kaappaan Secure Platform — All Rights Reserved.</small>
+  </footer>
+
+
