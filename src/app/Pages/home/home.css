@@ -6,12 +6,12 @@ body, .home-new {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  color: #1A1A1A;
+  color: #5C0000;
   overflow-x: hidden;
 }
 
 .text-cyan {
-  color: #FF1A1A !important; /* Bright Red */
+  color: #5C0000 !important; /* Bright Red */
 }
 
 /* Smooth Scroll */
@@ -24,7 +24,7 @@ body, .home-new {
 =========================================== */
 .new-nav {
   background: #ffffff;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(231, 11, 11, 0.08);
   padding: 12px 0;
   box-shadow: 0 4px 18px rgba(0,0,0,0.05);
   transition: 0.3s ease;
@@ -35,7 +35,7 @@ body, .home-new {
 }
 
 .new-link {
-  color: #1A1A1A !important;
+  color: #5C0000 !important;
   margin: 0 14px;
   font-weight: 500;
   transition: 0.3s ease;
@@ -53,7 +53,7 @@ body, .home-new {
   left: 0;
   width: 0%;
   height: 2px;
-  background: #FF1A1A;
+  background: #5C0000;
   transition: 0.3s ease;
 }
 
@@ -63,7 +63,7 @@ body, .home-new {
 
 /* LOGIN BUTTON */
 .new-btn {
-  background: #FF1A1A;
+  background: #a00101;
   color: #fff;
   font-weight: 600;
   border-radius: 8px;
@@ -72,7 +72,7 @@ body, .home-new {
 }
 
 .new-btn:hover {
-  background: #C40000;
+  background: #5C0000;
   transform: translateY(-1px);
 }
 
@@ -99,7 +99,7 @@ body, .home-new {
 }
 
 .hero-title span {
-  color: #FF1A1A; /* Bright Red */
+  color: #5C0000; /* Bright Red */
 }
 
 .hero-subtitle {
@@ -109,7 +109,7 @@ body, .home-new {
 }
 
 .hero-btn {
-  background: #FF1A1A;
+  background: #5C0000;
   padding: 14px 36px;
   border-radius: 10px;
   border: none;
@@ -120,7 +120,7 @@ body, .home-new {
 }
 
 .hero-btn:hover {
-  background: #C40000;
+  background: #5C0000;
   box-shadow: 0 10px 24px rgba(255, 26, 26, 0.35);
 }
 
@@ -149,7 +149,7 @@ body, .home-new {
 }
 
 .feature-card i {
-  color: #FF1A1A !important;
+  color: #5C0000 !important;
 }
 
 .feature-card:hover {
@@ -169,7 +169,7 @@ body, .home-new {
 
 .stats-strip h2 {
   font-size: 2.4rem;
-  color: #FF1A1A;
+  color: #5C0000;
 }
 
 .stats-strip p {
@@ -180,12 +180,12 @@ body, .home-new {
    SUPPORT SECTION
 =========================================== */
 .support-icon {
-  color: #FF1A1A;
+  color: #5C0000;
   transition: 0.3s ease;
 }
 
 .support-icon:hover {
-  color: #C40000;
+  color: #5C0000;
   transform: translateY(-4px);
 }
 

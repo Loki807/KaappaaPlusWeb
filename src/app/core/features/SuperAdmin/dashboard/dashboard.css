@@ -1,22 +1,27 @@
-/* 🌈 Page background */
+/* ============================================
+   CLEAN SAAS THEME (White + Maroon)
+============================================ */
 .tenant-dashboard {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #fff, #fee2e2);
-  color: #111827;
+  background: linear-gradient(135deg, #ffffff, #FFF5F5);
+  color: #5C0000;
   font-family: "Poppins", sans-serif;
 }
 
-/* 🔝 Navbar */
+/* ============================================
+   NAVBAR (White + Shadow)
+============================================ */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(90deg, #7b0101, #9d0101);
-  color: #fff;
-  padding: 15px 40px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  background: #ffffff;
+  color: #5C0000;
+  padding: 16px 40px;
+  border-bottom: 1px solid rgba(92, 0, 0, 0.15);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
   position: fixed;
   width: 100%;
   z-index: 10;
@@ -26,8 +31,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 700;
+  color: #5C0000;
 }
 
 .nav-buttons {
@@ -35,11 +41,12 @@
   gap: 12px;
 }
 
+/* Logout Button */
 .btn-nav {
-  background: rgba(255, 255, 255, 0.15);
+  background: #A00101;
   color: #fff;
   border: none;
-  padding: 8px 16px;
+  padding: 9px 18px;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
@@ -47,127 +54,126 @@
 }
 
 .btn-nav:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: #5C0000;
+  transform: translateY(-2px);
 }
 
-/* 🧭 Dashboard Actions */
+/* ============================================
+   CREATE BUTTON
+============================================ */
 .dashboard-actions {
-  margin-top: 100px;
+  margin-top: 110px;
   display: flex;
   justify-content: center;
   padding: 20px;
 }
 
-.logout-corner {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
 .btn-create {
-  background: linear-gradient(90deg, #7f0000, #b91c1c);
+  background: #5C0000;
   border: none;
   color: #fff;
-  font-weight: 600;
-  padding: 12px 25px;
+  font-weight: 700;
+  padding: 14px 32px;
   border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+  box-shadow: 0 6px 18px rgba(255,26,26,0.25);
   cursor: pointer;
   transition: 0.3s ease;
 }
 
 .btn-create:hover {
-  background: linear-gradient(90deg, #b91c1c, #991b1b);
+  background: #A00101;
   transform: translateY(-3px);
 }
 
-/* 🧩 Dashboard Sections */
+/* ============================================
+   DASHBOARD CARDS (Clean SaaS)
+============================================ */
 .dashboard-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 2rem;
   padding: 2rem;
 }
 
 .section {
-  width: 250px;
-  border-radius: 15px;
-  color: #fff;
+  width: 260px;
+  border-radius: 16px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(15px);
+  background: #5C0000;
+  border: 1px solid rgba(92, 0, 0, 0.12);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
 }
 
 .section:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(185, 28, 28, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 26px rgba(92,0,0,0.20);
 }
 
 .section-head {
   padding: 25px;
   text-align: center;
-}
-
-.section-footer {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 12px 15px;
+  flex-grow: 1;       /* Header expands so footer stays aligned */
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 500;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 0 0 15px 15px;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* 🎨 Colors */
-.section.total {
-  background: linear-gradient(135deg, #ef4444, #b91c1c);
-}
-.section.police {
-  background: linear-gradient(135deg, #2563eb, #1e40af);
-}
-.section.fire {
-  background: linear-gradient(135deg, #d97706, #b45309);
-}
-.section.ambulance {
-  background: linear-gradient(135deg, #991b1b, #7f1d1d);
-}
-
-/* 📊 Text & count */
+/* Text */
 .section-head h2 {
   font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-.count {
-  font-size: 2rem;
+  color: #ffeaea;
   font-weight: 700;
 }
 
-/* 🦶 Footer */
+.count {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #A00101;
+}
+
+/* Footer */
+.section-footer {
+  background: #FFF5F5;
+  padding: 12px 16px;
+  border-top: 1px solid rgba(92,0,0,0.15);
+  border-radius: 0 0 16px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #5C0000;
+  font-weight: 600;
+}
+
+/* ICON pulse */
+.section-footer i {
+  transition: 0.3s ease;
+}
+
+.section:hover i {
+  transform: translateX(4px);
+}
+
+/* ============================================
+   FOOTER
+============================================ */
 .footer {
   text-align: center;
-  padding: 15px;
+  padding: 18px;
   margin-top: auto;
-  background: linear-gradient(90deg, #fff, #fee2e2);
-  color: #b91c1c;
+  background: #FFF5F5;
+  color: #5C0000;
+  border-top: 1px solid rgba(92,0,0,0.15);
   font-size: 0.9rem;
 }
 
-/* ✨ Animations */
+/* Fade animation */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fadeIn {

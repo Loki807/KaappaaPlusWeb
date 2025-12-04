@@ -5,7 +5,7 @@ import { usersResolver } from './core/services/users-resolver';
 import { UnsavedChangesGuard } from './core/guards/unsaved-changes-guard';
 
 export const routes: Routes = [
-{ path: '', redirectTo: 'home', pathMatch: 'full' },
+{ path: '', redirectTo: 'tenant-create', pathMatch: 'full' },
    { path: 'home', loadComponent: () => import('./Pages/home/home').then(m => m.Home) },
   { path: 'login', loadComponent: () => import('./core/features/login/login').then(m => m.Login) },
   { path: 'change-password', loadComponent: () => import('./core/features/change-password/change-password').then(m => m.ChangePassword) },
