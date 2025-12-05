@@ -13,7 +13,7 @@ import { Storage } from '../../../../Store/storage';
   styleUrl: './users-create.css',
 })
 export class UsersCreate {
-   fb = inject(FormBuilder);
+  fb = inject(FormBuilder);
   storage = inject(Storage);
   api = inject(UserService);
   router = inject(Router);
@@ -21,11 +21,12 @@ export class UsersCreate {
   message = '';
   loading = false;
   tenantId = '';
+  formDirty = false;
+  showNewPassword = false;
 
-  formDirty = false;  
-
-
-
+toggleNewPassword() {
+  this.showNewPassword = !this.showNewPassword;
+}
   form = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -35,24 +36,18 @@ export class UsersCreate {
   });
 
   ngOnInit() {
-    this.tenantId =
-      this.storage.get('tenantId') ??
-      this.storage.getTenantId() ??
-      '';
+    this.form.reset();
 
+    this.tenantId = this.storage.get('tenantId') ?? this.storage.getTenantId() ?? '';
     if (!this.tenantId) {
       this.message = '⚠️ Missing tenant ID. Please login again.';
     }
-      this.form.valueChanges.subscribe(() => {
-    this.formDirty = true;     // user typed something
-  });
-  
+
+    this.form.valueChanges.subscribe(() => {
+      this.formDirty = true;
+    });
   }
 
-
-
-
-  
   submit() {
     this.message = '';
 
@@ -82,11 +77,14 @@ export class UsersCreate {
         this.loading = false;
         this.message = '✅ User created successfully';
 
+        this.form.reset();
+        this.form.markAsPristine();
+        this.formDirty = false;
+
         setTimeout(() => {
           this.router.navigate(['/tenant-dashboard']);
         }, 800);
       },
-
       error: (err) => {
         this.loading = false;
 
@@ -102,23 +100,18 @@ export class UsersCreate {
         this.message = `❌ ${details}`;
       },
     });
-
   }
-    
- 
-back() {
-  // Trigger navigation normally → Guard will handle confirmation
+
+ back() {
   this.router.navigate(['/tenant-dashboard']);
 }
 
-
-canDeactivate() {
-  if (this.formDirty && this.form.dirty) {
-    return confirm("⚠ You have unsaved changes! Do you really want to leave?");
+  canDeactivate() {
+  // only show if user has unsaved changes and form is still dirty
+  if (this.formDirty && this.form.dirty && !this.loading) {
+    return confirm('⚠ You have unsaved changes! Do you really want to leave?');
   }
   return true;
 }
-
-
 }
 

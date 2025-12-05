@@ -15,13 +15,27 @@
 
       <label>Email</label>
       <input type="email" formControlName="email" placeholder="Enter your email" />
-
+       @if (form.controls['email'].invalid && form.controls['email'].touched) {
+              <p class="error">Enter a valid email address.</p>}
       <label>Password</label>
-      <input type="password" formControlName="password" placeholder="Enter your password" />
 
-      @if (form.controls['password'].invalid && form.controls['password'].touched) {
-        <p class="error">Password is required (min 6 chars).</p>
-      }
+<div class="password-wrapper">
+  <input
+    [type]="showPassword ? 'text' : 'password'"
+    formControlName="password"
+    placeholder="Enter your password"
+  />
+
+  <i 
+    class="bi"
+    [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"
+    (click)="togglePassword()"
+  ></i>
+</div>
+
+@if (form.controls['password'].invalid && form.controls['password'].touched) {
+  <p class="error">Password is required (min 6 characters).</p>
+}
 
       <button type="submit" [disabled]="loading">
         {{ loading ? 'Logging in...' : 'Login' }}
