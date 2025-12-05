@@ -1,37 +1,58 @@
-<div class="container" *ngIf="!loading">
-  <h2>Edit User</h2>
+<div class="edit-container" *ngIf="!loading">
+
+  <h2 class="title">Edit User</h2>
 
   <form [formGroup]="form" (ngSubmit)="submit()">
 
+    <!-- Name -->
     <label>Name</label>
-    <input formControlName="name"/>
+    <input type="text" formControlName="name" />
+    @if (form.controls['name'].invalid && form.controls['name'].touched) {
+      <p class="error">Name is required.</p>
+    }
 
+    <!-- Email -->
     <label>Email</label>
-    <input formControlName="email"/>
+    <input type="email" formControlName="email" />
+    @if (form.controls['email'].invalid && form.controls['email'].touched) {
+      <p class="error">Enter a valid email.</p>
+    }
 
-    <label>Phone</label>
-    <input formControlName="phone"/>
+    <!-- Phone -->
+    <label>Phone Number</label>
+    <input type="text" formControlName="phone" />
+    @if (form.controls['phone'].invalid && form.controls['phone'].touched) {
+      <p class="error">Phone number is required.</p>
+    }
 
+    <!-- Role -->
     <label>Role</label>
     <select formControlName="role">
-      <option value="TenantAdmin">TenantAdmin</option>
+      <option value="">Select Role</option>
+      <option value="TenantAdmin">Tenant Admin</option>
       <option value="Police">Police</option>
       <option value="Fire">Fire</option>
       <option value="Traffic">Traffic</option>
       <option value="Ambulance">Ambulance</option>
     </select>
+    @if (form.controls['role'].invalid && form.controls['role'].touched) {
+      <p class="error">Role is required.</p>
+    }
 
+    <!-- Status -->
     <label>Status</label>
     <select formControlName="isActive">
       <option [value]="true">Active</option>
       <option [value]="false">Inactive</option>
     </select>
 
-    <button type="submit">Update</button>
+    <!-- Update button -->
+    <button class="btn-update" type="submit">Update</button>
 
+    <!-- Message -->
     <p class="msg">{{ message }}</p>
+
   </form>
 
-  <button class="back" (click)="back()">← Back</button>
+  <button class="btn-back" (click)="back()">← Back</button>
 </div>
-

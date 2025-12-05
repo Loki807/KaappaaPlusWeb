@@ -1,6 +1,9 @@
-<div class="page-wrapper">
+<div class="user-create-page">
 
-  <div class="user-create-page">
+
+
+  <!-- RIGHT PANEL (FORM PANEL) -->
+  <div class="right-panel">
 
     <div class="form-card">
 
@@ -8,33 +11,69 @@
 
       <form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
 
-        <label>Full Name</label>
-        <input formControlName="name" type="text" placeholder="Enter name" />
+ <label>Name</label>
+        <input type="text" formControlName="name" />
+        <p class="error" *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+          Name is required.
+        </p>
 
-        <label>Email Address</label>
-        <input formControlName="email" type="email" placeholder="Enter email" />
+        <!-- EMAIL -->
+        <label>Email</label>
+        <input type="email" formControlName="email" />
+        <p class="error" *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+          Enter a valid email address.
+        </p>
 
+        <!-- PHONE -->
         <label>Phone Number</label>
-        <input formControlName="phone" type="text" placeholder="Enter phone" />
+        <input type="text" formControlName="phone" />
+        <p class="error" *ngIf="form.controls['phone'].invalid && form.controls['phone'].touched">
+          Phone number is required.
+        </p>
 
-        <label>User Role</label>
+        <!-- ROLE -->
+        <label>Role</label>
         <select formControlName="role">
           <option value="">Select Role</option>
           <option value="Police">Police</option>
           <option value="Fire">Fire</option>
           <option value="Traffic">Traffic</option>
           <option value="Ambulance">Ambulance</option>
-          <option value="TenantAdmin">Tenant Admin</option>
         </select>
+        <p class="error" *ngIf="form.controls['role'].invalid && form.controls['role'].touched">
+          Role is required.
+        </p>
+<label>Password</label>
 
-        <label>Temporary Password</label>
-        <input formControlName="password" type="password" placeholder="Enter temporary password" />
+<div class="password-box">
+  <input
+    [type]="showNewPassword ? 'text' : 'password'"
+    formControlName="password"
+  />
 
-        <button class="btn-create" [disabled]="loading">
-          {{ loading ? 'Creating...' : 'Create User' }}
-        </button>
+  <!-- eye icon inside input -->
+  <i
+    class="bi"
+    [ngClass]="showNewPassword ? 'bi-eye-slash' : 'bi-eye'"
+    (click)="toggleNewPassword()"
+  ></i>
+</div>
 
-      </form>
+<p class="error" *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+  Password must be at least 6 characters.
+</p>
+
+        <p class="error" *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+          Password must be at least 6 characters.
+        </p>
+
+
+  <button class="btn-create" [disabled]="loading">
+    {{ loading ? 'Creating...' : 'Create' }}
+  </button>
+
+</form>
+
 
       <button class="btn-back" (click)="back()">Back</button>
 
@@ -42,8 +81,13 @@
 
   </div>
 
-  <footer class="footer">
-    © 2025 Kaappaan Safety — All Rights Reserved
-  </footer>
-
 </div>
+
+
+
+
+
+<footer class="footer">
+  
+  © 2025 Kaappaan Safety — All Rights Reserved
+</footer>

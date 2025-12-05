@@ -3,7 +3,7 @@
 /* ================= NAVBAR ================= */
 .navbar {
   width: 100%;
-  background: #b30000;
+  background: #5C0000;
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
@@ -141,7 +141,7 @@
 
 /* ================= BUTTONS ================= */
 .create-btn {
-  background: #ff4d4d;
+  background: #5C0000;
   border: none;
   padding: 10px 20px;
   color: #fff;
@@ -152,7 +152,7 @@
 }
 
 .create-btn:hover {
-  background: #e60000;
+  background: #5C0000;
 }
 
 .back-wrapper {
@@ -179,7 +179,7 @@
 }
 
 .user-table th {
-  background: #ff3333;
+  background: #5C0000;
   padding: 12px;
   text-align: left;
   text-transform: uppercase;

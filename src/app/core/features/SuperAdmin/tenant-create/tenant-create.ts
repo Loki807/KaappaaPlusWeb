@@ -12,8 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: './tenant-create.css',
 })
 export class TenantCreate {
-
-  fb = inject(FormBuilder);
+fb = inject(FormBuilder);
   service = inject(TenantService);
   router = inject(Router);
 
@@ -61,38 +60,47 @@ ngOnInit() {
 }
 
 canDeactivate() {
-  if (this.formDirty && this.form.dirty) {
-    return confirm("⚠ You have unsaved changes! Do you really want to leave?");
+  // only show if user has unsaved changes and form is still dirty
+  if (this.formDirty && this.form.dirty && !this.loading) {
+    return confirm('⚠ You have unsaved changes! Do you really want to leave?');
   }
   return true;
 }
+
   submit() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();   // 👈 Highlight all errors
-      this.message = '⚠ Please fill all required fields correctly.';
-      return;
-    }
-
-    this.loading = true;
-    this.message = '';
-
-    this.service.createTenant(this.form.value).subscribe({
-      next: () => {
-        this.loading = false;
-        this.message = "Tenant created successfully!";
-        setTimeout(() => this.router.navigate(['/maindashboard']), 1200);
-      },
-      error: err => {
-        this.loading = false;
-        console.error(err);
-        this.message = err.error?.message || "❌ Tenant creation failed.";
-      }
-    });
+  if (this.form.invalid) {
+    this.form.markAllAsTouched();
+    this.message = '⚠ Please fill all required fields correctly.';
+    return;
   }
 
+  this.loading = true;
+  this.message = '';
+
+  this.service.createTenant(this.form.value).subscribe({
+    next: () => {
+      this.loading = false;
+      this.message = '✅ Tenant created successfully!';
+
+      // 🟢 FIX: prevent "unsaved changes" warning
+      this.form.markAsPristine();
+      this.formDirty = false;
+      this.form.reset();
+
+      // ✅ Redirect smoothly after a short delay
+      setTimeout(() => this.router.navigate(['/dashboard']), 1200);
+    },
+    error: (err) => {
+      this.loading = false;
+      console.error(err);
+      this.message = err.error?.message || '❌ Tenant creation failed.';
+    }
+  });
+
+  
+}
  back() {
   // User confirmed → go back
   this.router.navigate(['/dashboard']);
 }
-
 }

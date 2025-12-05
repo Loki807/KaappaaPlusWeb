@@ -21,6 +21,12 @@ fb = inject(FormBuilder);
   router = inject(Router);
   storage = inject(Storage);
    currentYear = new Date().getFullYear();
+   showPassword = false;
+
+togglePassword() {
+  this.showPassword = !this.showPassword;
+}
+
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -72,7 +78,7 @@ fb = inject(FormBuilder);
         break;
 
       case 'TenantAdmin':
-        this.router.navigate(['/tenant-dashboard']);
+        this.router.navigate(['/tenatadminmain']);
         break;
 
       default:
