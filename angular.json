@@ -19,7 +19,7 @@
             ],
             "tsConfig": "tsconfig.app.json",
 
-             "assets": [
+            "assets": [
               {
                 "glob": "**/*",
                 "input": "public",
@@ -29,6 +29,11 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
+              },
+              {
+                "glob": "_redirects",
+                "input": "src",
+                "output": "/"
               }
             ],
 
@@ -37,6 +42,7 @@
               "src/styles.css"
             ]
           },
+
           "configurations": {
             "production": {
               "budgets": [
@@ -53,14 +59,17 @@
               ],
               "outputHashing": "all"
             },
+
             "development": {
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
             }
           },
+
           "defaultConfiguration": "production"
         },
+
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
@@ -73,9 +82,11 @@
           },
           "defaultConfiguration": "development"
         },
+
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
         },
+
         "test": {
           "builder": "@angular/build:karma",
           "options": {
@@ -84,6 +95,7 @@
               "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
+
             "assets": [
               {
                 "glob": "**/*",
@@ -96,6 +108,7 @@
                 "output": "assets"
               }
             ],
+
             "styles": [
               "src/styles.css"
             ]
@@ -104,6 +117,7 @@
       }
     }
   },
+
   "cli": {
     "analytics": false
   }
