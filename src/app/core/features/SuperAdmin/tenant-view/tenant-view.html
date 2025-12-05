@@ -1,31 +1,42 @@
 <div class="tenant-view-page">
+
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
     <div class="container">
+
       <a class="navbar-brand fw-bold fs-4" href="#">
         <i class="bi bi-shield-lock me-2 text-info"></i>
-        Kaappaan <span class="text-light">Admin</span>
+        <span class="brand-kaappaan">Kaappaan</span>
+        <span class="text-dark">Admin</span>
       </a>
+
       <div class="ms-auto">
-        <button class="btn btn-outline-info btn-sm" (click)="Back()">⬅ Back</button>
+       <button class="btn-nav-back" (click)="Back()">⬅ Back</button>
+
       </div>
+
     </div>
   </nav>
 
   <!-- ===== MAIN VIEW SECTION ===== -->
   <div class="tenant-view-wrapper">
+
     @if (loading) {
-      <p class="text-center text-light mt-5">Loading tenant details...</p>
+      <p class="text-center mt-5" style="color:#5C0000; font-weight:600;">Loading tenant details...</p>
     }
 
     @if (!loading && tenant) {
+
       <div class="tenant-card glass-card shadow-lg">
-        <h2 class="fw-bold text-info mb-4 text-center">
+
+        <h2 class="fw-bold text-center mb-4" style="color:#f5cccc;">
           🏢 {{ tenant.name }}
         </h2>
 
         <div class="tenant-info">
+
           <div class="info-grid">
+
             <div class="info-item">
               <label>Service Type</label>
               <input type="text" [value]="tenant.serviceType" readonly />
@@ -65,28 +76,37 @@
               <label>Contact Number</label>
               <input type="text" [value]="tenant.contactNumber" readonly />
             </div>
+
           </div>
 
-          <!-- Action Buttons -->
+          <!-- ===== ACTION BUTTONS ===== -->
           <div class="actions text-center mt-4">
+
             <button class="action-btn edit" (click)="editTenant(tenant.id)">
               <i class="bi bi-pencil-square"></i> Edit
             </button>
+
             <button class="action-btn delete" (click)="Delete(tenant.id)">
               <i class="bi bi-trash3"></i> Delete
             </button>
+
           </div>
+
         </div>
+
       </div>
+
     }
 
     @if (message) {
-      <p class="text-center text-warning mt-3">{{ message }}</p>
+      <p class="text-center" style="color:#b30000; font-weight:600;">{{ message }}</p>
     }
+
   </div>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="footer bg-dark text-center text-white-50 py-3">
-    <small>© {{ currentYear }} Kaappaan Safety System | All Rights Reserved.</small>
+  <footer class="footer">
+    © {{ currentYear }} Kaappaan Safety System | All Rights Reserved.
   </footer>
+
 </div>

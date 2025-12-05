@@ -31,7 +31,7 @@ export const routes: Routes = [
       .then(m => m.TenantUpdate)
 },
 
- { path: 'tenatadminmain', loadComponent: () => import('./core/features/tenant-admin/maindashboard/maindashboard').then(m => m.Maindashboard) },
+
 { path: 'tenant-dashboard', loadComponent: () => import('./core/features/tenant-admin/dashboard/dashboard').then(m => m.Dashboard),
    resolve: { users: usersResolver }
 },

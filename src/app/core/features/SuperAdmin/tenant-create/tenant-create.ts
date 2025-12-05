@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
   styleUrl: './tenant-create.css',
 })
 export class TenantCreate {
+   currentYear: number = new Date().getFullYear(); // ⭐ FIXED HERE
+
+  constructor() {}
 fb = inject(FormBuilder);
   service = inject(TenantService);
   router = inject(Router);

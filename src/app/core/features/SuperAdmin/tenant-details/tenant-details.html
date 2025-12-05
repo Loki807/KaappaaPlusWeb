@@ -1,109 +1,110 @@
 <div class="tenant-list-page">
 
-  <!-- ===== LEFT PANEL ===== -->
-  <div class="tenant-left">
-    <div class="tenant-info">
-      <div class="logo-box">
-        <i class="bi bi-shield-lock text-info fs-1"></i>
-        <h2 class="fw-bold">Kaappaan Safety</h2>
-        <p class="tagline">Empowering safer communities.</p>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
+    <div class="container">
+
+      <a class="navbar-brand fw-bold fs-4" href="#">
+        <i class="bi bi-shield-lock me-2 text-info"></i>
+        <span class="brand-kaappaan">Kaappaan</span>
+        <span class="text-dark">Admin</span>
+      </a>
+
+      <div class="ms-auto">
+        <button class="btn-nav-back" (click)="Back()">⬅ Back</button>
       </div>
 
-      <div class="contact-details">
-        <p><i class="bi bi-envelope me-2 text-info"></i> support@kaappaan.com</p>
-        <p><i class="bi bi-telephone me-2 text-info"></i> +94 77 123 4567</p>
-        <p><i class="bi bi-geo-alt me-2 text-info"></i> Colombo, Sri Lanka</p>
-      </div>
-
-      <div class="social-icons">
-        <a href="#"><i class="bi bi-facebook"></i></a>
-        <a href="#"><i class="bi bi-linkedin"></i></a>
-        <a href="#"><i class="bi bi-twitter"></i></a>
-        <a href="#"><i class="bi bi-instagram"></i></a>
-      </div>
     </div>
-  </div>
+  </nav>
 
-  <!-- ===== RIGHT PANEL ===== -->
-  <div class="tenant-right">
-    <div class="glass-card">
 
-      <div class="header-flex">
-        <h1 class="fw-bold text-info">🏢 {{ selectedServiceType || 'All' }} Tenants</h1>
+  <!-- MAIN WRAPPER -->
+  <div class="tenant-list-wrapper">
 
-        <div class="search-wrapper">
-          <input 
-            type="text"
-            placeholder="Search tenants..."
-            [(ngModel)]="searchText"
-            (input)="applySearch()"
-          />
-        </div>
+    <div class="tenant-card shadow-lg">
 
-        <button class="btn back-btn" (click)="Back()">⬅ Back</button>
+      <!-- HEADER -->
+      <div class="header-section">
+        <h2 class="page-title">🏢 {{ selectedServiceType || 'All' }} Tenants</h2>
+
+        <input 
+          type="text"
+          class="search-box"
+          placeholder="Search tenants..."
+          [(ngModel)]="searchText"
+          (input)="applySearch()"
+        />
       </div>
+
 
       <!-- TABLE -->
       @if (!loading && filteredTenants.length > 0) {
-        <div class="table-responsive mt-4">
-          <table class="tenant-table table table-hover align-middle">
-            <thead>
+
+      <div class="table-responsive mt-3">
+        <table class="tenant-table table align-middle">
+
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Code</th>
+              <th>District</th>
+              <th>City</th>
+              <th>Postal</th>
+              <th>Contact</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (tenant of filteredTenants; track tenant.id) {
               <tr>
-                <th>Service</th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Code</th>
-                <th>District</th>
-                <th>City</th>
-                <th>Address 1</th>
-                <th>Address 2</th>
-                <th>Postal</th>
-                <th>Contact</th>
-                <th class="text-center">Actions</th>
+                <td>{{ tenant.serviceType }}</td>
+                <td>{{ tenant.id }}</td>
+                <td>{{ tenant.name }}</td>
+                <td>{{ tenant.code }}</td>
+                <td>{{ tenant.stateOrDistrict }}</td>
+                <td>{{ tenant.city }}</td>
+                <td>{{ tenant.postalCode }}</td>
+                <td>{{ tenant.contactNumber }}</td>
+
+                <td class="action-buttons">
+                  <button class="btn-view" (click)="viewTenant(tenant.id)">
+                    <i class="bi bi-eye"></i>
+                  </button>
+
+                  <button class="btn-edit" (click)="editTenant(tenant.id)">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+
+                  <button class="btn-delete" (click)="deleteTenant(tenant.id)">
+                    <i class="bi bi-trash3"></i>
+                  </button>
+                </td>
+
               </tr>
-            </thead>
+            }
+          </tbody>
 
-            <tbody>
-              @for (tenant of filteredTenants; track tenant.id) {
-                <tr>
-                  <td>{{ tenant.serviceType }}</td>
-                  <td>{{ tenant.id }}</td>
-                  <td>{{ tenant.name }}</td>
-                  <td>{{ tenant.code }}</td>
-                  <td>{{ tenant.stateOrDistrict }}</td>
-                  <td>{{ tenant.city }}</td>
-                  <td>{{ tenant.addressLine1 }}</td>
-                  <td>{{ tenant.addressLine2 }}</td>
-                  <td>{{ tenant.postalCode }}</td>
-                  <td>{{ tenant.contactNumber }}</td>
+        </table>
+      </div>
 
-                  <td class="actions-cell">
-                    <button class="action-btn view" (click)="viewTenant(tenant.id)">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                    <button class="action-btn edit" (click)="editTenant(tenant.id)">
-                      <i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button class="action-btn delete" (click)="deleteTenant(tenant.id)">
-                      <i class="bi bi-trash3"></i>
-                    </button>
-                  </td>
-                </tr>
-              }
-            </tbody>
-          </table>
-        </div>
       }
 
-      <!-- Empty -->
+      <!-- EMPTY STATE -->
       @if (!loading && filteredTenants.length === 0) {
-        <p class="text-center text-light fs-5 mt-4">No tenants found.</p>
+        <p class="empty-text text-center mt-3">No tenants found.</p>
       }
 
     </div>
-  </div>
-</div>
 
-<footer class="footer">
-  <small>© {{ currentYear }} Kaappaan Safety System | All Rights Reserved.</small>
-</footer>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    © {{ currentYear }} Kaappaan Safety System | All Rights Reserved.
+  </footer>
+
+</div>
