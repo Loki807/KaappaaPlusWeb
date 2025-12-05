@@ -1,26 +1,23 @@
-<div class="user-create-page">
+<div class="page-wrapper">
 
-
-
-  <!-- RIGHT PANEL (FORM PANEL) -->
-  <div class="right-panel">
+  <div class="user-create-page">
 
     <div class="form-card">
 
       <h2 class="form-title">Create User</h2>
 
-      <form [formGroup]="form" (ngSubmit)="submit()">
+      <form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
 
-        <label>Name</label>
-        <input formControlName="name" type="text" />
+        <label>Full Name</label>
+        <input formControlName="name" type="text" placeholder="Enter name" />
 
-        <label>Email</label>
-        <input formControlName="email" type="email" />
+        <label>Email Address</label>
+        <input formControlName="email" type="email" placeholder="Enter email" />
 
         <label>Phone Number</label>
-        <input formControlName="phone" type="text" />
+        <input formControlName="phone" type="text" placeholder="Enter phone" />
 
-        <label>Role</label>
+        <label>User Role</label>
         <select formControlName="role">
           <option value="">Select Role</option>
           <option value="Police">Police</option>
@@ -31,10 +28,10 @@
         </select>
 
         <label>Temporary Password</label>
-        <input formControlName="password" type="password" />
+        <input formControlName="password" type="password" placeholder="Enter temporary password" />
 
         <button class="btn-create" [disabled]="loading">
-          {{ loading ? 'Creating...' : 'Create' }}
+          {{ loading ? 'Creating...' : 'Create User' }}
         </button>
 
       </form>
@@ -45,9 +42,8 @@
 
   </div>
 
-</div>
+  <footer class="footer">
+    © 2025 Kaappaan Safety — All Rights Reserved
+  </footer>
 
-<footer class="footer">
-  
-  © 2025 Kaappaan Safety — All Rights Reserved
-</footer>
+</div>
