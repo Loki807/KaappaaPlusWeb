@@ -11,6 +11,16 @@
   padding-bottom: 80px; /* space for footer */
   color: #5C0000;
 }
+@media (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr; /* stack on mobile */
+  }
+}
+.tenant-info {
+  margin-top: 20px;
+}
+
+
 
 /* ================================
    NAVBAR
@@ -83,7 +93,44 @@
   background: white;
   color: #5C0000;
   font-size: 0.95rem;
+}/* GRID FIX — perfect equal alignment */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Always 2 per row for alignment */
+  gap: 25px 40px;
+  width: 100%;
 }
+
+/* Each item vertically aligned */
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* consistent spacing */
+}
+
+/* Consistent label styling */
+.info-item label {
+  color: #f5cccc;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 4px;
+  letter-spacing: 0.3px;
+}
+
+/* Consistent input box */
+.info-item input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: #ffffff;
+  color: #5C0000;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
 
 /* ================================
    ACTION BUTTONS
