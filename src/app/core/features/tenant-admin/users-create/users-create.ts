@@ -13,7 +13,7 @@ import { Storage } from '../../../../Store/storage';
   styleUrl: './users-create.css',
 })
 export class UsersCreate {
-  fb = inject(FormBuilder);
+ fb = inject(FormBuilder);
   storage = inject(Storage);
   api = inject(UserService);
   router = inject(Router);
@@ -22,11 +22,7 @@ export class UsersCreate {
   loading = false;
   tenantId = '';
   formDirty = false;
-  showNewPassword = false;
 
-toggleNewPassword() {
-  this.showNewPassword = !this.showNewPassword;
-}
   form = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -38,7 +34,9 @@ toggleNewPassword() {
   ngOnInit() {
     this.form.reset();
 
-    this.tenantId = this.storage.get('tenantId') ?? this.storage.getTenantId() ?? '';
+    // FINAL FIX HERE ⬇
+    this.tenantId = this.storage.getTenantId() ?? '';
+
     if (!this.tenantId) {
       this.message = '⚠️ Missing tenant ID. Please login again.';
     }
@@ -93,25 +91,22 @@ toggleNewPassword() {
             ? JSON.stringify(err.error.errors)
             : err?.error?.message
             ? err.error.message
-            : err?.status === 403
-            ? 'Forbidden: You are not allowed'
-            : 'Bad Request';
+            : 'Unknown Error';
 
         this.message = `❌ ${details}`;
       },
     });
   }
 
- back() {
-  this.router.navigate(['/tenant-dashboard']);
-}
+  back() {
+    this.router.navigate(['/tenant-dashboard']);
+  }
 
   canDeactivate() {
-  // only show if user has unsaved changes and form is still dirty
-  if (this.formDirty && this.form.dirty && !this.loading) {
-    return confirm('⚠ You have unsaved changes! Do you really want to leave?');
+    if (this.formDirty && this.form.dirty && !this.loading) {
+      return confirm('⚠ You have unsaved changes! Do you really want to leave?');
+    }
+    return true;
   }
-  return true;
-}
 }
 

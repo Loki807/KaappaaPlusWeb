@@ -10,18 +10,20 @@
   <!-- RIGHT SIDE -->
   <div class="right">
 
-    <!-- ⭐ PROFILE DROPDOWN ⭐ -->
     <div class="profile-wrapper" (click)="toggleProfileMenu()">
-      <i class="bi bi-person-circle profile-icon"></i>
-    
-      <button class="btn btn-outline-info btn-sm" (click)="logout()">Logout</button>
+    <i class="bi bi-person-circle profile-icon"></i>
+    <span class="profile-name">{{ tenantShortName }}</span>
 
-      <div class="profile-menu" [class.show]="menuOpen">
+    <div class="profile-menu" [class.show]="menuOpen">
+
+        <h6 class="tenant-title">{{ tenantName }}</h6>
+
         <button (click)="goToProfile()">My Profile</button>
         <button (click)="goToSettings()">Settings</button>
         <button (click)="logout()">Logout</button>
-      </div>
+
     </div>
+</div>
 
 
     
@@ -33,7 +35,7 @@
 
 <!-- ================= MAIN DASHBOARD CARD ================= -->
 <div class="dashboard-container">
-    <span class="tenant-name">Tenant ID: {{ tenantId }}</span>
+
   <h2 class="tenant-id">Tenant: {{ tenantName }}</h2>
 
   <!-- Create User button -->
@@ -50,6 +52,7 @@
           <th>Name</th>
           <th>Email</th>
           <th>Role</th>
+          <th>phone</th>
           <th>Status</th>
           <th width="200px">Actions</th>
         </tr>
@@ -61,6 +64,7 @@
             <td>{{ u.name }}</td>
             <td>{{ u.email }}</td>
             <td>{{ u.role }}</td>
+                 <td>{{ u.phone }}</td>
             <td>{{ u.isActive ? 'Active' : 'Inactive' }}</td>
             <td class="actions">
               <button class="view" (click)="viewUser(u.id)">View</button>

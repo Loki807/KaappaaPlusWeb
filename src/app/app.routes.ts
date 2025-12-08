@@ -9,8 +9,10 @@ export const routes: Routes = [
    { path: 'home', loadComponent: () => import('./Pages/home/home').then(m => m.Home) },
   { path: 'login', loadComponent: () => import('./core/features/login/login').then(m => m.Login) },
   { path: 'change-password', loadComponent: () => import('./core/features/change-password/change-password').then(m => m.ChangePassword) },
+  { path: 'firstpage', loadComponent: () => import('./core/features/SuperAdmin/firstpage/firstpage').then(m => m.Firstpage) },
   { path: 'dashboard', loadComponent: () => import('./core/features/SuperAdmin/dashboard/dashboard').then(m => m.Dashboard) },
    { path: 'maindashboard', loadComponent: () => import('./core/features/SuperAdmin/maindashboard/maindashboard').then(m => m.Maindashboard) },
+   
    { path: 'tenant-create', loadComponent: () => import('./core/features/SuperAdmin/tenant-create/tenant-create').then(m => m.TenantCreate),   resolve: { tenants: tenantResolver },
    canDeactivate: [UnsavedChangesGuard]},
    { 
@@ -31,7 +33,7 @@ export const routes: Routes = [
       .then(m => m.TenantUpdate)
 },
 
-
+ { path: 'tenatadminmain', loadComponent: () => import('./core/features/tenant-admin/maindashboard/maindashboard').then(m => m.Maindashboard) },
 { path: 'tenant-dashboard', loadComponent: () => import('./core/features/tenant-admin/dashboard/dashboard').then(m => m.Dashboard),
    resolve: { users: usersResolver }
 },

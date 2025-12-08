@@ -16,87 +16,67 @@ import { Storage } from '../../../Store/storage';
 })
 export class Login {
 
-fb = inject(FormBuilder);
+ fb = inject(FormBuilder);
   auth = inject(Auth);
   router = inject(Router);
   storage = inject(Storage);
-   currentYear = new Date().getFullYear();
-   showPassword = false;
 
-togglePassword() {
-  this.showPassword = !this.showPassword;
-}
-
+  message = '';
+  loading = false;
+  showPassword = false;
+currentYear: number = new Date().getFullYear(); // ⭐ FIXED HERE
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   });
 
-  message = '';
-  loading = false;
+  submit() {
 
-   submit() {
     if (this.form.invalid) {
-      this.message = '⚠️ Please enter valid email and password.';
+      this.message = '⚠️ Enter email and password.';
       return;
     }
 
-    const request: LoginRequest = this.form.value as LoginRequest;
+    const req: LoginRequest = this.form.value as LoginRequest;
     this.loading = true;
-    this.message = '';
 
-   this.auth.login(request).subscribe({
-  next: (res) => {
-    this.loading = false;
+    this.auth.login(req).subscribe({
+      next: (res) => {
+        this.loading = false;
 
-    // 1️⃣ First-time login → change password
-    if (res.message?.includes('Password change required')) {
-      this.router.navigate(['/change-password'], {
-        queryParams: { email: request.email },
-      });
-      return;
-    }
+        // ⭐ 1. Save token
+        this.storage.setToken(res.token);
 
-    // 2️⃣ Save token
-    this.storage.setToken(res.token);
-    
-    // 3️⃣ Extract tenantId from the token
-    const tid = this.storage.getTenantId();
+        // ⭐ 2. Save user name (shown as tenant name)
+        this.storage.saveTenantName(res.name);   // YOU REQUESTED THIS
+      
 
-    // 4️⃣ Save tenantId so dashboard can read it
-    if (tid) {
-      localStorage.setItem('tenantId', tid);
-    }
+        // ⭐ 3. Extract tenantId from token
+        const tid = this.storage.getTenantId();
+        if (tid) {
+          this.storage.saveTenantId(tid);
+        }
 
-       // ⭐ 5️⃣ Save tenant info (NEW)
-    
-    // 5️⃣ Role-based navigation
-    switch (res.role) {
-      case 'SuperAdmin':
-        this.router.navigate(['/maindashboard']);
-        break;
+        // ⭐ 4. Role based navigation
+        if (res.role === 'TenantAdmin') {
+          this.router.navigate(['/tenatadminmain']);
+        } 
+        else if (res.role === 'SuperAdmin') {
+          this.router.navigate(['/maindashboard']);
+        }
+        else {
+          this.message = '❌ Access denied.';
+        }
+      },
 
-      case 'TenantAdmin':
-        this.router.navigate(['/tenatadminmain']);
-        break;
-
-      default:
-        this.message = '🚫 Access denied you are User cannt Logining...';
-        setTimeout(() => this.router.navigate(['/home']), 1500);
-        break;
-
-    }
-  },
-
-  error: (err) => {
-    this.loading = false;
-    console.error('Login error:', err);
-    this.message = '❌ Invalid email or password.';
-
-    this.form.controls['email'].setValue('');
-    this.form.controls['password'].setValue('');
+      error: () => {
+        this.loading = false;
+        this.message = '❌ Invalid email or password.';
+      }
+    });
   }
-});
-}
-}
+  }

@@ -35,6 +35,6 @@ export class Maindashboard {
    this.router.navigate(['/login']);
   }
   goTo() {
-   this.router.navigate(['/dashboard']);
+   this.router.navigate(['/firstpage']);
   }
 }

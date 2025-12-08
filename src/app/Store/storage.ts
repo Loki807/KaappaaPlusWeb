@@ -2,24 +2,54 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class Storage {
-  private TOKEN_KEY = 'kaappaan_token';
+ private TOKEN_KEY = 'kaappaan_token';
+  private TENANT_NAME = 'tenantName';
+  private TENANT_ID = 'tenantId';
+  private USER_NAME = 'userName';
+  private USER_ROLE = 'userRole';
 
-  set(key: string, value: string) { localStorage.setItem(key, value); }
-  get(key: string) { return localStorage.getItem(key); }
-
-  setToken(tok: string) { localStorage.setItem(this.TOKEN_KEY, tok); }
-  getToken() { return localStorage.getItem(this.TOKEN_KEY); }
-
-  private b64urlDecode(s: string) {
-    s = s.replace(/-/g, '+').replace(/_/g, '/'); const pad = s.length % 4;
-    if (pad) s += '='.repeat(4 - pad); return atob(s);
+  // ============================= TOKEN =============================
+  setToken(token: string) {
+    localStorage.setItem(this.TOKEN_KEY, token);
   }
-  getTenantId(): string | null {
-    const t = this.getToken(); if (!t) return null;
-    const p = t.split('.'); if (p.length !== 3) return null;
-    try { const payload = JSON.parse(this.b64urlDecode(p[1]));
-      return payload['tenantId'] || payload['tid'] || payload['tenant_id'] || null;
-    } catch { return null; }
+
+  getToken() {
+    return localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  // ============================= GENERIC GET/SET =============================
+  setItem(key: string, value: string) {
+    localStorage.setItem(key, value);
+  }
+
+  getItem(key: string) {
+    return localStorage.getItem(key);
+  }
+
+  // ============================= TENANT NAME =============================
+  saveTenantName(name: string) {
+    localStorage.setItem(this.TENANT_NAME, name);
+  }
+
+  getTenantName() {
+    return localStorage.getItem(this.TENANT_NAME);
+  }
+
+  // ============================= TENANT ID =============================
+  saveTenantId(id: string) {
+    localStorage.setItem(this.TENANT_ID, id);
+  }
+
+  getTenantId() {
+    return localStorage.getItem(this.TENANT_ID);
+  }
+
+  // ============================= CLEAR =============================
+  clearAll() {
+    localStorage.clear();
   }
 }
+
+
+
 

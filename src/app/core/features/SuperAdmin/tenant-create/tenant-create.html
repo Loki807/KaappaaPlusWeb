@@ -1,98 +1,140 @@
-<div class="tenant-create-page">
+<div class="tenant-page">
 
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
-    <div class="container">
-      <a class="navbar-brand fw-bold fs-4">
-        <i class="bi bi-shield-lock me-2 text-info"></i>
-        <span class="brand-kaappaan">Kaappaan</span> Admin
-      </a>
-
-      <button class="btn-nav-back" (click)="back()">⬅ Back</button>
-    </div>
-  </nav>
-
-
-  <!-- CENTER WRAPPER -->
-  <div class="content-wrapper">
-
-    <div class="tenant-card shadow-lg">
-
-      <h2 class="page-title text-center mb-4">🏢 Create New Tenant</h2>
-
-      <form [formGroup]="form" (ngSubmit)="submit()">
-
-        <div class="form-block">
-          <label>Tenant Name</label>
-          <input formControlName="name" type="text" />
-        </div>
-
-        <div class="form-block">
-          <label>Email</label>
-          <input formControlName="email" type="email" />
-        </div>
-
-        <div class="form-block">
-          <label>Address Line 1</label>
-          <input formControlName="addressLine1" type="text" />
-        </div>
-
-        <div class="form-block">
-          <label>Address Line 2</label>
-          <input formControlName="addressLine2" type="text" />
-        </div>
-
-        <div class="form-block">
-          <label>City</label>
-          <input formControlName="city" type="text" />
-        </div>
-
-        <div class="form-block">
-          <label>District</label>
-          <select formControlName="stateOrDistrict">
-            <option value="" disabled>Select District</option>
-            @for (d of districts; track d) {
-              <option [value]="d">{{ d }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="form-block">
-          <label>Postal Code</label>
-          <input formControlName="postalCode" type="text" />
-        </div>
-
-        <div class="form-block">
-          <label>Contact Number</label>
-          <input formControlName="contactNumber" type="text" />
-        </div>
-
-        <div class="form-block">
-          <label>Service Type</label>
-          <select formControlName="serviceType">
-            <option value="" disabled>Select Service</option>
-            <option value="Police">Police</option>
-            <option value="Fire">Fire</option>
-            <option value="Ambulance">Ambulance</option>
-          </select>
-        </div>
-
-        <div class="form-block">
-          <label>Logo URL</label>
-          <input formControlName="logoUrl" type="text" />
-        </div>
-
-        <button class="submit-btn w-100 mt-3" [disabled]="loading">
-          {{ loading ? 'Creating...' : 'Create Tenant' }}
-        </button>
-
-      </form>
-
+  <!-- LEFT LOGO SECTION -->
+  <div class="tenant-left">
+    <div class="left-logo-card">
+      <img src="/assets/logo 2.png" class="left-logo-img" />
+      <h2 class="left-title">Kaappaan Safety</h2>
+      <p class="left-subtitle">Empowering safer communities.</p>
     </div>
   </div>
 
-  <footer class="footer">
-    © {{ currentYear }} Kaappaan Safety System — All Rights Reserved
-  </footer>
+  <!-- RIGHT FORM SECTION -->
+  <div class="tenant-right">
+    <div class="form-container">
 
+      <h1 class="form-title">🏢 Create New Tenant</h1>
+
+      <!-- TOP RIGHT BACK BUTTON -->
+      <div class="form-top-right">
+        <button type="button" class="back-btn" (click)="back()">Back</button>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <!-- ROW 1 -->
+        <div class="row">
+          <div class="col">
+            <label>Tenant Name</label>
+            <input formControlName="name" placeholder="Enter tenant name" />
+            @if (form.controls['name'].touched && form.controls['name'].invalid) {
+              <p class="error">Tenant name is required.</p>
+            }
+          </div>
+
+          <div class="col">
+            <label>Email</label>
+            <input formControlName="email" type="email" placeholder="Enter tenant admin email" />
+            @if (form.controls['email'].touched && form.controls['email'].invalid) {
+              <p class="error">Enter a valid email.</p>
+            }
+          </div>
+        </div>
+
+        <!-- ROW 2 -->
+        <div class="row">
+          <div class="col">
+            <label>Address Line 1</label>
+            <input formControlName="addressLine1" placeholder="Enter address line 1" />
+            @if (form.controls['addressLine1'].touched && form.controls['addressLine1'].invalid) {
+              <p class="error">Address Line 1 is required.</p>
+            }
+          </div>
+
+          <div class="col">
+            <label>Address Line 2</label>
+            <input formControlName="addressLine2" placeholder="Enter address line 2" />
+            @if (form.controls['addressLine2'].touched && form.controls['addressLine2'].invalid) {
+              <p class="error">Address Line 2 is required.</p>
+            }
+          </div>
+        </div>
+
+        <!-- ROW 3 -->
+        <div class="row">
+          <div class="col">
+            <label>City</label>
+            <input formControlName="city" placeholder="Enter city" />
+            @if (form.controls['city'].touched && form.controls['city'].invalid) {
+              <p class="error">City is required.</p>
+            }
+          </div>
+
+          <div class="col">
+            <label>State / District</label>
+            <select formControlName="stateOrDistrict">
+              <option value="">-- Select District --</option>
+              @for (d of districts; track d) {
+                <option [value]="d">{{ d }}</option>
+              }
+            </select>
+            @if (form.controls['stateOrDistrict'].touched && form.controls['stateOrDistrict'].invalid) {
+              <p class="error">District is required.</p>
+            }
+          </div>
+        </div>
+
+        <!-- ROW 4 -->
+        <div class="row">
+          <div class="col">
+            <label>Postal Code</label>
+            <input formControlName="postalCode" placeholder="Enter postal code" />
+            @if (form.controls['postalCode'].touched && form.controls['postalCode'].invalid) {
+              <p class="error">Postal code is required.</p>
+            }
+          </div>
+
+          <div class="col">
+            <label>Contact Number</label>
+            <input formControlName="contactNumber" placeholder="Enter contact number" />
+            @if (form.controls['contactNumber'].touched && form.controls['contactNumber'].invalid) {
+              <p class="error">Contact number is required.</p>
+            }
+          </div>
+        </div>
+
+        <!-- ROW 5 -->
+        <div class="row">
+          <div class="col">
+            <label>Service Type</label>
+            <select formControlName="serviceType">
+              <option value="">-- Select Service Type --</option>
+              <option value="Police">Police</option>
+              <option value="Fire">Fire</option>
+              <option value="Ambulance">Ambulance</option>
+            </select>
+            @if (form.controls['serviceType'].touched && form.controls['serviceType'].invalid) {
+              <p class="error">Service Type is required.</p>
+            }
+          </div>
+
+          <div class="col">
+            <label>Logo URL</label>
+            <input formControlName="logoUrl" placeholder="Enter logo URL (optional)" />
+          </div>
+        </div>
+
+        <!-- BOTTOM CENTER CREATE BUTTON -->
+        <div class="form-bottom-center">
+          <button type="submit" class="create-btn" [disabled]="loading">
+            {{ loading ? "Creating..." : "Create Tenant" }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
+
+<footer class="footer">
+  © 2025 Kaappaan Safety — All Rights Reserved
+</footer>

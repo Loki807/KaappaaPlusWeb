@@ -11,39 +11,29 @@ import { Storage } from '../../../../Store/storage';
   
 })
 export class Dashboard {
-   service = inject(UserService);
+service = inject(UserService);
   storage = inject(Storage);
   router = inject(Router);
 
-  tenantName = 'Unknown Tenant';
-  tenantId = '';
+  tenantName = "";         // Full name
+  tenantShortName = "";    // Only first word
   users: any[] = [];
   loading = true;
-serviceType = '';
-themeClass = '';
+  menuOpen = false;
 
-  // ------------------------------
-  // 1️⃣ LOAD DASHBOARD
-  // ------------------------------
   ngOnInit() {
-    this.tenantId = localStorage.getItem('tenantId') ?? '';
 
-    if (!this.tenantId) {
-      this.tenantName = 'Unknown Tenant';
-      this.loading = false;
-      return;
-    }
+    // Get Tenant Name
+    this.tenantName = this.storage.getTenantName() ?? "Unknown Tenant";
 
-    this.tenantName = localStorage.getItem('tenantName') ?? 'Unknown Tenant';
+    // Make first word only (Short Display Name)
+    this.tenantShortName = this.tenantName.split(" ")[0];  
+    // Example: "kilinochi"
 
     this.loadUsers();
   }
-  
 
-  // ------------------------------
-  // 2️⃣ LOAD USERS OF THIS TENANT
-  // ------------------------------
-    loadUsers() {
+  loadUsers() {
     this.service.getTenantUsers().subscribe({
       next: (res) => {
         this.users = res.filter(u => u.role !== "TenantAdmin");
@@ -51,6 +41,28 @@ themeClass = '';
       },
       error: () => this.loading = false
     });
+  }
+
+  toggleProfileMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  logout() {
+    this.storage.clearAll();
+    this.router.navigate(['/login']);
+  }
+
+  createUser() {
+    this.router.navigate(['/users-create']);
+  }
+
+ 
+  goToProfile() {
+    alert("Profile Page Coming Soon");
+  }
+
+  goToSettings() {
+    alert("Settings Page Coming Soon");
   }
 
   // ------------------------------
@@ -84,28 +96,7 @@ themeClass = '';
 
 }
 
-menuOpen = false;
-
-toggleProfileMenu() {
-  this.menuOpen = !this.menuOpen;
-}
-
-goToProfile() {
-  this.router.navigate(['/profile']);
-}
-
-goToSettings() {
-  this.router.navigate(['/settings']);
-}
-
-
-createUser() {
-    this.router.navigate(['/users-create']);
-}
-Back() {
-    this.router.navigate(['/users-create']);
-}
-logout() {
-    this.router.navigate(['/login']);
+back(){
+  
 }
 }
