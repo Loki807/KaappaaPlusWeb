@@ -4,7 +4,7 @@
   <nav class="navbar navbar-expand-lg fixed-top new-nav shadow-sm">
     <div class="container">
       <a class="navbar-brand fw-bold fs-3" href="#">
-        <i class="bi bi-shield-check text-cyan me-2"></i>Kaappaan<span class="text-light">Secure</span>
+        <i class="bi bi-shield-check text-cyan me-2"></i>Kaappaan
       </a>
 
       <button
@@ -18,13 +18,11 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-center">
-          <li class="nav-item"><a class="nav-link new-link" href="#home">Overview</a></li>
-          <li class="nav-item"><a class="nav-link new-link" href="#features">Features</a></li>
-          <li class="nav-item"><a class="nav-link new-link" href="#stats">Performance</a></li>
-          <li class="nav-item"><a class="nav-link new-link" href="#support">Support</a></li>
-          <li class="nav-item ms-lg-3">
-            <button class="btn new-btn px-4 py-2" (click)="goToLogin()">Login</button>
-          </li>
+          <li class="nav-item"><a class="nav-link new-link">Overview</a></li>
+          <li class="nav-item"><a class="nav-link new-link" >Features</a></li>
+          <li class="nav-item"><a  (click)="gowith()"class="nav-link new-link">Privacy</a></li>
+          <li class="nav-item"><a (click)="go()"class="nav-link new-link" >Contracts</a></li>
+         
         </ul>
       </div>
     </div>

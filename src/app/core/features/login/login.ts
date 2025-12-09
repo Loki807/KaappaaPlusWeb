@@ -6,7 +6,6 @@ import { Auth } from '../../services/auth';
 import { Router } from '@angular/router';
 import { Storage } from '../../../Store/storage';
 
-
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -16,7 +15,7 @@ import { Storage } from '../../../Store/storage';
 })
 export class Login {
 
- fb = inject(FormBuilder);
+  fb = inject(FormBuilder);
   auth = inject(Auth);
   router = inject(Router);
   storage = inject(Storage);
@@ -24,7 +23,8 @@ export class Login {
   message = '';
   loading = false;
   showPassword = false;
-currentYear: number = new Date().getFullYear(); // ⭐ FIXED HERE
+  currentYear: number = new Date().getFullYear();
+
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
@@ -35,7 +35,6 @@ currentYear: number = new Date().getFullYear(); // ⭐ FIXED HERE
   });
 
   submit() {
-
     if (this.form.invalid) {
       this.message = '⚠️ Enter email and password.';
       return;
@@ -48,23 +47,23 @@ currentYear: number = new Date().getFullYear(); // ⭐ FIXED HERE
       next: (res) => {
         this.loading = false;
 
-        // ⭐ 1. Save token
+        // 1️⃣ Save JWT token
         this.storage.setToken(res.token);
 
-        // ⭐ 2. Save user name (shown as tenant name)
-        this.storage.saveTenantName(res.name);   // YOU REQUESTED THIS
-      
+        // 2️⃣ Save tenant admin name
+        this.storage.saveTenantName(res.name);
 
-        // ⭐ 3. Extract tenantId from token
-        const tid = this.storage.getTenantId();
-        if (tid) {
-          this.storage.saveTenantId(tid);
+        // 3️⃣ ⭐ Save Tenant ID from backend response
+        if (res.tenantId) {
+          this.storage.saveTenantId(res.tenantId);
+        } else {
+          console.warn("⚠ No tenantId returned from backend!");
         }
 
-        // ⭐ 4. Role based navigation
+        // 4️⃣ Navigate by role
         if (res.role === 'TenantAdmin') {
           this.router.navigate(['/tenatadminmain']);
-        } 
+        }
         else if (res.role === 'SuperAdmin') {
           this.router.navigate(['/maindashboard']);
         }
@@ -79,4 +78,4 @@ currentYear: number = new Date().getFullYear(); // ⭐ FIXED HERE
       }
     });
   }
-  }
+}

@@ -8,20 +8,28 @@ import { TenantService } from '../../../services/tenant.service';
   styleUrls: ['./maindashboard.css']
 })
 export class Maindashboard {
-
+  totalDepartments = 0;
   totalTenants = 0;
   currentYear = new Date().getFullYear();
   router = inject(Router);                 // ⭐ MUST HAVE
   tenantService = inject(TenantService);   // ⭐ MUST HAVE
 
-  ngOnInit(): void {
-    this.tenantService.getAllTenants().subscribe({
-      next: (data) => {
-        this.totalTenants = data.length;
-      },
-      error: (err) => console.error(err)
-    });
-  }
+ngOnInit(): void {
+  this.tenantService.getAllTenants().subscribe({
+    next: (data) => {
+
+      // ⭐ Count all tenants
+      this.totalTenants = data.length;
+
+      // ⭐ Count only departments (Police / Fire / Ambulance)
+      this.totalDepartments = data.filter(t => t.serviceType != null).length;
+
+    },
+    error: (err) => {
+      console.error("Failed to load tenants:", err);
+    }
+  });
+}
 
   openTenants() {
     this.router.navigate(['/dashboard']); // ⭐ Works now
@@ -31,10 +39,12 @@ export class Maindashboard {
     this.router.navigate(['/users-details']);  // ⭐ Works now
   }
 
-  logout() {
-   this.router.navigate(['/login']);
+logout() {
+     this.router.navigate(['/login123']);
   }
   goTo() {
    this.router.navigate(['/firstpage']);
   }
+  goAdmin(){
+   this.router.navigate(['/AdminDetails']);}
 }

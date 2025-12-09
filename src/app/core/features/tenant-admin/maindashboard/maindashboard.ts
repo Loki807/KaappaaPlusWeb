@@ -60,9 +60,12 @@ export class Maindashboard {
   
 
   logout() {
-   this.router.navigate(['/login']);
+   this.router.navigate(['/login123']);
   }
   goTo() {
    this.router.navigate(['/tenant-dashboard']);
   }
+  
+  
+
 }

@@ -7,11 +7,14 @@ import { UnsavedChangesGuard } from './core/guards/unsaved-changes-guard';
 export const routes: Routes = [
 { path: '', redirectTo: 'home', pathMatch: 'full' },
    { path: 'home', loadComponent: () => import('./Pages/home/home').then(m => m.Home) },
-  { path: 'login', loadComponent: () => import('./core/features/login/login').then(m => m.Login) },
+    { path: 'Contracts', loadComponent: () => import('./Pages/contarcts/contarcts').then(m => m.Contarcts ) },
+        { path: 'Privacy', loadComponent: () => import('./Pages/privacy/privacy').then(m => m.Privacy  ) },
+  { path: 'login123', loadComponent: () => import('./core/features/login/login').then(m => m.Login) },
   { path: 'change-password', loadComponent: () => import('./core/features/change-password/change-password').then(m => m.ChangePassword) },
   { path: 'firstpage', loadComponent: () => import('./core/features/SuperAdmin/firstpage/firstpage').then(m => m.Firstpage) },
   { path: 'dashboard', loadComponent: () => import('./core/features/SuperAdmin/dashboard/dashboard').then(m => m.Dashboard) },
    { path: 'maindashboard', loadComponent: () => import('./core/features/SuperAdmin/maindashboard/maindashboard').then(m => m.Maindashboard) },
+      { path: 'AdminDetails', loadComponent: () => import('./core/features/SuperAdmin/admin-view/admin-view').then(m => m.AdminView ) },
    
    { path: 'tenant-create', loadComponent: () => import('./core/features/SuperAdmin/tenant-create/tenant-create').then(m => m.TenantCreate),   resolve: { tenants: tenantResolver },
    canDeactivate: [UnsavedChangesGuard]},

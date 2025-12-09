@@ -10,20 +10,17 @@
   <!-- RIGHT SIDE -->
   <div class="right">
 
+    <!-- ⭐ PROFILE DROPDOWN ⭐ -->
     <div class="profile-wrapper" (click)="toggleProfileMenu()">
-    <i class="bi bi-person-circle profile-icon"></i>
-    <span class="profile-name">{{ tenantShortName }}</span>
+      <i class="bi bi-person-circle profile-icon"></i>
+    
 
-    <div class="profile-menu" [class.show]="menuOpen">
-
-        <h6 class="tenant-title">{{ tenantName }}</h6>
-
+      <div class="profile-menu" [class.show]="menuOpen">
         <button (click)="goToProfile()">My Profile</button>
         <button (click)="goToSettings()">Settings</button>
         <button (click)="logout()">Logout</button>
-
+      </div>
     </div>
-</div>
 
 
     
@@ -35,7 +32,7 @@
 
 <!-- ================= MAIN DASHBOARD CARD ================= -->
 <div class="dashboard-container">
-
+ 
   <h2 class="tenant-id">Tenant: {{ tenantName }}</h2>
 
   <!-- Create User button -->
@@ -78,8 +75,4 @@
 
   }
 
-  @if (!loading && users.length === 0) {
-    <p class="empty">No users found.</p>
-  }
-
-</div>
+  

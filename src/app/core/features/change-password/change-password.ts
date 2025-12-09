@@ -51,7 +51,7 @@ toggleNewPassword() {
       next: () => {
         this.loading = false;
         this.message = '✅ Password changed successfully!';
-        setTimeout(() => this.router.navigate(['/login']), 1500);
+        setTimeout(() => this.router.navigate(['/login123']), 1500);
       },
       error: () => {
         this.loading = false;

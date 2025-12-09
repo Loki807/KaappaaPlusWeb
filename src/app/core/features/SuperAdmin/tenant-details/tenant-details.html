@@ -52,7 +52,8 @@
               <th>District</th>
               <th>City</th>
               <th>Postal</th>
-              <th>Contact</th>
+               <th>Contact</th>
+              <th>Email</th>
               <th class="text-center">Actions</th>
             </tr>
           </thead>
@@ -68,6 +69,7 @@
                 <td>{{ tenant.city }}</td>
                 <td>{{ tenant.postalCode }}</td>
                 <td>{{ tenant.contactNumber }}</td>
+                 <td>{{ tenant.email }}</td>
 
                 <td class="action-buttons">
                   <button class="btn-view" (click)="viewTenant(tenant.id)">

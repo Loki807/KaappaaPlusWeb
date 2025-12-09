@@ -250,35 +250,3 @@
 .btn-delete:hover {
   background: #dc2626;
 }
-.profile-wrapper {
-  position: relative;
-  cursor: pointer;
-}
-
-.profile-name {
-  margin-left: 5px;
-  font-weight: 600;
-  color: #fff;
-}
-
-.profile-menu {
-  position: absolute;
-  top: 50px;
-  right: 0;
-  width: 230px;
-  background: #fff;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-  display: none;
-}
-
-.profile-menu.show {
-  display: block;
-}
-
-.tenant-title {
-  font-weight: 700;
-  color: #5C0000;
-  margin-bottom: 10px;
-}

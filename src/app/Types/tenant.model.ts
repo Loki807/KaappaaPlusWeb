@@ -15,4 +15,14 @@ export interface Tenant {
   addressLine1:string;
   addressLine2:string;
   logoUrl:string;
+
+
+ 
+  // ⭐ Admin Details
+  adminName: string;
+  adminEmail: string;
+  adminRole: string;
+
+  createdAt: string;
+ 
 }

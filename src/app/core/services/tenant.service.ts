@@ -10,6 +10,11 @@ import { Tenant } from '../../Types/tenant.model';
   providedIn: 'root',
 })
 export class TenantService {
+
+  
+  getAdmins() {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = `${environment.apiBase}/admin/tenant`;  // Base URL for tenant APIs
 
   constructor(private http: HttpClient) {}

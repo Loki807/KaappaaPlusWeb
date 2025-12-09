@@ -14,4 +14,14 @@ export class Home {
   goToLogin(): void {
     this.router.navigate(['/login']);
   }
+
+
+
+    go(): void {
+    this.router.navigate(['/Contracts']);
+}
+gowith():void
+{
+  this.router.navigate(['/Privacy']);
+}
 }

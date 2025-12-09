@@ -42,10 +42,12 @@
         </div>
 
         <div class="col-md-4">
-          <div class="dashboard-card h-100">
+          <div class="dashboard-card h-100"
+             style="cursor:pointer" 
+                      (click)="goAdmin()">>
             <i class="bi bi-people-fill text-success fs-1 mb-3"></i>
-            <h5 class="fw-bold">Total Admin</h5>
-            <p class="display-6 fw-bold text-success">96</p>
+            <h5 class="fw-bold">Total Admins</h5>
+            <p class="display-6 fw-bold text-success">{{ totalDepartments }}</p>
             <p class="text-gray">Registered Admins & Responders</p>
           </div>
         </div>
@@ -90,11 +92,10 @@
       </div>
     </div>
   </main>
-
+</div>
   <!-- ===== FIXED FOOTER ===== -->
-  <footer class="footer text-center text-white-50">
+<footer class="footer text-center text-white-50">
     <div class="container">
       <small>© {{ currentYear }} Kaappaan Safety System | All Rights Reserved.</small>
     </div>
-  </footer>
-</div>
+</footer>
