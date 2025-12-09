@@ -55,5 +55,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./core/features/tenant-admin/user-edit/user-edit')
         .then(m => m.UserEdit)
-  }
+  },
+
+  {
+  path: 'citizens',
+  loadComponent: () =>
+    import('./core/features/citizens/citizens-list.component')
+      .then(m => m.CitizensListComponent)
+}
+
 ];
