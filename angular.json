@@ -34,7 +34,15 @@
                 "glob": "favicon.ico",
                 "input": "src/assets/icons",
                 "output": "assets/icons"
+              },
+
+           
+              {
+                "glob": "staticwebapp.config.json",
+                "input": "src",
+                "output": "/"
               }
+         
             ],
 
             "styles": [
