@@ -28,7 +28,7 @@ export class Maindashboard {
   }
 
   openUsers() {
-    this.router.navigate(['/users-details']);  // ⭐ Works now
+    this.router.navigate(['/citizens']);  // ⭐ Works now
   }
 
   logout() {
