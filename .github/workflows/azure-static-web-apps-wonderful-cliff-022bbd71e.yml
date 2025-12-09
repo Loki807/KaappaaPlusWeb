@@ -17,45 +17,38 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        with:
-          submodules: true
-          lfs: false
 
-      # ⭐ FORCE NODE 20 (REQUIRED FOR ANGULAR 20)
+      # ⭐ Use Node 20 for Angular v20
       - name: Use Node.js 20
         uses: actions/setup-node@v3
         with:
           node-version: 20
       
+      # ⭐ Install packages
       - name: Install dependencies
-        run: npm install --force
+        run: npm ci
 
+      # ⭐ Build Angular app locally in GitHub
       - name: Build Angular App
         run: npm run build
 
+      # ⭐ DEPLOY ONLY DIST FOLDER — DO NOT LET AZURE BUILD ANYTHING
       - name: Deploy to Azure Static Web Apps
-        id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WONDERFUL_CLIFF_022BBD71E }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
 
-          # ⭐ YOUR APP PATH
-          app_location: "/"
-          output_location: "dist/kw/browser"
-
-          # ⭐ FORCE AZURE TO USE NODE 20 IN ORYX BUILD
-          app_build_command: "npm install --force && npm run build"
-          node_version: "20.19.0"
+          # IMPORTANT: Azure should NOT build Angular
+          app_location: "dist/kw/browser"
+          skip_app_build: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
-    name: Close Pull Request Job
     steps:
-      - name: Close Pull Request
-        uses: Azure/static-web-apps-deploy@v1
+      - uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WONDERFUL_CLIFF_022BBD71E }}
           action: "close"
