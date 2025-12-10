@@ -1,78 +1,55 @@
-<!-- ================= NAVBAR ================= -->
 <nav class="navbar">
-
-  <!-- LEFT SIDE -->
   <div class="left">
     <i class="bi bi-shield-lock logo-icon"></i>
     <span class="brand">Kaappaan Tenant Admin</span>
   </div>
 
-  <!-- RIGHT SIDE -->
   <div class="right">
-
-    <!-- ⭐ PROFILE DROPDOWN ⭐ -->
     <div class="profile-wrapper" (click)="toggleProfileMenu()">
       <i class="bi bi-person-circle profile-icon"></i>
-    
 
       <div class="profile-menu" [class.show]="menuOpen">
-        <button (click)="goToProfile()">My Profile</button>
-        <button (click)="goToSettings()">Settings</button>
         <button (click)="logout()">Logout</button>
       </div>
     </div>
-
-
-    
-
   </div>
 </nav>
 
-
-
-<!-- ================= MAIN DASHBOARD CARD ================= -->
 <div class="dashboard-container">
- 
-  <h2 class="tenant-id">Tenant: {{ tenantName }}</h2>
 
-  <!-- Create User button -->
+  <h2 class="tenant-header">Tenant: {{ tenantName }}</h2>
+
   <button class="create-btn" (click)="createUser()">+ Create User</button>
 
- 
+  <div *ngIf="loading" class="loading-box">Loading users...</div>
 
-  <!-- ================= USER TABLE ================= -->
-  @if (!loading && users.length > 0) {
+  <table *ngIf="!loading && users.length > 0" class="user-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Phone</th>
+        <th>Status</th>
+        <th width="200px">Actions</th>
+      </tr>
+    </thead>
 
-    <table class="user-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Role</th>
-          <th>phone</th>
-          <th>Status</th>
-          <th width="200px">Actions</th>
-        </tr>
-      </thead>
+    <tbody>
+      <tr *ngFor="let u of users">
+        <td>{{ u.name }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.role }}</td>
+        <td>{{ u.phone }}</td>
+        <td>{{ u.isActive ? 'Active' : 'Inactive' }}</td>
 
-      <tbody>
-        @for (u of users; track u.id) {
-          <tr>
-            <td>{{ u.name }}</td>
-            <td>{{ u.email }}</td>
-            <td>{{ u.role }}</td>
-                 <td>{{ u.phone }}</td>
-            <td>{{ u.isActive ? 'Active' : 'Inactive' }}</td>
-            <td class="actions">
-              <button class="view" (click)="viewUser(u.id)">View</button>
-              <button class="edit" (click)="editUser(u.id)">Edit</button>
-              <button class="delete" (click)="deleteUser(u.id)">Delete</button>
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
+        <td class="actions">
+          <button class="view" (click)="viewUser(u.id)">View</button>
+          <button class="edit" (click)="editUser(u.id)">Edit</button>
+          <button class="delete" (click)="deleteUser(u.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-  }
-
-  
+</div>

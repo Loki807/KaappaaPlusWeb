@@ -9,7 +9,7 @@ export const routes: Routes = [
    { path: 'home', loadComponent: () => import('./Pages/home/home').then(m => m.Home) },
     { path: 'Contracts', loadComponent: () => import('./Pages/contarcts/contarcts').then(m => m.Contarcts ) },
         { path: 'Privacy', loadComponent: () => import('./Pages/privacy/privacy').then(m => m.Privacy  ) },
-  { path: 'login123', loadComponent: () => import('./core/features/login/login').then(m => m.Login) },
+  { path: 'login', loadComponent: () => import('./core/features/login/login').then(m => m.Login) },
   { path: 'change-password', loadComponent: () => import('./core/features/change-password/change-password').then(m => m.ChangePassword) },
   { path: 'firstpage', loadComponent: () => import('./core/features/SuperAdmin/firstpage/firstpage').then(m => m.Firstpage) },
   { path: 'dashboard', loadComponent: () => import('./core/features/SuperAdmin/dashboard/dashboard').then(m => m.Dashboard) },

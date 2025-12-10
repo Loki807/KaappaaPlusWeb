@@ -1,9 +1,11 @@
 export interface LoginResponse {
-  tenantId: any;
-  tenantName(arg0: string, tenantName: any): unknown;
-  token: string;
+ token: string;
   name: string;
   role: string;
   message?: string;
   requirePasswordChange?: boolean;
+
+  tenantId: string;       // from backend
+  tenantName: string;     // from backend
+  serviceType: string;    // from backend
 }

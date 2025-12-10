@@ -1,49 +1,44 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { Storage } from '../../../../Store/storage';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css',
-  
+  styleUrls: ['./dashboard.css'],
 })
-export class Dashboard {
-   service = inject(UserService);
+export class Dashboard implements OnInit {
+
+  service = inject(UserService);
   storage = inject(Storage);
   router = inject(Router);
 
-  tenantName = 'Unknown Tenant';
-  tenantId = '';
+  tenantName: string = "Unknown Tenant";
+  tenantId: string = "";
   users: any[] = [];
   loading = true;
-serviceType = '';
-themeClass = '';
   menuOpen = false;
-  // ------------------------------
-  // 1️⃣ LOAD DASHBOARD
-  // ------------------------------
+
   ngOnInit() {
-    this.tenantId = localStorage.getItem('tenantId') ?? '';
+
+    this.tenantId = this.storage.getTenantId() ?? "";
 
     if (!this.tenantId) {
-      this.tenantName = 'Unknown Tenant';
       this.loading = false;
       return;
     }
 
-    this.tenantName = localStorage.getItem('tenantName') ?? 'Unknown Tenant';
+    this.tenantName = this.storage.getTenantName() ?? "Unknown Tenant";
 
     this.loadUsers();
   }
-  
 
-  // ------------------------------
-  // 2️⃣ LOAD USERS OF THIS TENANT
-  // ------------------------------
-    loadUsers() {
+  loadUsers() {
     this.service.getTenantUsers().subscribe({
       next: (res) => {
         this.users = res.filter(u => u.role !== "TenantAdmin");
@@ -52,11 +47,24 @@ themeClass = '';
       error: () => this.loading = false
     });
   }
-extractDistrictName(name: string): string {
-    return name.split(" ")[0];
+
+  viewUser(id: string) {
+    this.router.navigate(['/user-view', id]);
   }
 
+  editUser(id: string) {
+    this.router.navigate(['/user-edit', id]);
+  }
 
+  deleteUser(id: string) {
+    if (!confirm("⚠ Delete this user?")) return;
+
+    this.service.deleteUser(id).subscribe({
+      next: () => {
+        this.users = this.users.filter(u => u.id !== id);
+      }
+    });
+  }
 
   toggleProfileMenu() {
     this.menuOpen = !this.menuOpen;
@@ -70,33 +78,4 @@ extractDistrictName(name: string): string {
     this.storage.clearAll();
     this.router.navigate(['/login']);
   }
-
-  viewUser(id: string) {
-    this.router.navigate(['/user-view', id]);
-  }
-
-  editUser(id: string) {
-    this.router.navigate(['/user-edit', id]);
-  }
-
-  deleteUser(id: string) {
-    if (!confirm("⚠ Are you sure?")) return;
-
-    this.service.deleteUser(id).subscribe({
-      next: () => {
-        this.users = this.users.filter(u => u.id !== id);
-      }
-    });
-  }
-
-  goToProfile() { alert("Profile Coming Soon"); }
-  goToSettings() { alert("Settings Coming Soon"); }
-
-
-
-Back() {
-    this.router.navigate(['/users-create']);
 }
-
-}
-

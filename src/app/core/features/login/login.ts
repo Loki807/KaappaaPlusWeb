@@ -23,7 +23,7 @@ export class Login {
   message = '';
   loading = false;
   showPassword = false;
-  currentYear: number = new Date().getFullYear();
+  currentYear = new Date().getFullYear();
 
   togglePassword() {
     this.showPassword = !this.showPassword;
@@ -40,33 +40,36 @@ export class Login {
       return;
     }
 
-    const req: LoginRequest = this.form.value as LoginRequest;
+    const request: LoginRequest = this.form.value as LoginRequest;
     this.loading = true;
 
-    this.auth.login(req).subscribe({
+    this.auth.login(request).subscribe({
       next: (res) => {
         this.loading = false;
 
-        // 1️⃣ Save JWT token
+        // FIRST LOGIN → CHANGE PASSWORD
+        if (res.requirePasswordChange || res.message?.includes('Password change required')) {
+          this.router.navigate(['/change-password'], {
+            queryParams: { email: request.email },
+          });
+          return;
+        }
+
+        // SAVE TOKEN
         this.storage.setToken(res.token);
 
-        // 2️⃣ Save tenant admin name
-        this.storage.saveTenantName(res.name);
+        // SAVE TENANT DATA
+        this.storage.saveTenantName(res.tenantName);
+        this.storage.saveTenantId(res.tenantId);
+       
 
-        // 3️⃣ ⭐ Save Tenant ID from backend response
-        if (res.tenantId) {
-          this.storage.saveTenantId(res.tenantId);
-        } else {
-          console.warn("⚠ No tenantId returned from backend!");
-        }
-
-        // 4️⃣ Navigate by role
+        // NAVIGATION
         if (res.role === 'TenantAdmin') {
           this.router.navigate(['/tenatadminmain']);
-        }
+        } 
         else if (res.role === 'SuperAdmin') {
           this.router.navigate(['/maindashboard']);
-        }
+        } 
         else {
           this.message = '❌ Access denied.';
         }

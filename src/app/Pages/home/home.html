@@ -32,8 +32,11 @@
   <section id="home" class="new-hero">
     <div class="container d-flex flex-lg-row flex-column align-items-center justify-content-between">
 
+      <!-- Left Content -->
       <div class="hero-text">
-        <h1 class="hero-title">Next-Gen Safety & Emergency Platform</h1>
+        <h1 class="hero-title">
+          Next-Gen Safety & Emergency Platform
+        </h1>
 
         <p class="hero-subtitle">
           AI-powered insights, real-time alerting, instant communication and
@@ -44,15 +47,66 @@
       </div>
 
       <div class="hero-illustration">
-        <img src="assets/logo 2.png" class="hero-logo-animate" alt="Kaappaan Technology" />
-      </div>
+  <img src="assets/logo 2.png" class="hero-logo-animate" alt="Kaappaan Technology" />
+</div>
 
     </div>
   </section>
 
+  <!-- ============= HOW THE APP WORKS SECTION ============= -->
+<section id="how-it-works" class="how-section py-5">
+  <div class="container text-center">
+
+    <h2 class="fw-bold mb-4 text-cyan">How Kaappaan Works</h2>
+    <p class="text-muted mb-5">A simple and powerful system connecting citizens and responders instantly.</p>
+
+    <div class="row g-4">
+
+      <!-- STEP 1 -->
+      <div class="col-md-4">
+        <div class="how-card p-4">
+          <div class="how-icon mb-3">
+            <i class="bi bi-phone-vibrate fs-1 text-cyan"></i>
+          </div>
+          <h5 class="fw-bold mb-2">1. Citizen Sends Alert</h5>
+          <p>With one tap, the citizen triggers an SOS alert including live location.</p>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="col-md-4">
+        <div class="how-card p-4">
+          <div class="how-icon mb-3">
+            <i class="bi bi-broadcast-pin fs-1 text-cyan"></i>
+          </div>
+          <h5 class="fw-bold mb-2">2. Alert Reaches Responders</h5>
+          <p>Nearby responders receive instant notification and alert details.</p>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="col-md-4">
+        <div class="how-card p-4">
+          <div class="how-icon mb-3">
+            <i class="bi bi-map fs-1 text-cyan"></i>
+          </div>
+          <h5 class="fw-bold mb-2">3. Responders Take Action</h5>
+          <p>Responders navigate to the location and resolve the emergency quickly.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+
   <!-- ============= FEATURES SECTION ============= -->
   <section id="features" class="new-features py-5">
     <div class="container text-center">
+
       <h2 class="fw-bold mb-4 text-cyan">Platform Capabilities</h2>
       <p class="text-muted mb-5">Built for cities, responders and safety teams.</p>
 
@@ -87,33 +141,30 @@
     </div>
   </section>
 
-  <!-- ============= PERFORMANCE STATS STRIP (UPDATED) ============= -->
+  <!-- ============= PERFORMANCE STATS STRIP ============= -->
   <section id="stats" class="stats-strip text-center">
     <div class="container">
       <div class="row text-light g-4">
 
-        <!-- ⭐ REGISTERED CITIZENS COUNT (DYNAMIC) -->
-        <div class="col-md-3 stat-card" (click)="goToLogin()">
-          <h2 class="fw-bold text-cyan">{{ totalCitizens }}+</h2>
-          <p>Registered Citizens</p>
-        </div>
-
-        <div class="col-md-3 stat-card">
+        <div class="col-md-3">
           <h2 class="fw-bold text-cyan">42+</h2>
           <p>Active Tenants</p>
         </div>
 
-        <div class="col-md-3 stat-card">
+        <div class="col-md-3">
           <h2 class="fw-bold text-cyan">680+</h2>
           <p>Responders Onboarded</p>
         </div>
 
-        <div class="col-md-3 stat-card">
+        <div class="col-md-3">
           <h2 class="fw-bold text-cyan">2k+</h2>
           <p>Emergency Alerts Managed</p>
         </div>
 
-        
+        <div class="col-md-3">
+          <h2 class="fw-bold text-cyan">99.9%</h2>
+          <p>System Uptime</p>
+        </div>
 
       </div>
     </div>
@@ -134,20 +185,32 @@
     </div>
   </section>
 
-  <!-- TERMS -->
+    <!-- ============================================================
+       ⭐⭐⭐ TERMS & CONDITIONS SECTION (ADDED UNDER PAGE) ⭐⭐⭐
+  ============================================================ -->
   <section id="terms" class="py-4 text-center" style="background:#FFF5F5; border-top:1px solid #eee;">
     <div class="container">
-      <h3 class="fw-bold mb-3" style="color:#C40000;">TERMS & CONDITIONS</h3>
+
+      <h3 class="fw-bold mb-3" style="color:#C40000;">
+        TERMS & CONDITIONS
+      </h3>
+
       <p style="color:#444; max-width:900px; margin:auto;">
         By using the Kaappaan Secure Platform, you agree to our terms regarding safety reporting,
-        emergency communication, responsible alert usage and data privacy.
+        emergency communication, responsible alert usage, and data privacy.
+        Misuse of emergency services, providing false information or triggering fake alerts may result in
+        account suspension or legal action. Location access is required to enable accurate emergency response.
+        Continued use of this platform confirms your acceptance of all updated terms and policies.
       </p>
+
     </div>
   </section>
 
 </div>
 
-<!-- FOOTER -->
-<footer class="new-footer text-center py-3">
-  <small>© {{ currentYear }} Kaappaan Secure Platform — All Rights Reserved.</small>
-</footer>
+  <!-- ============= FOOTER ============= -->
+  <footer class="new-footer text-center py-3">
+    <small>© {{ currentYear }} Kaappaan Secure Platform — All Rights Reserved.</small>
+  </footer>
+
+

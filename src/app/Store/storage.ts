@@ -3,81 +3,47 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class Storage {
 
-  private TOKEN_KEY = 'kaappaan_token';
-  private TENANT_NAME = 'tenantName';
-  private TENANT_ID = 'tenantId';
-  private USER_NAME = 'userName';
-  private USER_ROLE = 'userRole';
+ private TOKEN_KEY = 'kaappaan_token';
 
-  // =====================================================
-  // ⭐ TOKEN
-  // =====================================================
   setToken(token: string) {
     localStorage.setItem(this.TOKEN_KEY, token);
   }
 
-  getToken(): string | null {
+  getToken() {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
-  // =====================================================
-  // ⭐ GENERIC SET / GET
-  // =====================================================
-  setItem(key: string, value: string) {
-    localStorage.setItem(key, value);
+  // Decode JWT
+  private decode(token: string): any {
+    const payload = token.split('.')[1];
+    return JSON.parse(atob(payload));
   }
 
-  getItem(key: string): string | null {
-    return localStorage.getItem(key);
-  }
-
-  // =====================================================
-  // ⭐ TENANT NAME
-  // =====================================================
-  saveTenantName(name: string) {
-    localStorage.setItem(this.TENANT_NAME, name);
-  }
-
-  getTenantName(): string | null {
-    return localStorage.getItem(this.TENANT_NAME);
-  }
-
-  // =====================================================
-  // ⭐ TENANT ID
-  // =====================================================
-  saveTenantId(id: string) {
-    localStorage.setItem(this.TENANT_ID, id);
-  }
-
+  // TenantId extract from JWT if not returned from backend
   getTenantId(): string | null {
-    return localStorage.getItem(this.TENANT_ID);
+    const token = this.getToken();
+    if (!token) return null;
+
+    try {
+      const data = this.decode(token);
+      return data.tenantId || null;
+    } catch {
+      return null;
+    }
   }
 
-  // =====================================================
-  // ⭐ USER NAME (not tenant name)
-  // =====================================================
-  saveUserName(name: string) {
-    localStorage.setItem(this.USER_NAME, name);
+  saveTenantName(name: string) {
+    localStorage.setItem('tenantName', name);
   }
 
-  getUserName(): string | null {
-    return localStorage.getItem(this.USER_NAME);
+  getTenantName() {
+    return localStorage.getItem('tenantName');
   }
 
-  // =====================================================
-  // ⭐ USER ROLE (TenantAdmin, SuperAdmin, Responder)
-  // =====================================================
-  saveUserRole(role: string) {
-    localStorage.setItem(this.USER_ROLE, role);
+  saveTenantId(id: string) {
+    localStorage.setItem('tenantId', id);
   }
 
-  getUserRole(): string | null {
-    return localStorage.getItem(this.USER_ROLE);
-  }
-
-  // =====================================================
-  // ⭐ CLEAR ALL DATA
-  // =====================================================
   clearAll() {
     localStorage.clear();
   }
