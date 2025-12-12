@@ -14,7 +14,7 @@ export class Dashboard {
    service = inject(UserService);
   storage = inject(Storage);
   router = inject(Router);
-
+  currentYear = new Date().getFullYear();
   tenantName = 'Unknown Tenant';
   tenantId = '';
   users: any[] = [];

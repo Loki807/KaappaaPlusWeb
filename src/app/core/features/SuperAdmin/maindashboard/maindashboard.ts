@@ -46,5 +46,5 @@ logout() {
    this.router.navigate(['/firstpage']);
   }
   goAdmin(){
-   this.router.navigate(['/AdminDetails']);}
+   this.router.navigate(['/AdminService']);}
 }

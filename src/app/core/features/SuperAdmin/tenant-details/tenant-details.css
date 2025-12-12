@@ -1,7 +1,7 @@
 /* BACKGROUND */
 .tenant-list-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #FFF5F5, #FFFFFF);
+  background: linear-gradient(135deg,#FFFFFF, #FFFFFF);
   padding-top: 90px;
   padding-bottom: 80px;
   font-family: "Poppins", sans-serif;
@@ -14,22 +14,9 @@
 }
 
 /* BACK BUTTON (same as logout) */
-.btn-nav-back {
-  background: rgba(166, 4, 4, 0.932);
-  color: #f2a9a9 !important;
-  border: 1px solid rgba(43, 1, 1, 0.934);
-  padding: 8px 18px;
-  border-radius: 10px;
-  font-weight: 600;
-  backdrop-filter: blur(6px);
-  transition: 0.3s ease;
-}
 
-.btn-nav-back:hover {
-  background: #7A0101; /* darker maroon */
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(92,0,0,0.5);
-}
+
+
 /* Container for actions button */
 .dashboard-actions {
   display: flex;
@@ -41,6 +28,7 @@
 .btn-create {
   background-color: #5C0000;
   border: none;
+   margin-right: 180px;
   color: #fff;
   font-weight: 700;
   padding: 10px 20px;
@@ -116,7 +104,7 @@
   background-color: #8b0000;
   color: #fff;
   padding: 10px 18px;
- margin-left: 10px;
+ margin-left: 1050px;
   border: none;
   border-radius: 8px;
   font-weight: 600;
@@ -177,15 +165,19 @@
   font-weight: 600;
 }
 
-/* FOOTER */
 .footer {
-  background:#f5cccc;
-  color:#5C0000;
+  width: 100%;
   text-align: center;
-  padding: 12px;
+  padding: 14px 0;
+  background: #5c0000;
+  color: #ffe8e8;
+  font-size: 14px;
+  font-weight: 600;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.25);
+  z-index: 999;
 }
 
 /* ANIMATION */

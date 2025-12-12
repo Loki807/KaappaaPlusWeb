@@ -5,7 +5,7 @@
 ================================ */
 .login-page {
   min-height: 100vh;
-  background: #ffffff;
+  background:  #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +19,7 @@
 .login-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #FFF5F5, #FFFFFF);
+  background: linear-gradient(135deg, #ffe8e8, #FFFFFF);
   z-index: 0;
 }
 
@@ -126,14 +126,7 @@ button:hover {
   box-shadow: 0 8px 24px rgba(255, 26, 26, 0.35);
 }
 
-/* Footer */
-.footer {
-  position: absolute;
-  bottom: 10px;
-  text-align: center;
-  color: #772222;
-  font-size: 0.85rem;
-}
+
 
 /* Animations */
 @keyframes fadeUp {
@@ -162,4 +155,18 @@ button:hover {
   cursor: pointer;
   font-size: 20px;
   color: #555;
+}
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 14px 0;
+  background: #5c0000;
+  color: #ffe8e8;
+  font-size: 14px;
+  font-weight: 600;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.25);
+  z-index: 999;
 }

@@ -144,6 +144,21 @@
   background-color: #5C0000; /* Bootstrap cyan */
   color: white;
   border: none;
+  btn-modern {
+  background: #A00101;
+  color: #420000;
+   margin-left: 1050px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 800;
+  padding: 10px 24px;
+  transition: 0.25s ease;
+  box-shadow: 0 10px 24px rgba(160,1,1,0.25);
+}
+.btn-modern:hover {
+  background: #420000;
+  transform: translateY(-2px);
+}
   padding: 6px 15px;
   border-radius: 10px;
   font-size: 20px;
@@ -164,4 +179,16 @@
 }
 .district-card:hover .blink {
   animation: blinkAnim 0.55s infinite ease-in-out;
+}
+/* Footer */
+.section-footer {
+  background: #FFF5F5;
+  padding: 12px 16px;
+  border-top: 1px solid rgba(92,0,0,0.15);
+  border-radius: 0 0 16px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #5C0000;
+  font-weight: 600;
 }

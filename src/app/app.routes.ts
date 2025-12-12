@@ -15,7 +15,7 @@ export const routes: Routes = [
   { path: 'dashboard', loadComponent: () => import('./core/features/SuperAdmin/dashboard/dashboard').then(m => m.Dashboard) },
    { path: 'maindashboard', loadComponent: () => import('./core/features/SuperAdmin/maindashboard/maindashboard').then(m => m.Maindashboard) },
       { path: 'AdminDetails', loadComponent: () => import('./core/features/SuperAdmin/admin-view/admin-view').then(m => m.AdminView ) },
-   
+         { path: 'AdminService', loadComponent: () => import('./core/features/SuperAdmin/admin-service/admin-service').then(m => m.AdminService ) },
    { path: 'tenant-create', loadComponent: () => import('./core/features/SuperAdmin/tenant-create/tenant-create').then(m => m.TenantCreate),   resolve: { tenants: tenantResolver },
    canDeactivate: [UnsavedChangesGuard]},
    { 

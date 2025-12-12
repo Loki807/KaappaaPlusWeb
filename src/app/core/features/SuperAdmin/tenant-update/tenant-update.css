@@ -155,3 +155,18 @@ input:focus {
 .navbar-brand {
   color: #5C0000 !important;
 }
+/* ⭐ FIXED Kaappaan Footer */
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 14px 0;
+  background:  #5c0000;      /* Deep Kaappaan Red */
+  color:#ffe8e8 ;
+  font-size: 14px;
+  font-weight: 500;
+  position: fixed;          /* ⭐ Always bottom */
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.25); /* Smooth top shadow */
+  z-index: 999;
+}

@@ -46,6 +46,7 @@
   background: #A00101;
   color: #fff;
   border: none;
+  
   padding: 9px 18px;
   border-radius: 8px;
   font-weight: 600;
@@ -53,10 +54,7 @@
   transition: 0.3s ease;
 }
 
-.btn-nav:hover {
-  background: #5C0000;
-  transform: translateY(-2px);
-}
+
 
 /* ============================================
    CREATE BUTTON
@@ -162,4 +160,22 @@
 
 .animate-fadeIn {
   animation: fadeIn 0.8s ease;
+}
+/* Back button */
+.btn-back {
+  background-color: #8b0000;
+  color: #fff;
+  padding: 10px 18px;
+ margin-left: 1050px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  white-space: nowrap;
+   gap: 5px;
+}
+
+.btn-back:hover {
+  background-color: #a30000;
 }

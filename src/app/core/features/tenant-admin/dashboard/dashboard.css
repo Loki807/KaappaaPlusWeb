@@ -143,7 +143,7 @@
 .create-btn {
   background: #5C0000;
   border: none;
-  padding: 10px 20px;
+  padding: 10px px;
   color: #fff;
   border-radius: 8px;
   font-weight: 600;
@@ -179,7 +179,7 @@
 }
 
 .user-table th {
-  background: #5C0000;
+  background: #cc2a2a;
   padding: 12px;
   text-align: left;
   text-transform: uppercase;

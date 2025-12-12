@@ -1,73 +1,77 @@
 <div class="dashboard-page">
+
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
     <div class="container d-flex align-items-center justify-content-between">
-      <!-- 🔰 Brand + Tenant/User Buttons -->
+
+      <!-- Brand -->
       <div class="d-flex align-items-center gap-3">
         <a class="navbar-brand fw-bold fs-4 m-0" href="#">
-          <i class="bi bi-shield-lock me-2 text-info"></i>
-          Kaappaan <span class="text-light"></span>
+          <i class="bi bi-shield-lock me-2"></i>
+          Kaappaan <span class="brand-sub"></span>
         </a>
-
-       
       </div>
 
-      <!-- 🔘 Logout -->
-      <button class="btn btn-outline-info btn-sm" (click)="logout()">Logout</button>
+      <!-- Right buttons -->
+      <div class="d-flex align-items-center gap-2">
+        <!-- optional quick action -->
+        <button class="btn btn-outline-info btn-sm" (click)="logout()">Logout</button>
+      </div>
+
     </div>
   </nav>
 
-  <!-- ===== MAIN SCROLLABLE BODY ===== -->
-  <main class="dashboard-content text-light text-center">
-    <div class="container pt-5">
-      <h1 class="fw-bold mb-3 animate__animated animate__fadeInDown">
+  <!-- ===== MAIN BODY ===== -->
+  <main class="dashboard-content text-center">
+    <div class="container">
+
+      <h1 class="page-title animate__animated animate__fadeInDown">
         🧭 Super Admin Dashboard
       </h1>
-      <p class="lead mb-5 animate__animated animate__fadeInUp">
+
+      <p class="page-sub animate__animated animate__fadeInUp">
         Manage your platform — Tenants, Users, and System Stats.
       </p>
 
-      <!-- 📊 Stat Cards -->
+      <!-- ✅ QUICK STATS -->
       <div class="row g-4 justify-content-center mb-5">
-        <div class="col-md-4">
-          <div   class="dashboard-card h-100" 
-                    style="cursor:pointer" 
-                      (click)="goTo()">
-            <i class="bi bi-building text-info fs-1 mb-3"></i>
+
+        <div class="col-12 col-md-4">
+          <div class="dashboard-card h-100 clickable" (click)="goTo()">
+            <i class="bi bi-building fs-1 mb-3"></i>
             <h5 class="fw-bold">Total Tenants</h5>
-          <p class="display-6 fw-bold text-info">{{ totalTenants }}</p>
+            <p class="display-number">{{ totalTenants }}</p>
             <p class="text-gray">Active Tenant Organizations</p>
-             
           </div>
         </div>
 
-        <div class="col-md-4">
-          <div class="dashboard-card h-100"
-             style="cursor:pointer" 
-                      (click)="goAdmin()">>
-            <i class="bi bi-people-fill text-success fs-1 mb-3"></i>
+        <div class="col-12 col-md-4">
+          <div class="dashboard-card h-100 clickable" (click)="goAdmin()">
+            <i class="bi bi-people-fill fs-1 mb-3"></i>
             <h5 class="fw-bold">Total Admins</h5>
-            <p class="display-6 fw-bold text-success">{{ totalDepartments }}</p>
+            <p class="display-number">{{ totalDepartments }}</p>
             <p class="text-gray">Registered Admins & Responders</p>
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-12 col-md-4">
           <div class="dashboard-card h-100">
-            <i class="bi bi-exclamation-triangle-fill text-warning fs-1 mb-3"></i>
+            <i class="bi bi-exclamation-triangle-fill fs-1 mb-3"></i>
             <h5 class="fw-bold">Active Alerts</h5>
-            <p class="display-6 fw-bold text-warning">Coming Soon</p>
+            <p class="display-number coming">Coming Soon</p>
             <p class="text-gray">Ongoing Emergency Alerts</p>
           </div>
         </div>
+
       </div>
 
-      <!-- ⚙️ Tenant & User Management Panels -->
+      <!-- ✅ MANAGEMENT PANELS -->
       <div class="row g-4 justify-content-center mb-5">
-        <div class="col-md-5">
+
+        <div class="col-12 col-lg-5">
           <div class="option-card h-100">
-            <i class="bi bi-building-gear fs-1 text-info mb-3"></i>
-            <h4 class="fw-bold text-white">Tenant Management</h4>
+            <i class="bi bi-building-gear fs-1 mb-3"></i>
+            <h4 class="fw-bold">Tenant Management</h4>
             <p class="text-gray mb-4">
               View, edit, or remove tenants from the Kaappaan platform.
             </p>
@@ -77,10 +81,10 @@
           </div>
         </div>
 
-        <div class="col-md-5">
+        <div class="col-12 col-lg-5">
           <div class="option-card h-100">
-            <i class="bi bi-person-gear fs-1 text-success mb-3"></i>
-            <h4 class="fw-bold text-white">User Management</h4>
+            <i class="bi bi-person-gear fs-1 mb-3"></i>
+            <h4 class="fw-bold">User Management</h4>
             <p class="text-gray mb-4">
               View or assign roles to users across all tenants.
             </p>
@@ -89,13 +93,17 @@
             </button>
           </div>
         </div>
+
       </div>
+
     </div>
   </main>
+
 </div>
-  <!-- ===== FIXED FOOTER ===== -->
-<footer class="footer text-center text-white-50">
-    <div class="container">
-      <small>© {{ currentYear }} Kaappaan Safety System | All Rights Reserved.</small>
-    </div>
+
+<!-- ===== FIXED FOOTER ===== -->
+<footer class="footer text-center">
+  <div class="container">
+    <small>© {{ currentYear }} Kaappaan Safety System | All Rights Reserved.</small>
+  </div>
 </footer>

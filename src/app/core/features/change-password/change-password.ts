@@ -17,7 +17,7 @@ export class ChangePassword {
   auth = inject(Auth);
   route = inject(ActivatedRoute);
   router = inject(Router);
-
+  currentYear = new Date().getFullYear();
   email = this.route.snapshot.queryParamMap.get('email') || '';
   message = '';
   loading = false;
