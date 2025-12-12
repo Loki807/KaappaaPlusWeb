@@ -2,49 +2,51 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class Storage {
+private TOKEN_KEY = 'kaappaan_token';
 
- private TOKEN_KEY = 'kaappaan_token';
+  private TENANT_ID_KEY = 'tenantId';
+  private TENANT_NAME_KEY = 'tenantName';
 
-  setToken(token: string) {
-    localStorage.setItem(this.TOKEN_KEY, token);
+  // generic
+  set(key: string, value: string) { localStorage.setItem(key, value); }
+  get(key: string) { return localStorage.getItem(key); }
+
+  // token
+  setToken(tok: string) { localStorage.setItem(this.TOKEN_KEY, tok); }
+  getToken() { return localStorage.getItem(this.TOKEN_KEY); }
+
+  // tenant helpers (optional but clean)
+  setTenantId(id: string) { localStorage.setItem(this.TENANT_ID_KEY, id); }
+  getTenantIdFromStorage() { return localStorage.getItem(this.TENANT_ID_KEY); }
+
+  setTenantName(name: string) { localStorage.setItem(this.TENANT_NAME_KEY, name); }
+  getTenantName() { return localStorage.getItem(this.TENANT_NAME_KEY); }
+
+  // JWT decode -> tenantId
+  private b64urlDecode(s: string) {
+    s = s.replace(/-/g, '+').replace(/_/g, '/');
+    const pad = s.length % 4;
+    if (pad) s += '='.repeat(4 - pad);
+    return atob(s);
   }
 
-  getToken() {
-    return localStorage.getItem(this.TOKEN_KEY);
-  }
-
-  // Decode JWT
-  private decode(token: string): any {
-    const payload = token.split('.')[1];
-    return JSON.parse(atob(payload));
-  }
-
-  // TenantId extract from JWT if not returned from backend
   getTenantId(): string | null {
-    const token = this.getToken();
-    if (!token) return null;
+    const t = this.getToken(); if (!t) return null;
+    const p = t.split('.'); if (p.length !== 3) return null;
 
     try {
-      const data = this.decode(token);
-      return data.tenantId || null;
+      const payload = JSON.parse(this.b64urlDecode(p[1]));
+      return payload['tenantId'] || payload['tid'] || payload['tenant_id'] || null;
     } catch {
       return null;
     }
   }
 
-  saveTenantName(name: string) {
-    localStorage.setItem('tenantName', name);
-  }
-
-  getTenantName() {
-    return localStorage.getItem('tenantName');
-  }
-
-  saveTenantId(id: string) {
-    localStorage.setItem('tenantId', id);
-  }
-
   clearAll() {
-    localStorage.clear();
+    localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.TENANT_ID_KEY);
+    localStorage.removeItem(this.TENANT_NAME_KEY);
   }
+  
 }
+

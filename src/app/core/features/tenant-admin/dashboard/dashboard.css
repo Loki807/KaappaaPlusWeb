@@ -250,3 +250,11 @@
 .btn-delete:hover {
   background: #dc2626;
 }
+/* Footer */
+.footer {
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+  color: #772222;
+  font-size: 0.85rem;
+}

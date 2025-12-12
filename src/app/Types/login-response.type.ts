@@ -7,5 +7,5 @@ export interface LoginResponse {
 
   tenantId: string;       // from backend
   tenantName: string;     // from backend
-  serviceType: string;    // from backend
+   // from backend
 }

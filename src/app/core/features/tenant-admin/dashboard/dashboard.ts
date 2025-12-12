@@ -1,44 +1,51 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { Storage } from '../../../../Store/storage';
-import { FormsModule } from '@angular/forms';
-
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.css'],
+  styleUrl: './dashboard.css',
+  
 })
-export class Dashboard implements OnInit {
-
-  service = inject(UserService);
+export class Dashboard {
+   service = inject(UserService);
   storage = inject(Storage);
   router = inject(Router);
 
-  tenantName: string = "Unknown Tenant";
-  tenantId: string = "";
+  tenantName = 'Unknown Tenant';
+  tenantId = '';
   users: any[] = [];
   loading = true;
-  menuOpen = false;
+  serviceType = '';
+ 
 
-  ngOnInit() {
+  // ------------------------------
+  // 1️⃣ LOAD DASHBOARD
+ngOnInit() {
+  this.tenantId =
+    this.storage.getTenantIdFromStorage() ??
+    this.storage.getTenantId() ??
+    '';
 
-    this.tenantId = this.storage.getTenantId() ?? "";
+  this.tenantName = this.storage.getTenantName() ?? 'Unknown Tenant';
 
-    if (!this.tenantId) {
-      this.loading = false;
-      return;
-    }
-
-    this.tenantName = this.storage.getTenantName() ?? "Unknown Tenant";
-
-    this.loadUsers();
+  if (!this.tenantId) {
+    this.loading = false;
+    return;
   }
 
-  loadUsers() {
+  this.loadUsers();
+}
+
+  
+
+  // ------------------------------
+  // 2️⃣ LOAD USERS OF THIS TENANT
+  // ------------------------------
+    loadUsers() {
     this.service.getTenantUsers().subscribe({
       next: (res) => {
         this.users = res.filter(u => u.role !== "TenantAdmin");
@@ -48,34 +55,42 @@ export class Dashboard implements OnInit {
     });
   }
 
+  // ------------------------------
+  // 3️⃣ VIEW USER
+  // ------------------------------
   viewUser(id: string) {
     this.router.navigate(['/user-view', id]);
   }
 
+  // ------------------------------
+  // 4️⃣ EDIT USER
+  // ------------------------------
   editUser(id: string) {
     this.router.navigate(['/user-edit', id]);
   }
 
+  // ------------------------------
   deleteUser(id: string) {
-    if (!confirm("⚠ Delete this user?")) return;
+  if (!confirm("⚠ Are you sure you want to delete this user?")) return;
 
-    this.service.deleteUser(id).subscribe({
-      next: () => {
-        this.users = this.users.filter(u => u.id !== id);
-      }
-    });
-  }
+  this.service.deleteUser(id).subscribe({
+    next: () => {
+      alert("User deleted successfully!");
+      this.users = this.users.filter(u => u.id !== id); // update table
+    },
+    error: err => {
+      console.error(err);
+      alert("❌ Delete failed!");
+    }
+  });
 
-  toggleProfileMenu() {
-    this.menuOpen = !this.menuOpen;
-  }
+}
 
-  createUser() {
+
+createUser() {
     this.router.navigate(['/users-create']);
-  }
-
-  logout() {
-    this.storage.clearAll();
-    this.router.navigate(['/login']);
-  }
+}
+Back() {
+    this.router.navigate(['/users-create']);
+}
 }

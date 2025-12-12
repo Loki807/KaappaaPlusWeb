@@ -18,25 +18,15 @@ export class ChangePassword {
   route = inject(ActivatedRoute);
   router = inject(Router);
 
-
   email = this.route.snapshot.queryParamMap.get('email') || '';
   message = '';
   loading = false;
-  showOldPassword = false;
-showNewPassword = false;
 
   form = this.fb.group({
     oldPassword: ['', Validators.required,Validators.minLength(6)],
     newPassword: ['', [Validators.required]],
   });
 
-  toggleOldPassword() {
-  this.showOldPassword = !this.showOldPassword;
-}
-
-toggleNewPassword() {
-  this.showNewPassword = !this.showNewPassword;
-}
   submit() {
     if (this.form.invalid) return;
 

@@ -6,6 +6,7 @@ import { Auth } from '../../services/auth';
 import { Router } from '@angular/router';
 import { Storage } from '../../../Store/storage';
 
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -15,70 +16,88 @@ import { Storage } from '../../../Store/storage';
 })
 export class Login {
 
-  fb = inject(FormBuilder);
+fb = inject(FormBuilder);
   auth = inject(Auth);
   router = inject(Router);
   storage = inject(Storage);
-
-  message = '';
-  loading = false;
-  showPassword = false;
-  currentYear = new Date().getFullYear();
-
-  togglePassword() {
-    this.showPassword = !this.showPassword;
-  }
+   currentYear = new Date().getFullYear();
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   });
 
-  submit() {
+  message = '';
+  loading = false;
+
+   submit() {
     if (this.form.invalid) {
-      this.message = '⚠️ Enter email and password.';
+      this.message = '⚠️ Please enter valid email and password.';
       return;
     }
 
     const request: LoginRequest = this.form.value as LoginRequest;
     this.loading = true;
+    this.message = '';
 
-    this.auth.login(request).subscribe({
-      next: (res) => {
-        this.loading = false;
+   this.auth.login(request).subscribe({
+  next: (res) => {
+    this.loading = false;
 
-        // FIRST LOGIN → CHANGE PASSWORD
-        if (res.requirePasswordChange || res.message?.includes('Password change required')) {
-          this.router.navigate(['/change-password'], {
-            queryParams: { email: request.email },
-          });
-          return;
-        }
+    // 1️⃣ First-time login → change password
+    if (res.message?.includes('Password change required')) {
+      this.router.navigate(['/change-password'], {
+        queryParams: { email: request.email },
+      });
+      return;
+    }
 
-        // SAVE TOKEN
-        this.storage.setToken(res.token);
+   // 2️⃣ Save token
+this.storage.setToken(res.token);
 
-        // SAVE TENANT DATA
-        this.storage.saveTenantName(res.tenantName);
-        this.storage.saveTenantId(res.tenantId);
-       
+// 3️⃣ Extract tenantId from the token
+const tid = this.storage.getTenantId();
 
-        // NAVIGATION
-        if (res.role === 'TenantAdmin') {
-          this.router.navigate(['/tenatadminmain']);
-        } 
-        else if (res.role === 'SuperAdmin') {
-          this.router.navigate(['/maindashboard']);
-        } 
-        else {
-          this.message = '❌ Access denied.';
-        }
-      },
-
-      error: () => {
-        this.loading = false;
-        this.message = '❌ Invalid email or password.';
-      }
-    });
-  }
+// 4️⃣ Save tenantId so dashboard can read it
+if (tid) {
+  this.storage.setTenantId(tid);     // ✅ CHANGE (instead of localStorage.setItem)
 }
+
+// ⭐ 5️⃣ Save tenantName (THIS IS THE FIX)
+const tname = (res as any).tenantName || (res as any).name;   // tenantName preferred
+if (tname) {
+  this.storage.setTenantName(tname); // ✅ NEW
+}
+
+       // ⭐ 5️⃣ Save tenant info (NEW)
+    
+    // 5️⃣ Role-based navigation
+    switch (res.role) {
+      case 'SuperAdmin':
+        this.router.navigate(['/maindashboard']);
+        break;
+
+      case 'TenantAdmin':
+        this.router.navigate(['/tenant-dashboard']);
+        break;
+
+      default:
+        this.message = '🚫 Access denied you are User cannt Logining...';
+        setTimeout(() => this.router.navigate(['/home']), 1500);
+        break;
+
+    }
+  },
+
+  error: (err) => {
+    this.loading = false;
+    console.error('Login error:', err);
+    this.message = '❌ Invalid email or password.';
+
+    this.form.controls['email'].setValue('');
+    this.form.controls['password'].setValue('');
+  }
+});
+
+   }
+  }

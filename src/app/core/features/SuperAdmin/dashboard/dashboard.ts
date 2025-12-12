@@ -12,14 +12,15 @@ import { TenantService } from '../../../services/tenant.service';
 })
 export class Dashboard {
 
- tenants: Tenant[] = [];
+tenants: Tenant[] = [];
 
   policeCount = 0;
   fireCount = 0;
   ambulanceCount = 0;
 
   selectedDistrict: string | null = null;
-   currentYear = new Date().getFullYear();
+  currentYear = new Date().getFullYear();
+
   constructor(
     private tenantService: TenantService,
     private router: Router,
@@ -28,13 +29,14 @@ export class Dashboard {
 
   ngOnInit(): void {
 
-    // ⭐ READ DISTRICT FROM QUERY
+    // 1️⃣ Read district from URL
     this.selectedDistrict = this.route.snapshot.queryParamMap.get('district');
 
+    // 2️⃣ Get all tenants
     this.tenantService.getAllTenants().subscribe({
       next: (data) => {
 
-        // If district filter exists → filter first
+        // 3️⃣ Apply district filter
         if (this.selectedDistrict) {
           data = data.filter(t =>
             t.stateOrDistrict?.toLowerCase() === this.selectedDistrict!.toLowerCase()
@@ -43,36 +45,28 @@ export class Dashboard {
 
         this.tenants = data;
 
-        // Count service types (AFTER district applied)
+        // 4️⃣ Count service types
         this.policeCount = data.filter(t => t.serviceType === 'Police').length;
         this.fireCount = data.filter(t => t.serviceType === 'Fire').length;
         this.ambulanceCount = data.filter(t => t.serviceType === 'Ambulance').length;
-      },
-      error: (err) => console.error('Error fetching tenants', err)
-    });
-  }
-
-  // CLICK POLICE / FIRE / AMBULANCE
-  viewTenants(serviceType: string) {
-    this.router.navigate(['/tenant-details'], {
-      queryParams: { 
-        serviceType: serviceType,
-        district: this.selectedDistrict || null
       }
     });
   }
 
-  viewAllTenants() {
-    this.router.navigate(['/tenant-details']); 
+  // When clicking Police / Fire / Ambulance
+  viewTenants(serviceType: string) {
+    this.router.navigate(['/tenant-details'], {
+      queryParams: { 
+        serviceType,
+        district: this.selectedDistrict
+      }
+    });
   }
 
-  goToTenantCreate() {
-    this.router.navigate(['/tenant-create']);
-  }
+
 
   logout() {
-    localStorage.clear();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/firstpage']);
   }
 
 }

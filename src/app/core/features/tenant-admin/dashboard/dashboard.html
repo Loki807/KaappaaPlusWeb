@@ -1,3 +1,4 @@
+<!-- ================= NAVBAR ================= -->
 <nav class="navbar">
   <div class="left">
     <i class="bi bi-shield-lock logo-icon"></i>
@@ -5,51 +6,65 @@
   </div>
 
   <div class="right">
-    <div class="profile-wrapper" (click)="toggleProfileMenu()">
-      <i class="bi bi-person-circle profile-icon"></i>
 
-      <div class="profile-menu" [class.show]="menuOpen">
-        <button (click)="logout()">Logout</button>
-      </div>
-    </div>
   </div>
 </nav>
 
-<div class="dashboard-container">
+<!-- ================= TENANT HEADER ================= -->
+<div class="tenant-header">
+  <div class="tenant-right">
+    <span class="tenant-label">Tenant:</span>
+    <!-- ✅ THIS WILL SHOW -->
+    <span class="tenant-value">{{ tenantName }}</span>
+  </div>
 
+  <div class="tenant-right">
+    <span class="tenant-label">Tenant ID:</span>
+    <span class="tenant-value">{{ tenantId }}</span>
+  </div>
+</div>
 
-
+<!-- ================= BUTTONS ================= -->
+<div class="top-actions">
   <button class="create-btn" (click)="createUser()">+ Create User</button>
 
-  <div *ngIf="loading" class="loading-box">Loading users...</div>
+</div>
 
-  <table *ngIf="!loading && users.length > 0" class="user-table">
+<!-- ================= USER TABLE ================= -->
+@if (!loading && users.length > 0) {
+
+  <table class="user-table">
     <thead>
       <tr>
         <th>Name</th>
         <th>Email</th>
-        <th>Role</th>
         <th>Phone</th>
+        <th>Role</th>
         <th>Status</th>
         <th width="200px">Actions</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr *ngFor="let u of users">
-        <td>{{ u.name }}</td>
-        <td>{{ u.email }}</td>
-        <td>{{ u.role }}</td>
-        <td>{{ u.phone }}</td>
-        <td>{{ u.isActive ? 'Active' : 'Inactive' }}</td>
-
-        <td class="actions">
-          <button class="view" (click)="viewUser(u.id)">View</button>
-          <button class="edit" (click)="editUser(u.id)">Edit</button>
-          <button class="delete" (click)="deleteUser(u.id)">Delete</button>
-        </td>
-      </tr>
+      @for (u of users; track u.id) {
+        <tr>
+          <td>{{ u.name }}</td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.phone }}</td>
+          <td>{{ u.role }}</td>
+          <td>{{ u.isActive ? 'Active' : 'Inactive' }}</td>
+          <td class="actions-cell">
+            <button class="btn-view" (click)="viewUser(u.id)">View</button>
+            <button class="btn-edit" (click)="editUser(u.id)">Edit</button>
+            <button class="btn-delete" (click)="deleteUser(u.id)">Delete</button>
+          </td>
+        </tr>
+      }
     </tbody>
   </table>
 
-</div>
+}
+
+@if (!loading && users.length === 0) {
+  <p class="empty">No users found.</p>
+}

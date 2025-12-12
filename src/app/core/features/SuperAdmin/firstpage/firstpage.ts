@@ -13,13 +13,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class Firstpage {
  
-  router = inject(Router);
-
-  currentYear = new Date().getFullYear();
+   router = inject(Router);
 
   searchText: string = "";
-  noResults: boolean = false;
+  noResults = false;
+  currentYear = new Date().getFullYear();
 
+  // All Sri Lanka districts
   districts: string[] = [
     "Ampara", "Anuradhapura", "Badulla", "Batticaloa", "Colombo",
     "Galle", "Gampaha", "Hambantota", "Jaffna", "Kalutara",
@@ -30,29 +30,23 @@ export class Firstpage {
 
   filteredDistricts = [...this.districts];
 
-  // 🔍 Search filter
+  // ✨ Search districts
   filterDistricts() {
     const txt = this.searchText.toLowerCase().trim();
     this.filteredDistricts = this.districts.filter(d =>
       d.toLowerCase().includes(txt)
     );
 
-      // If nothing found — show empty state
-  this.noResults = this.filteredDistricts.length === 0;
+    this.noResults = this.filteredDistricts.length === 0;
   }
 
-  // 👉 Navigate to Dashboard with district filter
+  // ✨ When user clicks a district → go to dashboard
   viewDistrict(district: string) {
     this.router.navigate(['/dashboard'], {
       queryParams: { district }
     });
   }
-
-  goToTenantCreate() {
-    this.router.navigate(['/tenant-create']);
-  }
-
-  logout(){
-    this.router.navigate(['/login']);
+   goBack(){
+    this.router.navigate(['/maindashboard']);
   }
 }

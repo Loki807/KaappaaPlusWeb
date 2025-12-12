@@ -1,5 +1,6 @@
 <div class="tenant-dashboard">
-  <!-- 🔝 Navbar -->
+
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="brand">
       <i class="bi bi-shield-lock"></i>
@@ -7,21 +8,15 @@
     </div>
 
     <div class="nav-buttons">
-      
-      <button class="btn-nav" (click)="logout()">🚪 Logout</button>
+      <button class="btn-nav" (click)="logout()">Back</button>
     </div>
   </nav>
 
-  <!-- 🧭 Dashboard actions -->
-  <div class="dashboard-actions">
-    <button class="btn-create" (click)="goToTenantCreate()">➕ Create New Tenant</button>
-  </div>
 
-  <!-- 🏢 Tenant Statistics -->
+
+  <!-- SERVICE TYPE CARDS -->
   <section class="dashboard-container">
-    
 
-    <!-- POLICE -->
     <div class="section police" (click)="viewTenants('Police')">
       <div class="section-head">
         <h2>👮 Police Tenants</h2>
@@ -33,7 +28,6 @@
       </div>
     </div>
 
-    <!-- FIRE -->
     <div class="section fire" (click)="viewTenants('Fire')">
       <div class="section-head">
         <h2>🔥 Fire Tenants</h2>
@@ -45,7 +39,6 @@
       </div>
     </div>
 
-    <!-- AMBULANCE -->
     <div class="section ambulance" (click)="viewTenants('Ambulance')">
       <div class="section-head">
         <h2>🚑 Ambulance Tenants</h2>
@@ -56,10 +49,11 @@
         <i class="bi bi-chevron-right"></i>
       </div>
     </div>
+
   </section>
 
-  <!-- ⚫ Footer -->
   <footer class="footer">
-    <small>© {{ currentYear }} Kaappaan | Tenant Management System</small>
+    © {{ currentYear }} Kaappaan | Tenant Management System
   </footer>
+
 </div>

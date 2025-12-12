@@ -56,12 +56,26 @@
 }
 
 
-/* ===== DISTRICT GRID ===== */
+/* ===== DISTRICT GRID (5x5 layout) ===== */
 .district-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  grid-template-columns: repeat(5, 1fr); /* FIXED 5 COLUMNS */
   gap: 18px;
 }
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .district-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .district-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 
 /* ===== DISTRICT CARD ===== */
 .district-card {
@@ -125,4 +139,29 @@
   margin-top: 20px;
   color: #5C0000;
   font-weight: 600;
+}
+.back-btn {
+  background-color: #5C0000; /* Bootstrap cyan */
+  color: white;
+  border: none;
+  padding: 6px 15px;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.back-btn:hover {
+  background-color: #f0280a;
+}
+@keyframes blinkAnim {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+.blink {
+  animation: blinkAnim 0.2s infinite ease-in-out;
+}
+.district-card:hover .blink {
+  animation: blinkAnim 0.55s infinite ease-in-out;
 }

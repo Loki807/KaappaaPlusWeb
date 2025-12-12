@@ -1,50 +1,54 @@
-<div class="user-create-page">
+<div class="create-user-card">
+  <h2>Create User</h2>
 
-  <!-- FORM WRAPPER -->
-  <div class="right-panel">
+  <form [formGroup]="form" (ngSubmit)="submit()">
 
-    <div class="form-card">
+    <label>Name</label>
+    <input formControlName="name" type="text" />
+     @if (form.controls['name'].invalid && form.controls['name'].touched) {
+              <p class="error">Enter a the Name</p>
+            }
 
-      <h2 class="form-title">Create User</h2>
+    <label>Email</label>
+    <input formControlName="email" type="email" />
+    @if (form.controls['email'].invalid && form.controls['email'].touched) {
+              <p class="error">Enter a the Email</p>
+            }
 
-      <form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
+    <label>Phone Number</label>
+    <input formControlName="phone" type="text" />
+    @if (form.controls['phone'].invalid && form.controls['phone'].touched) {
+              <p class="error">Enter a the phone</p>
+            }
 
-        <label>Name</label>
-        <input formControlName="name" type="text" />
+    <label>Role</label>
+    <select formControlName="role">
+      <option value="">Select Role</option>
+      <option value="Police">Police</option>
+      <option value="Fire">Fire</option>
+      <option value="Traffic">Traffic</option>
+      <option value="Ambulance">Ambulance</option>
+      <option value="TenantAdmin">TenantAdmin</option>
+    </select> 
+    @if (form.controls['role'].invalid && form.controls['role'].touched) {
+              <p class="error">Select the Role</p>
+            }
 
-        <label>Email</label>
-        <input formControlName="email" type="email" />
+    <label>Temporary Password</label>
+    <input formControlName="password" type="password" />
+    @if (form.controls['password'].invalid && form.controls['password'].touched) {
+              <p class="error">Enter the valid password</p>
+            }
 
-        <label>Phone Number</label>
-        <input formControlName="phone" type="text" />
+    <button class="btn btn-primary" [disabled]="loading">
+      {{ loading ? 'Creating...' : 'Create' }}
+    </button>
 
-        <label>Role</label>
-        <select formControlName="role">
-          <option value="">Select Role</option>
-          <option value="Police">Police</option>
-          <option value="Fire">Fire</option>
-          <option value="Traffic">Traffic</option>
-          <option value="Ambulance">Ambulance</option>
-          <option value="TenantAdmin">Tenant Admin</option>
-        </select>
-
-        <label>Temporary Password</label>
-        <input formControlName="password" type="password" autocomplete="new-password" />
-
-        <button class="btn-create" [disabled]="loading">
-          {{ loading ? 'Creating...' : 'Create' }}
-        </button>
-
-      </form>
-
-      <button class="btn-back" (click)="back()">Back</button>
-
-    </div>
-
-  </div>
-
+    @if (message) {
+      <p class="message">{{ message }}</p>
+    }
+  </form>
+    <button (click)="back() ">Back</button>
 </div>
 
-<footer class="footer">
-  © 2025 Kaappaan Safety — All Rights Reserved
-</footer>
+ 

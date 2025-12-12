@@ -51,6 +51,8 @@ fb = inject(FormBuilder);
     ]],
     serviceType: ['', Validators.required],
     logoUrl: ['',Validators.required]
+
+
   });
 
 
@@ -91,7 +93,7 @@ canDeactivate() {
       this.form.reset();
 
       // ✅ Redirect smoothly after a short delay
-      setTimeout(() => this.router.navigate(['/dashboard']), 1200);
+      setTimeout(() => this.router.navigate(['/firstpage']), 1200);
     },
     error: (err) => {
       this.loading = false;

@@ -14,94 +14,79 @@ import { FormsModule } from '@angular/forms';
 })
 export class TenantDetails implements OnInit {
 
-  tenants: Tenant[] = [];
+ tenants: Tenant[] = [];
   filteredTenants: Tenant[] = [];
-  originalTenants: Tenant[] = [];   // ⭐ for search
-  loading = true;
-  message = '';
-  searchText = '';
-  currentYear = new Date().getFullYear();
 
   selectedServiceType: string | null = null;
+  selectedDistrict: string | null = null;
+
+  searchText = "";
+  loading = true;
+  currentYear = new Date().getFullYear();
 
   router = inject(Router);
   route = inject(ActivatedRoute);
   tenantService = inject(TenantService);
 
-  // ------------------------------------------------------------------
-  // 🔥 1️⃣ ON PAGE LOAD — GET DATA FROM RESOLVER + FILTER BY DASHBOARD
-  // ------------------------------------------------------------------
- ngOnInit(): void {
-  this.selectedServiceType = this.route.snapshot.queryParamMap.get('serviceType');
+  ngOnInit(): void {
 
-  this.tenants = this.route.snapshot.data['tenants'];
+    // 1️⃣ Get serviceType + district from URL
+    this.selectedServiceType = this.route.snapshot.queryParamMap.get('serviceType');
+    this.selectedDistrict = this.route.snapshot.queryParamMap.get('district');
 
-  if (this.selectedServiceType) {
-    this.filteredTenants = this.tenants.filter(
-      t => t.serviceType === this.selectedServiceType
-    );
-  } else {
+    // 2️⃣ Load tenants from resolver
+    this.tenants = this.route.snapshot.data['tenants'];
+
+    // 3️⃣ Start with all tenants
     this.filteredTenants = [...this.tenants];
+
+    // 4️⃣ Apply district filter
+    if (this.selectedDistrict) {
+      this.filteredTenants = this.filteredTenants.filter(t =>
+        t.stateOrDistrict?.toLowerCase() === this.selectedDistrict!.toLowerCase()
+      );
+    }
+
+    // 5️⃣ Apply service type filter
+    if (this.selectedServiceType) {
+      this.filteredTenants = this.filteredTenants.filter(t =>
+        t.serviceType === this.selectedServiceType
+      );
+    }
+
+    this.loading = false;
   }
 
-  this.loading = false;
-}
+  // 🔍 Search tenants
+  applySearch() {
+    const text = this.searchText.toLowerCase().trim();
 
-  // ------------------------------------------------------------------
-  // 🔍 2️⃣ SEARCH METHOD
-  // ------------------------------------------------------------------
- applySearch() {
-  const text = this.searchText.toLowerCase().trim();
-
-  if (text === '') {
-    this.filteredTenants = [...this.tenants]; // reset all
-    return;
+    this.filteredTenants = this.tenants.filter(t =>
+      (t.name?.toLowerCase().includes(text) || t.code?.toLowerCase().includes(text))
+    );
   }
 
-  this.filteredTenants = this.tenants.filter(t =>
-    t.name.toLowerCase().includes(text) ||
-    t.code.toLowerCase().includes(text)
-  );
-}
-
-  // ------------------------------------------------------------------
-  // 👁 3️⃣ VIEW BUTTON
-  // ------------------------------------------------------------------
   viewTenant(id: string) {
     this.router.navigate(['/tenant/view', id]);
   }
 
-  // ------------------------------------------------------------------
-  // ✏️ 4️⃣ UPDATE BUTTON
- editTenant(id: string) {
-  this.router.navigate(['/tenant/update', id], {
-    queryParams: { from: 'details' }
-  });
-}
-  // ------------------------------------------------------------------
-  // 🗑 5️⃣ DELETE BUTTON
-  // ------------------------------------------------------------------
+  editTenant(id: string) {
+    this.router.navigate(['/tenant/update', id], { queryParams: { from: 'details' } });
+  }
+
   deleteTenant(id: string) {
-    if (!confirm("⚠ Are you sure you want to delete this tenant?")) return;
+    if (!confirm("Are you sure you want to delete this tenant?")) return;
 
-    this.tenantService.deleteTenant(id).subscribe({
-      next: () => {
-        alert("Tenant deleted successfully!");
-
-        // Remove from UI
-        this.filteredTenants = this.filteredTenants.filter(t => t.id !== id);
-      },
-      error: err => {
-        console.error(err);
-        alert("❌ Delete failed!");
-      }
+    this.tenantService.deleteTenant(id).subscribe(() => {
+      this.filteredTenants = this.filteredTenants.filter(t => t.id !== id);
     });
   }
 
-  // ------------------------------------------------------------------
-  // ⬅ BACK BUTTON
-  // ------------------------------------------------------------------
   Back() {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/dashboard'], {
+      queryParams: { district: this.selectedDistrict }
+    });
   }
+  goToTenantCreate(){this.router.navigate(['/tenant-create']);}
+
 }

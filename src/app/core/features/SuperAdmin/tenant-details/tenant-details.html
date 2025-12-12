@@ -3,39 +3,42 @@
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
     <div class="container">
-
-      <a class="navbar-brand fw-bold fs-4" href="#">
+      <a class="navbar-brand fw-bold fs-4">
         <i class="bi bi-shield-lock me-2 text-info"></i>
-        <span class="brand-kaappaan">Kaappaan</span>
-        <span class="text-dark">Admin</span>
+        <span class="brand-kaappaan">Kaappaan</span> <span class="text-dark"></span>
       </a>
 
-      <div class="ms-auto">
-        <button class="btn-nav-back" (click)="Back()">⬅ Back</button>
-      </div>
-
+   
     </div>
   </nav>
+    <div class="dashboard-actions">
+    <button class="btn-create" (click)="goToTenantCreate()">➕ Create New Tenant</button>
+  </div>
 
-
-  <!-- MAIN WRAPPER -->
   <div class="tenant-list-wrapper">
 
     <div class="tenant-card shadow-lg">
 
-      <!-- HEADER -->
       <div class="header-section">
-        <h2 class="page-title">🏢 {{ selectedServiceType || 'All' }} Tenants</h2>
+        <h2 class="page-title">
+          {{ selectedDistrict || 'All Districts' }} District {{ selectedServiceType || 'All' }} Service Department
+        </h2>
+        
+      <!-- Search Box -->
+    <input 
+      type="text"
+      class="search-box"
+      placeholder="Search tenants..."
+      [(ngModel)]="searchText"
+      (input)="applySearch()"
+    />
 
-        <input 
-          type="text"
-          class="search-box"
-          placeholder="Search tenants..."
-          [(ngModel)]="searchText"
-          (input)="applySearch()"
-        />
+    <!-- Back Button -->
+    <button class="btn-back" (click)=" Back()">
+       Back
+    </button>
+        
       </div>
-
 
       <!-- TABLE -->
       @if (!loading && filteredTenants.length > 0) {
@@ -52,9 +55,9 @@
               <th>District</th>
               <th>City</th>
               <th>Postal</th>
-               <th>Contact</th>
+              <th>Contact</th>
               <th>Email</th>
-              <th class="text-center">Actions</th>
+              <th>Actions</th>
             </tr>
           </thead>
 
@@ -69,17 +72,15 @@
                 <td>{{ tenant.city }}</td>
                 <td>{{ tenant.postalCode }}</td>
                 <td>{{ tenant.contactNumber }}</td>
-                 <td>{{ tenant.email }}</td>
+                <td>{{ tenant.email }}</td>
 
                 <td class="action-buttons">
                   <button class="btn-view" (click)="viewTenant(tenant.id)">
                     <i class="bi bi-eye"></i>
                   </button>
-
                   <button class="btn-edit" (click)="editTenant(tenant.id)">
                     <i class="bi bi-pencil-square"></i>
                   </button>
-
                   <button class="btn-delete" (click)="deleteTenant(tenant.id)">
                     <i class="bi bi-trash3"></i>
                   </button>
@@ -94,17 +95,14 @@
 
       }
 
-      <!-- EMPTY STATE -->
       @if (!loading && filteredTenants.length === 0) {
-        <p class="empty-text text-center mt-3">No tenants found.</p>
+        <p class="empty-text">No tenants found.</p>
       }
 
     </div>
 
   </div>
 
-
-  <!-- FOOTER -->
   <footer class="footer">
     © {{ currentYear }} Kaappaan Safety System | All Rights Reserved.
   </footer>
