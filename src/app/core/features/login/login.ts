@@ -78,7 +78,7 @@ if (tname) {
         break;
 
       case 'TenantAdmin':
-        this.router.navigate(['/tenant-dashboard']);
+        this.router.navigate(['/tenatadminmain']);
         break;
 
       default:
