@@ -25,6 +25,35 @@ export class Maindashboard {
   loading = true;
   menuOpen = false;
 
+  // ✅ profile dropdown open/close
+  profileOpen = false;
+  constructor() {}
+
+  toggleProfileMenu() {
+    this.profileOpen = !this.profileOpen;
+  }
+
+  closeProfileMenu() {
+    this.profileOpen = false;
+  }
+
+ 
+  onDocClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+
+    // if clicked inside profile area, don't close
+    if (target.closest('.profile-area')) return;
+
+    this.profileOpen = false;
+  }
+
+  // ✅ navigate to profile page
+  goProfile() {
+    this.closeProfileMenu();
+    this.router.navigate(['/tenant-profile']);   // ✅ change route if your profile route is different
+  }
+
+ 
   ngOnInit() {
 
     // ⭐ Load Tenant ID + Name
@@ -65,7 +94,12 @@ export class Maindashboard {
   goTo() {
    this.router.navigate(['/tenant-dashboard']);
   }
+
+  goSettings(){
+     this.closeProfileMenu();
+  this.router.navigate(['/tenant/update/:id']);
+  }
   
-  
+    
 
 }

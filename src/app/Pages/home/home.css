@@ -268,10 +268,189 @@ body, .home-new {
   animation: pulseIcon 2s infinite ease-in-out;
 }
 
+
+
 @keyframes pulseIcon {
   0% { transform: scale(1); opacity: 0.85; }
   50% { transform: scale(1.15); opacity: 1; }
   100% { transform: scale(1); opacity: 0.85; }
 }
 
+/* ===========================================
+   MAP PREVIEW SECTION
+=========================================== */
 
+.map-preview-section {
+  background: linear-gradient(135deg, #FFFFFF, #FFF5F5);
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.map-image-wrapper {
+  max-width: 900px;
+  margin: auto;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.12);
+  transition: 0.4s ease;
+}
+
+.map-image-wrapper:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(255, 26, 26, 0.25);
+}
+
+.map-preview-img {
+  width: 100%;
+  display: block;
+}
+/* ===========================
+   A) CONTACT & SUPPORT
+=========================== */
+.contact-support{
+  background:#fff;
+  padding: 56px 0 44px 0;
+}
+
+.cs-title{
+  font-weight: 900;
+  color:#5a0000;
+  letter-spacing: .5px;
+  margin-bottom: 10px;
+}
+
+.cs-subtitle{
+  color:#555;
+  margin-bottom: 20px;
+}
+
+/* icons row */
+.cs-icons{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap: 18px;
+}
+
+/* circle icon */
+.cs-icon{
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: 2px solid #6b0000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#6b0000;
+  text-decoration:none;
+  background:#fff;
+  transition: .2s ease;
+}
+
+.cs-icon i{ font-size: 22px; }
+
+.cs-icon:hover{
+  transform: translateY(-2px);
+  background:#6b0000;
+  color:#fff;
+}
+
+
+/* ===========================
+   B) TERMS SECTION
+=========================== */
+.terms-section{
+  background:#FFF5F5;
+  border-top:1px solid #eee;
+  padding: 22px 0;
+}
+
+.terms-title{
+  font-weight: 900;
+  color:#C40000;
+  margin-bottom: 12px;
+}
+
+.terms-text{
+  color:#444;
+  max-width: 900px;
+  margin: auto;
+}
+
+
+/* ===========================
+   C) FOOTER (3 COLUMNS)
+=========================== */
+.kaappaan-footer{
+  background: #5C0000;
+  color:#fff;
+  padding: 26px 0 14px 0;
+}
+
+.footer-top{
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+}
+
+.footer-head{
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.footer-text{
+  color: rgba(255,255,255,.85);
+  margin: 0;
+}
+
+.footer-links{
+  list-style:none;
+  padding: 0;
+  margin: 0;
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-links a{
+  color: rgba(255,255,255,.85);
+  text-decoration:none;
+  transition: .2s ease;
+}
+
+.footer-links a:hover{
+  color:#fff;
+  text-decoration: underline;
+}
+
+/* ✅ Social icons in footer */
+.footer-social{
+  display:flex;
+  gap: 12px;
+  align-items:center;
+}
+
+.footer-social-icon{
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255,255,255,.65);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  transition: .2s ease;
+}
+
+.footer-social-icon i{
+  font-size: 16px;
+}
+
+.footer-social-icon:hover{
+  transform: translateY(-2px);
+  border-color:#fff;
+}
+
+.footer-bottom{
+  padding-top: 12px;
+  color: rgba(255,255,255,.8);
+}

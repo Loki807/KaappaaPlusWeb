@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TenantService } from '../../../services/tenant.service';
 
@@ -11,9 +11,9 @@ export class Maindashboard {
   totalDepartments = 0;
   totalTenants = 0;
   currentYear = new Date().getFullYear();
-  router = inject(Router);                 // ⭐ MUST HAVE
+                   // ⭐ MUST HAVE
   tenantService = inject(TenantService);   // ⭐ MUST HAVE
-
+  profileOpen = false;
 ngOnInit(): void {
   this.tenantService.getAllTenants().subscribe({
     next: (data) => {
@@ -47,4 +47,32 @@ logout() {
   }
   goAdmin(){
    this.router.navigate(['/AdminService']);}
+
+   
+  constructor(private router: Router) {}
+
+  toggleProfileMenu() {
+    this.profileOpen = !this.profileOpen;
+  }
+
+  closeProfileMenu() {
+    this.profileOpen = false;
+  }
+
+  // ✅ click outside -> close menu
+  @HostListener('document:click', ['$event'])
+  onDocClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+
+    // if clicked inside profile area, don't close
+    if (target.closest('.profile-area')) return;
+
+    this.profileOpen = false;
+  }
+
+  // ✅ navigate to profile page
+  goProfile() {
+    this.closeProfileMenu();
+    this.router.navigate(['/tenant-profile']);   // ✅ change route if your profile route is different
+  }
 }

@@ -156,11 +156,87 @@
   left: 0;
   right: 0;
   height: 60px;
-  background: #FFF5F5;
+  background:hwb(0 0% 64%);
   border-top: 1px solid rgba(92,0,0,0.1);
-  color: hwb(0 0% 64%);
+  color: #FFF5F5;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.9rem;
+}
+/* ✅ Profile area (right side) */
+.profile-area{
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* ✅ Profile icon button */
+.profile-btn{
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid rgba(160,1,1,0.25);
+  background: #fff;
+  color: #A00101;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: 0.2s ease;
+}
+
+.profile-btn i{
+  font-size: 22px;
+}
+
+.profile-btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(160,1,1,0.45);
+}
+
+/* ✅ Dropdown menu */
+.profile-menu{
+  position: absolute;
+  top: 52px;
+  right: 0;
+  width: 170px;
+  background: #ffffff;
+  border: 1px solid rgba(92,0,0,0.12);
+  border-radius: 12px;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+  overflow: hidden;
+  z-index: 2000;
+}
+
+/* menu items */
+.menu-item{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-weight: 700;
+  color: #5C0000;
+  cursor: pointer;
+}
+
+.menu-item i{
+  font-size: 16px;
+  color: #A00101;
+}
+
+.menu-item:hover{
+  background: #FFF5F5;
+}
+
+/* logout red */
+.menu-item.danger{
+  color: #b00020;
+}
+.menu-item.danger i{
+  color: #b00020;
 }

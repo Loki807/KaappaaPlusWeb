@@ -50,7 +50,7 @@ fb = inject(FormBuilder);
       Validators.pattern(/^(?:\+94|0)\d{9}$/),Validators.maxLength(10)
     ]],
     serviceType: ['', Validators.required],
-    logoUrl: ['',Validators.required]
+    logoUrl: ['']
 
 
   });

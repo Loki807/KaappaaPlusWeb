@@ -18,7 +18,10 @@
     <!-- Search -->
     <div class="top-row">
 
-       
+      <!-- BACK BUTTON -->
+<div class="back-btn-wrapper">
+   
+      
       <input 
         type="text"
         [(ngModel)]="searchText"
@@ -26,6 +29,18 @@
         class="search-box"
         placeholder="Search district..."
       />
+
+
+
+  <button class="body-back-btn" (click)="goBack()">
+ 
+    Back
+  </button>
+</div>
+
+      
+
+   
     </div>
 
     <!-- No results -->

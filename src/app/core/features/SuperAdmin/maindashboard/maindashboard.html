@@ -1,25 +1,44 @@
 <div class="dashboard-page">
 
-  <!-- ===== NAVBAR ===== -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
-    <div class="container d-flex align-items-center justify-content-between">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top modern-nav shadow-lg">
+  <div class="container d-flex align-items-center justify-content-between">
 
-      <!-- Brand -->
-      <div class="d-flex align-items-center gap-3">
-        <a class="navbar-brand fw-bold fs-4 m-0" href="#">
-          <i class="bi bi-shield-lock me-2"></i>
-          Kaappaan <span class="brand-sub"></span>
-        </a>
-      </div>
+    <!-- Brand -->
+    <div class="d-flex align-items-center gap-3">
+      <a class="navbar-brand fw-bold fs-4 m-0" href="#">
+        <i class="bi bi-shield-lock me-2 text-info"></i>
+        Kaappaan <span class="text-light"></span>
+      </a>
+    </div>
 
-      <!-- Right buttons -->
-      <div class="d-flex align-items-center gap-2">
-        <!-- optional quick action -->
-        <button class="btn btn-outline-info btn-sm" (click)="logout()">Logout</button>
-      </div>
+    <!-- ✅ Right side: Profile icon + dropdown -->
+    <div class="profile-area">
+
+      <!-- Profile Icon Button -->
+      <button class="profile-btn" type="button" (click)="toggleProfileMenu()">
+        <i class="bi bi-person-circle"></i>
+      </button>
+
+      <!-- Dropdown -->
+      @if (profileOpen) {
+        <div class="profile-menu">
+          <button type="button" class="menu-item" (click)="goProfile()">
+            <i class="bi bi-person"></i>
+            <span>Profile</span>
+          </button>
+
+          <button type="button" class="menu-item danger" (click)="logout()">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </button>
+        </div>
+      }
 
     </div>
-  </nav>
+
+  </div>
+</nav>
+
 
   <!-- ===== MAIN BODY ===== -->
   <main class="dashboard-content text-center">
